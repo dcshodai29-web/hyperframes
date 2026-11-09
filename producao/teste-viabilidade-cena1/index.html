@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #080b12;
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background: #080b12;
+      }
+      #olho {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1080px;
+        height: 1920px;
+      }
+      #gancho {
+        position: absolute;
+        left: 0;
+        top: 214px;
+        width: 100%;
+        text-align: center;
+        font-family: "Inter", sans-serif;
+        font-weight: 900;
+        font-size: 92px;
+        line-height: 1.04;
+        letter-spacing: -0.02em;
+        color: #f5f7fa;
+        text-shadow: 0 4px 30px rgba(0, 0, 0, 0.85);
+      }
+      #gancho-chave {
+        color: #00d9ff;
+      }
+      #selo {
+        position: absolute;
+        left: 0;
+        top: 1760px;
+        width: 100%;
+        text-align: center;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        font-size: 30px;
+        color: #929baa;
+        letter-spacing: 0.08em;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Teste de viabilidade da cena 1 (0–4,2 s): olho macro 100% procedural em WebGL,
+         sem bibliotecas nem imagens. Não faz parte do piloto. -->
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="4.2"
+      data-width="1080"
+      data-height="1920"
+      data-fps="30"
+    >
+      <canvas
+        id="olho"
+        class="clip"
+        width="1080"
+        height="1920"
+        data-start="0"
+        data-duration="4.2"
+        data-track-index="0"
+        data-layout-ignore
+      ></canvas>
+      <h1 id="gancho" class="clip" data-start="0" data-duration="4.2" data-track-index="1">
+        EXISTE UM <span id="gancho-chave">BURACO</span><br />NA SUA VISÃO
+      </h1>
+      <p id="selo" class="clip" data-start="0" data-duration="4.2" data-track-index="2">
+        TESTE DE VIABILIDADE · PROCEDURAL WEBGL
+      </p>
+      <audio
+        id="narracao"
+        class="clip"
+        src="assets/voice/narracao-cena1.mp3"
+        data-start="0.1"
+        data-duration="4.1"
+        data-track-index="3"
+        data-volume="0.8"
+      ></audio>
+      <audio
+        id="trilha"
+        class="clip"
+        src="assets/bgm/trilha-cena1.mp3"
+        data-start="0"
+        data-duration="4.2"
+        data-track-index="4"
+        data-volume="0.18"
+      ></audio>
+      <audio
+        id="sfx-buraco"
+        class="clip"
+        src="assets/sfx/impact-bass-1.mp3"
+        data-start="2.7"
+        data-duration="1.5"
+        data-track-index="5"
+        data-volume="0.4"
+      ></audio>
+    </div>
+
+    <script id="vs" type="x-shader/x-vertex">
+      attribute vec2 aPos;
+      void main() { gl_Position = vec4(aPos, 0.0, 1.0); }
+    </script>
+    <script id="fs" type="x-shader/x-fragment">
+      precision highp float;
+      uniform vec2 uRes;
+      uniform float uT;      // tempo do vídeo (s)
+      uniform float uZoom;   // push-in
+      uniform float uPupil;  // diâmetro relativo da pupila
+      uniform float uHole;   // 0 ou 1: buraco preto ligado
+
+      float hash(vec2 p) { p = fract(p * vec2(123.34, 456.21)); p += dot(p, p + 45.32); return fract(p.x * p.y); }
+      float noise(vec2 p) {
+        vec2 i = floor(p), f = fract(p); vec2 u = f * f * (3.0 - 2.0 * f);
+        return mix(mix(hash(i), hash(i + vec2(1, 0)), u.x), mix(hash(i + vec2(0, 1)), hash(i + vec2(1, 1)), u.x), u.y);
+      }
+      float fbm(vec2 p, float oct) {
+        float v = 0.0, a = 0.5;
+        for (int i = 0; i < 7; i++) { if (float(i) >= oct) break; v += a * noise(p); p = p * 2.03 + 17.1; a *= 0.5; }
+        return v;
+      }
+      // fibras radiais da íris sem costura no ângulo ±π
+      float fibras(float ang, float rn, float oct) {
+        float a1 = ang, a2 = ang < 0.0 ? ang + 6.2832 : ang - 6.2832;
+        float w = smoothstep(2.6, 3.1416, abs(ang));
+        vec2 q1 = vec2(a1 * 38.0, rn * 5.0), q2 = vec2(a2 * 38.0, rn * 5.0);
+        return mix(fbm(q1, oct), fbm(q2, oct), 0.5 * w);
+      }
+      vec3 aces(vec3 x) { return clamp((x * (2.51 * x + 0.03)) / (x * (2.43 * x + 0.59) + 0.14), 0.0, 1.0); }
+
+      void main() {
+        vec2 frag = vec2(gl_FragCoord.x, uRes.y - gl_FragCoord.y);   // origem no topo, como o CSS
+        vec2 centro = vec2(540.0, 900.0);
+        vec2 p = (frag - centro) / uZoom;                            // espaço do olho (px)
+        float r = length(p), ang = atan(p.y, p.x);
+        float R = 470.0;                                              // raio da íris (macro)
+        float rn = r / R;
+        // profundidade de campo simulada: menos detalhe longe do plano de foco (a íris)
+        float foco = smoothstep(480.0, 1100.0, r);
+        float oct = mix(6.0, 2.0, foco);
+
+        // abertura do olho (amêndoa) e pálpebras
+        float W = 2100.0, H = 1350.0;
+        float xn = clamp(p.x / W, -1.0, 1.0);
+        float topo = -H * 0.92 * sqrt(1.0 - xn * xn) + 40.0;
+        float base = H * 0.78 * sqrt(1.0 - xn * xn) + 20.0;
+        float dentro = smoothstep(topo - 6.0, topo + 6.0, p.y) * (1.0 - smoothstep(base - 6.0, base + 6.0, p.y));
+
+        // pele (pálpebras), fora de foco, luz quente vinda da esquerda
+        float luzX = smoothstep(700.0, -700.0, p.x);
+        vec3 pele = vec3(0.48, 0.31, 0.24) * (0.18 + 0.30 * luzX) * (0.85 + 0.3 * fbm(p * 0.004, 3.0));
+        // cílios: fios escuros na borda superior
+        float borda = 1.0 - smoothstep(0.0, 70.0, abs(p.y - topo));
+        float cilios = borda * smoothstep(0.55, 0.75, noise(vec2(p.x * 0.08, 0.0)));
+        pele *= 1.0 - 0.8 * cilios;
+
+        // esclera: esfera, sombra da pálpebra de cima, veias discretas
+        float esfera = clamp(1.0 - pow(r / 1250.0, 2.0), 0.0, 1.0);
+        vec3 esclera = vec3(0.70, 0.66, 0.62) * (0.10 + 0.90 * esfera * esfera);
+        esclera = mix(esclera, vec3(0.72, 0.42, 0.40) * (0.3 + 0.7 * esfera), 0.25 * smoothstep(0.55, 0.8, fbm(p * 0.006, 4.0)) * smoothstep(420.0, 900.0, r));
+        float sombraLid = smoothstep(-900.0, -380.0, p.y + 60.0 * (fbm(vec2(p.x * 0.004, 1.0), 3.0) - 0.5));
+        esclera *= 0.12 + 0.88 * sombraLid;
+
+        // íris: cores naturais (âmbar perto da pupila, verde-avelã fora, anel límbico escuro)
+        float pr = 0.30 * uPupil;
+        float f = fibras(ang, rn, oct);
+        vec3 interno = vec3(0.62, 0.40, 0.15), meio = vec3(0.32, 0.40, 0.22), fora = vec3(0.18, 0.24, 0.16);
+        vec3 iris = mix(interno, meio, smoothstep(pr * 1.25, 0.62, rn));
+        iris = mix(iris, fora, smoothstep(0.62, 0.92, rn));
+        iris *= 0.45 + 0.95 * f;
+        float colarete = exp(-pow((rn - pr * 1.55) / 0.035, 2.0));
+        iris += vec3(0.30, 0.20, 0.08) * colarete * (0.5 + f);
+        float criptas = smoothstep(0.62, 0.70, fbm(vec2(ang * 9.0, rn * 7.0) + 3.0, 4.0));
+        iris *= 1.0 - 0.45 * criptas * smoothstep(pr, pr * 1.8, rn);
+        float limbo = smoothstep(0.80, 1.0, rn);
+        iris *= 1.0 - 0.85 * limbo;
+        iris *= 0.75 + 0.25 * sombraLid;
+        // pupila
+        float pupila = 1.0 - smoothstep(pr - 0.012, pr + 0.008, rn);
+        iris = mix(iris, vec3(0.01, 0.012, 0.016), pupila);
+
+        float naIris = 1.0 - smoothstep(0.985, 1.005, rn);
+        vec3 olho = mix(esclera, iris, naIris);
+
+        // luz: key quente pela esquerda, rim azul elétrico pela direita (paleta do canal)
+        olho *= 0.55 + 0.6 * smoothstep(650.0, -500.0, p.x);
+        olho += vec3(0.09, 0.41, 1.0) * 0.10 * smoothstep(300.0, 1000.0, p.x) * dentro;
+
+        // córnea: reflexo da janela (softbox) e brilho pontual
+        vec2 j = (p - vec2(-160.0, -200.0)) / vec2(150.0, 98.0);
+        float janela = 1.0 - smoothstep(0.75, 1.0, pow(pow(abs(j.x), 4.0) + pow(abs(j.y), 4.0), 0.25));
+        janela *= 0.8 + 0.2 * smoothstep(-1.0, 1.0, j.y);
+        float barra = (1.0 - smoothstep(0.0, 6.0, abs(p.x + 160.0))) * step(abs(j.y), 1.0);
+        janela *= 1.0 - 0.6 * barra;
+        float ponto = exp(-pow(length(p - vec2(200.0, -300.0)) / 20.0, 2.0));
+        float corneaR = 1.0 - smoothstep(1.02, 1.06, rn);
+        olho += vec3(1.0, 0.97, 0.92) * (0.6 * janela + 0.9 * ponto) * corneaR;
+        // película úmida: anel de refração na borda da córnea e brilho largo na esclera
+        olho += vec3(0.85, 0.9, 1.0) * 0.12 * exp(-pow((rn - 1.0) / 0.02, 2.0));
+        olho += vec3(1.0, 0.96, 0.9) * 0.06 * exp(-pow(length(p - vec2(-520.0, -260.0)) / 260.0, 2.0)) * (1.0 - naIris);
+        olho += vec3(0.6, 0.75, 1.0) * 0.05 * corneaR * smoothstep(0.4, 1.0, rn);
+
+        vec3 col = mix(pele, olho, dentro);
+
+        // buraco: recorta a imagem (no espaço do olho, acompanha o push-in)
+        float buraco = 1.0 - smoothstep(152.0, 156.0, length(p - vec2(330.0, 45.0)));
+        col = mix(col, vec3(0.0), buraco * uHole);
+
+        // luz volumétrica: feixes vindos de cima à esquerda e poeira fora de foco
+        vec2 s = frag / uRes;
+        float feixe = pow(max(0.0, cos((s.x * 1.4 + s.y * 0.9) * 9.0 + 1.3)), 6.0);
+        feixe *= smoothstep(1.0, 0.0, s.y) * (0.6 + 0.4 * noise(vec2(s.x * 6.0 + uT * 0.15, s.y * 3.0)));
+        col += vec3(1.0, 0.9, 0.75) * 0.05 * feixe * (1.0 - buraco * uHole);
+        for (int k = 0; k < 3; k++) {
+          float cel = 150.0 + float(k) * 70.0;
+          vec2 q = frag / cel + vec2(uT * (0.05 + 0.03 * float(k)), -uT * 0.04);
+          vec2 id = floor(q), fq = fract(q);
+          vec2 pos = vec2(hash(id + float(k)), hash(id + 7.0 + float(k)));
+          float d = length(fq - pos) * cel;
+          float raio = 10.0 + 18.0 * hash(id + 3.0);
+          float vivo = step(0.72, hash(id + 11.0 + float(k)));
+          col += vec3(1.0, 0.92, 0.80) * 0.10 * vivo * (1.0 - smoothstep(raio * 0.6, raio, d)) * (0.4 + feixe);
+        }
+
+        // vinheta, tom fílmico e granulação determinística
+        float vin = smoothstep(1.25, 0.35, length((frag - vec2(540.0, 900.0)) / vec2(760.0, 1150.0)));
+        col *= 0.25 + 0.75 * vin;
+        col = aces(col * 1.05);
+        col += (hash(frag + floor(uT * 30.0) * 13.7) - 0.5) * 0.035;
+        gl_FragColor = vec4(pow(col, vec3(0.92)), 1.0);
+      }
+    </script>
+
+    <script>
+      (function () {
+        const canvas = document.getElementById("olho");
+        const gl = canvas.getContext("webgl", { preserveDrawingBuffer: true, antialias: false });
+        const sh = (tipo, id) => {
+          const s = gl.createShader(tipo);
+          gl.shaderSource(s, document.getElementById(id).textContent);
+          gl.compileShader(s);
+          if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s));
+          return s;
+        };
+        const prog = gl.createProgram();
+        gl.attachShader(prog, sh(gl.VERTEX_SHADER, "vs"));
+        gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, "fs"));
+        gl.linkProgram(prog);
+        gl.useProgram(prog);
+        const buf = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+        gl.bufferData(
+          gl.ARRAY_BUFFER,
+          new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]),
+          gl.STATIC_DRAW,
+        );
+        const loc = gl.getAttribLocation(prog, "aPos");
+        gl.enableVertexAttribArray(loc);
+        gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+        const u = (n) => gl.getUniformLocation(prog, n);
+        gl.uniform2f(u("uRes"), 1080, 1920);
+        gl.viewport(0, 0, 1080, 1920);
+
+        const ease = (x) => x * x * (3 - 2 * x);
+        function desenhar(t) {
+          // push-in lento e constante (o loop do fim retoma esta velocidade)
+          gl.uniform1f(u("uT"), t);
+          gl.uniform1f(u("uZoom"), 1.0 + 0.03 * t);
+          // pupila contrai de leve no começo (o olho está vivo), depois fica estável
+          gl.uniform1f(u("uPupil"), 1.08 - 0.08 * ease(Math.min(1, t / 1.2)));
+          gl.uniform1f(u("uHole"), t >= 2.7 ? 1 : 0);
+          gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+        }
+        window.addEventListener("hf-seek", (e) => desenhar(e.detail.time));
+        desenhar(0);
+
+        const tl = gsap.timeline({ paused: true });
+        // O gancho está na tela no quadro 0; em "Agora mesmo" ele sai para dar lugar ao buraco.
+        tl.fromTo(
+          "#gancho",
+          { opacity: 1, filter: "blur(0px)" },
+          { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" },
+          2.62,
+        );
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>
