@@ -1,5 +1,8 @@
 # Produção de vídeos verticais (roteiro → MP4)
 
+> **Leia primeiro `producao/CONTEXTO-DO-CANAL.md`**: as diretrizes oficiais do canal (nicho, 61 s,
+> voz, retenção, etapas). Elas têm prioridade sobre esta receita quando houver conflito.
+
 A pessoa manda, pelo celular, um roteiro ou só uma ideia. A entrega é um MP4 vertical 1080×1920 com
 narração pt-BR, cenas animadas, transições, legendas sincronizadas, trilha e efeitos sonoros.
 Responda em português. Carregue `/hyperframes:hyperframes` (e `/hyperframes:media-use` para mídia)
