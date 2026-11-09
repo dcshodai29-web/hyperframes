@@ -1,9 +1,20 @@
 # Piloto 01: "Seu cérebro esconde coisas de você"
 
-Proposta editorial, **versão 2** (revisada com os ajustes da pessoa). Conceito, estrutura narrativa
-e direção visual aprovados; produção ainda não autorizada. Nada foi renderizado e o pipeline não
-foi alterado. Segue `producao/CONTEXTO-DO-CANAL.md` (SCIENCE CINEMATIC, RETENTION CINEMATIC,
-61 s, 1080×1920, 30 fps).
+Proposta editorial, **versão 3**. Aprovados: tema, as oito cenas, identidade visual, duração de
+61 s e final em loop. Produção ainda não autorizada; a voz está em avaliação pela pessoa. Nada foi
+renderizado e o pipeline não foi alterado. Segue `producao/CONTEXTO-DO-CANAL.md` (SCIENCE
+CINEMATIC, RETENTION CINEMATIC, 61 s, 1080×1920, 30 fps).
+
+## O que mudou da versão 2
+
+1. **Cena 3:** o preenchimento do ponto cego aparece como continuação das linhas e cores das
+   bordas, com guias visíveis, e não como uma imagem nova.
+2. **Cena 4:** a supressão sacádica aparece como queda momentânea e gradual da percepção (contraste
+   e nitidez) durante cada salto; o rastro do movimento continua existindo, só que fraco demais
+   para ser notado.
+3. **Loop:** aprovado; a cena 8 detalha como o último quadro volta ao estado do quadro 0.
+
+Roteiro, tempos, legendas e trilha não mudaram.
 
 ## O que mudou da versão 1
 
@@ -41,7 +52,8 @@ meio das pausas.
 - **Relação com a estrutura de referência:** gancho 0–4 s; curiosidade e contexto 4–17 s;
   desenvolvimento 17–34 s; surpresa 34–44 s; revelação 44–52 s; conclusão 52–61 s. A revelação
   chega ~1 s antes do previsto e a conclusão ganha mais tempo, por causa das pausas finais.
-- O fecho repete o gancho ("Agora mesmo") e o último quadro espelha o primeiro, para o loop.
+- O fecho repete o gancho ("Agora mesmo") e o último quadro é igual ao primeiro, para o loop
+  (aprovado; detalhes na cena 8).
 
 ## Checagem científica
 
@@ -87,20 +99,38 @@ foi definido.
   1. "Com os dois olhos abertos": dois campos visuais translúcidos (esquerdo e direito) se
      sobrepõem; cada um tem seu buraco em lugar diferente, e cada buraco fica coberto pela imagem
      do outro olho. Rótulo: "OLHO ESQUERDO + OLHO DIREITO".
-  2. "Com um só": um dos campos sai; o buraco fica exposto numa paisagem de cores reais, e a
-     textura do entorno escorre para dentro até fechá-lo. Rótulo: "PREENCHIMENTO".
-- **Câmera:** estável e frontal, para o espectador ver as duas imagens se combinarem e depois a
-  falha se fechar.
+  2. "Com um só": um dos campos sai e o buraco fica exposto sobre uma cena de padrão regular e
+     cores naturais, escolhida para a continuidade ficar legível: por exemplo, as fileiras de uma
+     plantação cortadas por uma linha de horizonte. O preenchimento mostra que o cérebro continua
+     o que existe nas bordas, não que cria algo novo:
+     - um anel fino em ciano marca a borda do buraco e "amostra" o entorno: as cores e as linhas
+       que tocam a borda;
+     - guias tracejadas prolongam cada linha (as fileiras e o horizonte) da borda para dentro,
+       na mesma direção, e a cor das bordas avança junto com elas;
+     - o buraco se fecha com exatamente essa continuação; as guias somem e resta a cena contínua,
+       sem nenhum detalhe que não estivesse nas bordas.
+       Rótulo: "PREENCHIMENTO: CONTINUAÇÃO DO ENTORNO". Como reforço opcional, um objeto pequeno
+       colocado inteiro dentro do buraco (uma pedra numa fileira) não reaparece: no lugar dele fica a
+       fileira contínua. É o mesmo efeito do teste clássico do ponto cego, em que um ponto
+       desaparece e dá lugar ao fundo.
+- **Câmera:** estável e frontal, para o espectador ver as duas imagens se combinarem e depois as
+  linhas atravessarem a falha.
 - **Som:** textura granular breve no preenchimento.
 
 ### Cena 4 — Desenvolvimento: sacadas (16,9–27,4 s)
 
 - **Visual:** pontos de fixação ciano saltam sobre um rosto, ligados por traços (padrão real de
-  sacadas). O olho 3D em perfil executa os saltos; rótulo "~3 SALTOS POR SEGUNDO". Em "a
-  sensibilidade visual diminui", um medidor discreto de sensibilidade cai a cada salto e volta
-  logo depois; durante o salto, a imagem fica levemente apagada e sem contraste (não preta).
-  Em "E o borrão passa despercebido", mostra-se o borrão que a câmera captaria e, ao lado, a
-  imagem que a pessoa percebe, estável.
+  sacadas). O olho 3D em perfil executa os saltos; rótulo "~3 SALTOS POR SEGUNDO".
+  - Em "a sensibilidade visual diminui", a cena passa a mostrar a percepção, não a câmera: a
+    cada salto, a imagem inteira perde contraste e nitidez por um instante (fica mais pálida,
+    nunca preta nem cortada) e volta ao normal quando o olho pousa. Um medidor discreto de
+    "sensibilidade visual" desce e sobe no mesmo ritmo. É uma redução gradual e momentânea, não
+    um corte.
+  - Em "E o borrão passa despercebido", o movimento da imagem na retina durante o salto aparece
+    como um rastro tênue, com a mesma palidez do momento de baixa sensibilidade: o rastro existe,
+    mas chega fraco demais para chamar atenção. Ele não é removido nem substituído.
+  - Selo em cinza: "ilustração em câmera lenta" (uma sacada real dura poucas dezenas de
+    milissegundos).
 - **Câmera:** whips curtos acompanhando cada sacada; zoom pontual no medidor.
 - **Som:** cliques muito baixos em cada salto; a ambiência perde brilho por um instante a cada
   salto (filtro leve), espelhando a queda de sensibilidade.
@@ -136,11 +166,23 @@ foi definido.
 
 ### Cena 8 — Conclusão (51,7–61,0 s)
 
-- **Visual:** a câmera sai do cérebro e volta ao olho da cena 1, no mesmo enquadramento. Em "E o
-  buraco?", o círculo preto reaparece pequeno; em "Agora mesmo", fica parado. De 59,0 a 61 s,
-  imagem fixa espelhando o quadro 0.
-- **Câmera:** pull-back até o enquadramento inicial, parando exatamente nele.
-- **Som:** whoosh de saída; sub-grave final em "Agora mesmo", com cauda até 61 s.
+- **Visual:** a câmera sai do cérebro e volta ao olho da cena 1, com a mesma lente, luz e
+  enquadramento. Em "E o buraco?", o círculo preto reaparece pequeno; em "Continua aí. Agora
+  mesmo", fica parado sobre a pupila.
+- **Loop (aprovado):** o último quadro (61,0 s) é igual ao quadro 0, e a passagem do fim para o
+  começo é uma continuação, não um corte:
+  - 59,0–60,2 s: o círculo preto se fecha devagar até sumir, devolvendo o olho ao estado do
+    quadro 0 (no começo, o buraco só aparece em "Agora mesmo").
+  - 59,4–59,9 s: o texto do gancho, "EXISTE UM BURACO NA SUA VISÃO", reaparece no mesmo lugar e
+    estilo do quadro 0. Ele entra logo depois de "Agora mesmo", então lê como continuação da fala.
+  - Câmera: termina no mesmo push-in lento do início, na mesma velocidade, chegando ao
+    enquadramento exato do quadro 0 em 61,0 s. Na repetição, o movimento continua sem salto.
+  - Som: a cauda do acorde final e do sub-grave cai até perto do silêncio em 61 s, e o pulso
+    grave do quadro 0 recomeça como o próximo tempo da mesma música.
+  - Versão de 60 s (Shorts): como o círculo fecha e o texto volta antes de 60 s, o quadro final
+    também corresponde ao quadro 0; a diferença é só 1 s do push-in lento, imperceptível.
+- **Câmera:** pull-back até o enquadramento inicial, emendando no push-in lento do quadro 0.
+- **Som:** whoosh de saída; sub-grave final em "Agora mesmo", com cauda que se resolve até 61 s.
 
 ## Trilha
 
@@ -240,4 +282,5 @@ Observações objetivas (as amostras não foram ouvidas por quem as gerou; a ava
 1. **Voz:** avaliar as amostras. Se `pm_alex` não atingir "grave, natural, sem entonação
    robótica", é preciso escolher outra forma de gerar a narração.
 2. **Técnica de animação 3D:** ainda não definida.
-3. **Final em loop:** confirmar se o último quadro deve espelhar o primeiro.
+
+Decidido: final em loop, com o último quadro igual ao primeiro (cena 8).
