@@ -1,6 +1,6 @@
 # Piloto 01: "Seu cérebro esconde coisas de você"
 
-Proposta editorial, **versão 4**. Aprovados: tema, as oito cenas, identidade visual, duração de
+Proposta editorial, **versão 4** · **produzido** em 2026-11-09 (ver `producao/piloto-01-cerebro/PRODUCAO.md` e `REVIEW.md`). Aprovados: tema, as oito cenas, identidade visual, duração de
 61 s e final em loop. Produção ainda não autorizada; a voz está em avaliação pela pessoa. Nada foi
 renderizado e o pipeline não foi alterado. Segue `producao/CONTEXTO-DO-CANAL.md` (SCIENCE
 CINEMATIC, RETENTION CINEMATIC, 61 s, 1080×1920, 30 fps).

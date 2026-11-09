@@ -1,0 +1,50 @@
+[
+  {
+    "text": "Existe",
+    "start": 0.03,
+    "end": 0.52,
+    "id": "w0"
+  },
+  {
+    "text": "um",
+    "start": 0.52,
+    "end": 0.69,
+    "id": "w1"
+  },
+  {
+    "text": "buraco",
+    "start": 0.69,
+    "end": 1.21,
+    "id": "w2"
+  },
+  {
+    "text": "na",
+    "start": 1.21,
+    "end": 1.38,
+    "id": "w3"
+  },
+  {
+    "text": "sua",
+    "start": 1.38,
+    "end": 1.63,
+    "id": "w4"
+  },
+  {
+    "text": "visão",
+    "start": 1.63,
+    "end": 2.07,
+    "id": "w5"
+  },
+  {
+    "text": "agora",
+    "start": 2.08,
+    "end": 2.52,
+    "id": "w6"
+  },
+  {
+    "text": "mesmo.",
+    "start": 2.52,
+    "end": 3.06,
+    "id": "w7"
+  }
+]

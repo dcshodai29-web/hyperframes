@@ -1,0 +1,98 @@
+[
+  {
+    "text": "No",
+    "start": 0.03,
+    "end": 0.15,
+    "id": "w0"
+  },
+  {
+    "text": "fundo",
+    "start": 0.15,
+    "end": 0.53,
+    "id": "w1"
+  },
+  {
+    "text": "de",
+    "start": 0.54,
+    "end": 0.64,
+    "id": "w2"
+  },
+  {
+    "text": "cada",
+    "start": 0.75,
+    "end": 1,
+    "id": "w3"
+  },
+  {
+    "text": "olho,",
+    "start": 1,
+    "end": 1.33,
+    "id": "w4"
+  },
+  {
+    "text": "onde",
+    "start": 1.56,
+    "end": 1.77,
+    "id": "w5"
+  },
+  {
+    "text": "nasce",
+    "start": 1.77,
+    "end": 2.15,
+    "id": "w6"
+  },
+  {
+    "text": "o",
+    "start": 2.15,
+    "end": 2.22,
+    "id": "w7"
+  },
+  {
+    "text": "nervo",
+    "start": 2.22,
+    "end": 2.6,
+    "id": "w8"
+  },
+  {
+    "text": "óptico,",
+    "start": 2.6,
+    "end": 3.22,
+    "id": "w9"
+  },
+  {
+    "text": "não",
+    "start": 3.36,
+    "end": 3.54,
+    "id": "w10"
+  },
+  {
+    "text": "há",
+    "start": 3.54,
+    "end": 3.68,
+    "id": "w11"
+  },
+  {
+    "text": "células",
+    "start": 3.68,
+    "end": 4.13,
+    "id": "w12"
+  },
+  {
+    "text": "que",
+    "start": 4.18,
+    "end": 4.41,
+    "id": "w13"
+  },
+  {
+    "text": "captam",
+    "start": 4.41,
+    "end": 4.82,
+    "id": "w14"
+  },
+  {
+    "text": "luz.",
+    "start": 4.84,
+    "end": 5.12,
+    "id": "w15"
+  }
+]

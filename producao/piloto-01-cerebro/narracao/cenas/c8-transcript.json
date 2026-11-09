@@ -1,0 +1,74 @@
+[
+  {
+    "text": "Você",
+    "start": 0.08,
+    "end": 0.32,
+    "id": "w0"
+  },
+  {
+    "text": "vive",
+    "start": 0.32,
+    "end": 0.64,
+    "id": "w1"
+  },
+  {
+    "text": "dentro",
+    "start": 0.64,
+    "end": 1.1,
+    "id": "w2"
+  },
+  {
+    "text": "dessa",
+    "start": 1.11,
+    "end": 1.51,
+    "id": "w3"
+  },
+  {
+    "text": "versão",
+    "start": 1.51,
+    "end": 1.89,
+    "id": "w4"
+  },
+  {
+    "text": "e",
+    "start": 1.99,
+    "end": 2.07,
+    "id": "w5"
+  },
+  {
+    "text": "aquele",
+    "start": 2.18,
+    "end": 2.53,
+    "id": "w6"
+  },
+  {
+    "text": "buraco",
+    "start": 2.53,
+    "end": 2.99,
+    "id": "w7"
+  },
+  {
+    "text": "continua",
+    "start": 3,
+    "end": 3.79,
+    "id": "w8"
+  },
+  {
+    "text": "aí,",
+    "start": 3.79,
+    "end": 4.13,
+    "id": "w9"
+  },
+  {
+    "text": "agora",
+    "start": 4.16,
+    "end": 4.5,
+    "id": "w10"
+  },
+  {
+    "text": "mesmo.",
+    "start": 4.5,
+    "end": 4.93,
+    "id": "w11"
+  }
+]

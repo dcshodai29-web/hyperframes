@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1080, height=1920" />
     <script src="assets/vendor/gsap.min.js"></script>
+    <!-- biblioteca WebGL do canal (SCIENCE CINEMATIC), escrita para este projeto, sem dependências -->
+    <script src="assets/lib/ciencia-gl.js"></script>
     <style>
       * {
         margin: 0;
@@ -37,8 +39,8 @@
     </style>
   </head>
   <body>
-    <!-- Piloto 01 · esqueleto de produção: narração, legendas e tempos de cena definitivos;
-         cenas 1–8 são marcadores provisórios até a técnica 3D ser escolhida. -->
+    <!-- Piloto 01 · "Seu cérebro esconde coisas de você" · 61 s, 1080×1920, 30 fps.
+         Cortes de cena no meio das pausas da narração (narracao/cenas.json). -->
     <div
       id="root"
       data-composition-id="main"
@@ -49,97 +51,105 @@
       data-fps="30"
     >
       <div id="fundo" class="clip" data-start="0" data-duration="61" data-track-index="0"></div>
+      <!-- Gancho -->
       <div
         id="cena1"
         class="clip cena"
         data-composition-id="cena1"
         data-composition-src="compositions/cena1.html"
         data-start="0.0"
-        data-duration="4.13"
+        data-duration="3.96"
         data-track-index="1"
         data-track-kind="graphics"
         data-width="1080"
         data-height="1920"
       ></div>
+      <!-- Curiosidade: retina e disco óptico -->
       <div
         id="cena2"
         class="clip cena"
         data-composition-id="cena2"
         data-composition-src="compositions/cena2.html"
-        data-start="4.13"
-        data-duration="5.65"
+        data-start="3.96"
+        data-duration="5.84"
         data-track-index="1"
         data-track-kind="graphics"
         data-width="1080"
         data-height="1920"
       ></div>
+      <!-- Contexto: dois olhos e o preenchimento -->
       <div
         id="cena3"
         class="clip cena"
         data-composition-id="cena3"
         data-composition-src="compositions/cena3.html"
-        data-start="9.78"
-        data-duration="7.44"
+        data-start="9.8"
+        data-duration="7.5"
         data-track-index="1"
         data-track-kind="graphics"
         data-width="1080"
         data-height="1920"
       ></div>
+      <!-- Desenvolvimento: sacadas -->
       <div
         id="cena4"
         class="clip cena"
         data-composition-id="cena4"
         data-composition-src="compositions/cena4.html"
-        data-start="17.22"
-        data-duration="10.44"
+        data-start="17.3"
+        data-duration="9.85"
         data-track-index="1"
         data-track-kind="graphics"
         data-width="1080"
         data-height="1920"
       ></div>
+      <!-- Desenvolvimento: cronóstase -->
       <div
         id="cena5"
         class="clip cena"
         data-composition-id="cena5"
         data-composition-src="compositions/cena5.html"
-        data-start="27.66"
-        data-duration="6.58"
+        data-start="27.15"
+        data-duration="6.86"
         data-track-index="1"
         data-track-kind="graphics"
         data-width="1080"
         data-height="1920"
       ></div>
+      <!-- Surpresa: o gorila (reconstrução) -->
       <div
         id="cena6"
         class="clip cena"
         data-composition-id="cena6"
         data-composition-src="compositions/cena6.html"
-        data-start="34.24"
-        data-duration="9.84"
+        data-start="34.01"
+        data-duration="9.74"
         data-track-index="1"
         data-track-kind="graphics"
         data-width="1080"
         data-height="1920"
       ></div>
+      <!-- Revelação: o cérebro monta uma versão -->
       <div
         id="cena7"
         class="clip cena"
         data-composition-id="cena7"
         data-composition-src="compositions/cena7.html"
-        data-start="44.08"
-        data-duration="7.95"
+        data-start="43.75"
+        data-duration="8.15"
         data-track-index="1"
         data-track-kind="graphics"
         data-width="1080"
         data-height="1920"
       ></div>
+      <!-- Conclusão e loop -->
       <div
         id="cena8"
         class="clip cena"
         data-composition-id="cena8"
         data-composition-src="compositions/cena8.html"
-        data-start="52.03"
-        data-duration="8.97"
+        data-start="51.9"
+        data-duration="9.1"
         data-track-index="1"
         data-track-kind="graphics"
         data-width="1080"
@@ -163,8 +173,9 @@
         src="assets/voice/narracao.mp3"
         data-start="0.1"
         data-track-index="3"
-        data-volume="0.8"
+        data-volume="0.708"
       ></audio>
+      <!-- trilha: quase silêncio no reveal do gorila, crescendo na revelação, cauda no loop -->
       <audio
         id="trilha"
         class="clip"
@@ -172,8 +183,348 @@
         data-start="0"
         data-duration="61"
         data-track-index="4"
-        data-volume="0.18"
-        data-fade-out="1.5"
+        data-volume="0.142"
+        data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":0.85},{"t":9.0,"v":1.0},{"t":40.6,"v":1.0},{"t":42.6,"v":0.1},{"t":43.9,"v":0.1},{"t":45.0,"v":0.85},{"t":50.5,"v":1.45},{"t":52.2,"v":1.15},{"t":58.0,"v":0.9},{"t":60.0,"v":0.55},{"t":61.0,"v":0.3}]}]}'
+      ></audio>
+      <!-- o buraco recorta a imagem -->
+      <audio
+        id="sfx-buraco"
+        class="clip"
+        src="assets/sfx/impact-bass-1.mp3"
+        data-start="2.58"
+        data-duration="2.12"
+        data-track-index="5"
+        data-volume="0.319"
+      ></audio>
+      <!-- mergulho na pupila -->
+      <audio
+        id="sfx-mergulho"
+        class="clip"
+        src="assets/sfx/whoosh.mp3"
+        data-start="3.83"
+        data-duration="0.57"
+        data-track-index="6"
+        data-volume="0.212"
+      ></audio>
+      <!-- fotorreceptores acendem -->
+      <audio
+        id="sfx-receptores"
+        class="clip"
+        src="assets/sfx/sparkle.mp3"
+        data-start="7.27"
+        data-duration="1.8"
+        data-track-index="5"
+        data-volume="0.113"
+      ></audio>
+      <!-- anel do ponto cego -->
+      <audio
+        id="sfx-ponto-cego"
+        class="clip"
+        src="assets/sfx/ping.mp3"
+        data-start="8.22"
+        data-duration="1.32"
+        data-track-index="6"
+        data-volume="0.156"
+      ></audio>
+      <!-- os dois campos se juntam -->
+      <audio
+        id="sfx-campos"
+        class="clip"
+        src="assets/sfx/whoosh-short.mp3"
+        data-start="11.87"
+        data-duration="0.57"
+        data-track-index="5"
+        data-volume="0.127"
+      ></audio>
+      <!-- o buraco é preenchido -->
+      <audio
+        id="sfx-preenche"
+        class="clip"
+        src="assets/sfx/sparkle.mp3"
+        data-start="15.26"
+        data-duration="1.8"
+        data-track-index="5"
+        data-volume="0.099"
+      ></audio>
+      <!-- salto rápido do olho -->
+      <audio
+        id="sfx-sacada-1"
+        class="clip"
+        src="assets/sfx/click-soft.mp3"
+        data-start="17.715"
+        data-duration="0.37"
+        data-track-index="5"
+        data-volume="0.071"
+      ></audio>
+      <!-- salto rápido do olho -->
+      <audio
+        id="sfx-sacada-2"
+        class="clip"
+        src="assets/sfx/key-press.mp3"
+        data-start="18.035"
+        data-duration="0.43"
+        data-track-index="6"
+        data-volume="0.071"
+      ></audio>
+      <!-- salto rápido do olho -->
+      <audio
+        id="sfx-sacada-3"
+        class="clip"
+        src="assets/sfx/click-soft.mp3"
+        data-start="18.355"
+        data-duration="0.37"
+        data-track-index="5"
+        data-volume="0.071"
+      ></audio>
+      <!-- salto rápido do olho -->
+      <audio
+        id="sfx-sacada-4"
+        class="clip"
+        src="assets/sfx/key-press.mp3"
+        data-start="18.675"
+        data-duration="0.43"
+        data-track-index="6"
+        data-volume="0.071"
+      ></audio>
+      <!-- salto rápido do olho -->
+      <audio
+        id="sfx-sacada-5"
+        class="clip"
+        src="assets/sfx/click-soft.mp3"
+        data-start="18.995"
+        data-duration="0.37"
+        data-track-index="5"
+        data-volume="0.071"
+      ></audio>
+      <!-- salto rápido do olho -->
+      <audio
+        id="sfx-sacada-6"
+        class="clip"
+        src="assets/sfx/key-press.mp3"
+        data-start="19.315"
+        data-duration="0.43"
+        data-track-index="6"
+        data-volume="0.071"
+      ></audio>
+      <!-- salto rápido do olho -->
+      <audio
+        id="sfx-sacada-7"
+        class="clip"
+        src="assets/sfx/click-soft.mp3"
+        data-start="19.635"
+        data-duration="0.37"
+        data-track-index="5"
+        data-volume="0.071"
+      ></audio>
+      <!-- salto rápido do olho -->
+      <audio
+        id="sfx-sacada-8"
+        class="clip"
+        src="assets/sfx/key-press.mp3"
+        data-start="19.955"
+        data-duration="0.43"
+        data-track-index="6"
+        data-volume="0.071"
+      ></audio>
+      <!-- salto rápido do olho -->
+      <audio
+        id="sfx-sacada-9"
+        class="clip"
+        src="assets/sfx/click-soft.mp3"
+        data-start="20.275"
+        data-duration="0.37"
+        data-track-index="5"
+        data-volume="0.071"
+      ></audio>
+      <!-- salto rápido do olho -->
+      <audio
+        id="sfx-sacada-10"
+        class="clip"
+        src="assets/sfx/key-press.mp3"
+        data-start="20.595"
+        data-duration="0.43"
+        data-track-index="6"
+        data-volume="0.071"
+      ></audio>
+      <!-- salto em câmera lenta -->
+      <audio
+        id="sfx-sacada-lenta-1"
+        class="clip"
+        src="assets/sfx/whoosh-short.mp3"
+        data-start="21.72"
+        data-duration="0.57"
+        data-track-index="5"
+        data-volume="0.071"
+      ></audio>
+      <!-- salto em câmera lenta -->
+      <audio
+        id="sfx-sacada-lenta-2"
+        class="clip"
+        src="assets/sfx/whoosh-short.mp3"
+        data-start="22.97"
+        data-duration="0.57"
+        data-track-index="5"
+        data-volume="0.071"
+      ></audio>
+      <!-- salto em câmera lenta -->
+      <audio
+        id="sfx-sacada-lenta-3"
+        class="clip"
+        src="assets/sfx/whoosh-short.mp3"
+        data-start="24.22"
+        data-duration="0.57"
+        data-track-index="5"
+        data-volume="0.071"
+      ></audio>
+      <!-- salto em câmera lenta -->
+      <audio
+        id="sfx-sacada-lenta-4"
+        class="clip"
+        src="assets/sfx/whoosh-short.mp3"
+        data-start="25.42"
+        data-duration="0.57"
+        data-track-index="5"
+        data-volume="0.071"
+      ></audio>
+      <!-- o olho salta para a direita -->
+      <audio
+        id="sfx-olhar"
+        class="clip"
+        src="assets/sfx/click-soft.mp3"
+        data-start="28.16"
+        data-duration="0.37"
+        data-track-index="5"
+        data-volume="0.085"
+      ></audio>
+      <!-- a câmera salta até o relógio -->
+      <audio
+        id="sfx-chicote"
+        class="clip"
+        src="assets/sfx/whoosh.mp3"
+        data-start="29.22"
+        data-duration="0.57"
+        data-track-index="5"
+        data-volume="0.227"
+      ></audio>
+      <!-- primeiro tique: o segundo que parece mais longo -->
+      <audio
+        id="sfx-tique-1"
+        class="clip"
+        src="assets/sfx/tique-longo.mp3"
+        data-start="29.53"
+        data-duration="1.85"
+        data-track-index="6"
+        data-volume="0.241"
+      ></audio>
+      <!-- tique -->
+      <audio
+        id="sfx-tique-2"
+        class="clip"
+        src="assets/sfx/click.mp3"
+        data-start="31.13"
+        data-duration="0.37"
+        data-track-index="5"
+        data-volume="0.198"
+      ></audio>
+      <!-- tique -->
+      <audio
+        id="sfx-tique-3"
+        class="clip"
+        src="assets/sfx/click.mp3"
+        data-start="32.13"
+        data-duration="0.37"
+        data-track-index="5"
+        data-volume="0.198"
+      ></audio>
+      <!-- tique -->
+      <audio
+        id="sfx-tique-4"
+        class="clip"
+        src="assets/sfx/click.mp3"
+        data-start="33.13"
+        data-duration="0.37"
+        data-track-index="5"
+        data-volume="0.198"
+      ></audio>
+      <!-- o foco muda para o gorila (pico em 42,7 s) -->
+      <audio
+        id="sfx-gorila"
+        class="clip"
+        src="assets/sfx/impact-bass-2.mp3"
+        data-start="40.74"
+        data-duration="2.59"
+        data-track-index="5"
+        data-volume="0.248"
+      ></audio>
+      <!-- a informação dos sentidos flui -->
+      <audio
+        id="sfx-fluxo"
+        class="clip"
+        src="assets/sfx/whoosh-cinematic.mp3"
+        data-start="43.5"
+        data-duration="5.54"
+        data-track-index="5"
+        data-volume="0.142"
+      ></audio>
+      <!-- seleciona -->
+      <audio
+        id="sfx-seleciona"
+        class="clip"
+        src="assets/sfx/impact-bass-1.mp3"
+        data-start="48.16"
+        data-duration="2.12"
+        data-track-index="6"
+        data-volume="0.099"
+      ></audio>
+      <!-- completa -->
+      <audio
+        id="sfx-completa"
+        class="clip"
+        src="assets/sfx/sparkle.mp3"
+        data-start="49.0"
+        data-duration="1.8"
+        data-track-index="7"
+        data-volume="0.099"
+      ></audio>
+      <!-- monta -->
+      <audio
+        id="sfx-monta"
+        class="clip"
+        src="assets/sfx/impact-bass-1.mp3"
+        data-start="49.66"
+        data-duration="2.12"
+        data-track-index="5"
+        data-volume="0.156"
+      ></audio>
+      <!-- mergulho no olho -->
+      <audio
+        id="sfx-mergulho-2"
+        class="clip"
+        src="assets/sfx/whoosh.mp3"
+        data-start="51.72"
+        data-duration="0.57"
+        data-track-index="6"
+        data-volume="0.212"
+      ></audio>
+      <!-- o buraco reaparece (pico em 55,3 s) -->
+      <audio
+        id="sfx-buraco-volta"
+        class="clip"
+        src="assets/sfx/impact-bass-2.mp3"
+        data-start="53.31"
+        data-duration="2.59"
+        data-track-index="5"
+        data-volume="0.198"
+      ></audio>
+      <!-- "Agora mesmo" -->
+      <audio
+        id="sfx-agora"
+        class="clip"
+        src="assets/sfx/impact-bass-1.mp3"
+        data-start="56.96"
+        data-duration="2.12"
+        data-track-index="5"
+        data-volume="0.177"
       ></audio>
     </div>
     <script>

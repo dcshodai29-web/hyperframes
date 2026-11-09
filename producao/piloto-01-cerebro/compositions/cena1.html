@@ -1,29 +1,69 @@
 <template>
-  <!-- PROVISÓRIO: marcador de tempo da cena 1. O visual entra quando a técnica 3D for definida. -->
+  <!-- Cena 1 · Gancho: macro do olho; o buraco recorta a imagem em "Agora mesmo";
+       nos últimos 0,45 s a câmera mergulha na pupila (a cena 2 começa no escuro). -->
   <style>
     #root {
       position: absolute;
       inset: 0;
-      font-family: "Inter", sans-serif;
+      overflow: hidden;
+      background: #080b12;
     }
-    #cena1-rotulo {
+    #c1-gl {
       position: absolute;
       left: 0;
-      top: 600px;
+      top: 0;
+      width: 1080px;
+      height: 1920px;
+    }
+    #c1-gancho {
+      position: absolute;
+      left: 0;
+      top: 214px;
       width: 100%;
       text-align: center;
-      color: #929baa;
-      font-weight: 700;
-      font-size: 40px;
-      line-height: 1.3;
+      font-family: "Inter", sans-serif;
+      font-weight: 900;
+      font-size: 92px;
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      color: #f5f7fa;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.85);
+    }
+    #c1-chave {
+      color: #00d9ff;
     }
   </style>
   <div id="root" data-composition-id="cena1" data-width="1080" data-height="1920">
-    <p id="cena1-rotulo">CENA 1<br />Gancho: o buraco</p>
+    <canvas id="c1-gl" width="1080" height="1920" data-layout-ignore></canvas>
+    <h1 id="c1-gancho">EXISTE UM <span id="c1-chave">BURACO</span><br />NA SUA VISÃO</h1>
   </div>
   <script>
-    const tl = gsap.timeline({ paused: true });
-    tl.fromTo("#cena1-rotulo", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0);
-    window.__timelines["cena1"] = tl;
+    (function () {
+      const D = 3.96;
+      const { fontes, quadro, relogio, curvas } = window.CienciaGL;
+      const olho = quadro(document.getElementById("c1-gl"), fontes.OLHO);
+      const tl = gsap.timeline({ paused: true });
+      relogio(tl, D, (t) => {
+        // push-in lento e constante (a cena 8 termina nesta mesma velocidade: loop sem salto)
+        const mergulho = curvas.entrada3((t - 3.5) / 0.46);
+        olho.desenhar({
+          uT: t,
+          uCentro: [540, 900],
+          uZoom: (1 + 0.03 * t) * (1 + 6.5 * mergulho),
+          uPupila: 1.08 - 0.08 * curvas.suave(t / 1.2),
+          uBuraco: t >= 2.62 ? 154 : 0,
+          uOlhar: [0, 0],
+          uPoeira: 1 - mergulho,
+        });
+      });
+      // O gancho está na tela desde o quadro 0; sai logo antes de "Agora mesmo".
+      tl.fromTo(
+        "#c1-gancho",
+        { opacity: 1, filter: "blur(0px)" },
+        { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" },
+        2.42,
+      );
+      window.__timelines["cena1"] = tl;
+    })();
   </script>
 </template>

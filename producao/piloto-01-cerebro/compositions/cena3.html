@@ -1,29 +1,154 @@
 <template>
-  <!-- PROVISÓRIO: marcador de tempo da cena 3. O visual entra quando a técnica 3D for definida. -->
+  <!-- Cena 3 · Contexto: dois mecanismos.
+       1. Dois olhos: os campos visuais se sobrepõem e o buraco de cada olho é coberto pelo outro.
+       2. Um olho só: o buraco aparece; o cérebro amostra a borda (anel ciano), prolonga as linhas
+          da paisagem (guias tracejadas) e preenche com a continuação do entorno. A pedra que estava
+          dentro do buraco não volta: o cérebro não inventa, continua. -->
   <style>
     #root {
       position: absolute;
       inset: 0;
+      overflow: hidden;
+      background: #080b12;
       font-family: "Inter", sans-serif;
     }
-    #cena3-rotulo {
+    #c3-palco {
+      position: absolute;
+      inset: 0;
+    }
+    #c3-gl {
       position: absolute;
       left: 0;
-      top: 600px;
+      top: 0;
+      width: 1080px;
+      height: 1920px;
+    }
+    .c3-olho {
+      position: absolute;
+      top: 372px;
+      width: 480px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 30px;
+      letter-spacing: 0.12em;
+    }
+    #c3-esq {
+      left: 40px;
+      color: #5b95ff;
+    }
+    #c3-dir {
+      left: 560px;
+      color: #00d9ff;
+    }
+    .c3-titulo {
+      position: absolute;
+      left: 0;
       width: 100%;
       text-align: center;
-      color: #929baa;
-      font-weight: 700;
-      font-size: 40px;
-      line-height: 1.3;
+    }
+    #c3-um {
+      top: 1050px;
+      font-weight: 800;
+      font-size: 38px;
+      letter-spacing: 0.12em;
+      color: #f5f7fa;
+    }
+    #c3-preench {
+      top: 214px;
+      font-weight: 900;
+      font-size: 54px;
+      letter-spacing: 0.08em;
+      color: #00d9ff;
+    }
+    #c3-preench-sub {
+      top: 284px;
+      font-weight: 600;
+      font-size: 32px;
+      color: #dfe4ec;
     }
   </style>
   <div id="root" data-composition-id="cena3" data-width="1080" data-height="1920">
-    <p id="cena3-rotulo">CENA 3<br />Contexto: dois olhos e o preenchimento</p>
+    <div id="c3-palco">
+      <canvas id="c3-gl" width="1080" height="1920" data-layout-ignore></canvas>
+      <p id="c3-esq" class="c3-olho">OLHO ESQUERDO</p>
+      <p id="c3-dir" class="c3-olho">OLHO DIREITO</p>
+      <p id="c3-um" class="c3-titulo">UM OLHO SÓ</p>
+      <p id="c3-preench" class="c3-titulo">PREENCHIMENTO</p>
+      <p id="c3-preench-sub" class="c3-titulo">continuação do entorno</p>
+    </div>
   </div>
   <script>
-    const tl = gsap.timeline({ paused: true });
-    tl.fromTo("#cena3-rotulo", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0);
-    window.__timelines["cena3"] = tl;
+    (function () {
+      const D = 7.5;
+      const { fontes, quadro, relogio, curvas } = window.CienciaGL;
+      const { entre, suave } = curvas;
+      const gl = quadro(document.getElementById("c3-gl"), fontes.CAMPOS);
+      const lado = { a: [40, 430, 480, 360], b: [560, 430, 480, 360] };
+      const junto = [90, 360, 900, 675];
+      const mistura = (r1, r2, k) => r1.map((v, i) => v + (r2[i] - v) * k);
+      const tl = gsap.timeline({ paused: true });
+      relogio(tl, D, (t) => {
+        const k = suave((t - 1.85) / 0.8); // os dois campos se juntam em "um cobre a falha do outro"
+        const entra = entre(t, 0.0, 0.35);
+        gl.desenhar({
+          uT: t,
+          uPA: mistura(lado.a, junto, k),
+          uPB: mistura(lado.b, junto, k),
+          uAA: entra * (1 - entre(t, 3.85, 3.98)),
+          uAB: entra,
+          uFecharA: entre(t, 3.5, 3.95),
+          uRaio: 0.11,
+          uFill: entre(t, 5.45, 6.4),
+          uGuias: [entre(t, 4.5, 5.3), entre(t, 4.45, 4.6) * (1 - entre(t, 6.35, 6.8))],
+          uAnel: entre(t, 4.2, 4.4) * (1 - entre(t, 6.5, 6.9)),
+          uBorda: 1,
+          uFantasma: entre(t, 6.45, 6.65) * (1 - entre(t, 7.0, 7.25)),
+          uCobertos: entre(t, 2.55, 2.8) * (1 - entre(t, 3.4, 3.7)),
+        });
+      });
+      // rótulos dos olhos: entram com os painéis, saem quando os campos se juntam
+      tl.fromTo(
+        ".c3-olho",
+        { opacity: 0 },
+        { opacity: 1, duration: 0.3, ease: "power2.out" },
+        0.25,
+      );
+      tl.to(
+        ".c3-olho",
+        { opacity: 0, filter: "blur(6px)", duration: 0.22, ease: "power2.in" },
+        1.85,
+      );
+      tl.fromTo(
+        "#c3-um",
+        { opacity: 0, filter: "blur(8px)" },
+        { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" },
+        3.62,
+      );
+      tl.fromTo(
+        "#c3-preench",
+        { opacity: 0, filter: "blur(8px)" },
+        { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" },
+        4.55,
+      );
+      tl.fromTo(
+        "#c3-preench-sub",
+        { opacity: 0 },
+        { opacity: 1, duration: 0.25, ease: "power2.out" },
+        4.75,
+      );
+      // entrada (troca por desfoque) e saída em chicote para cima, rumo à cena 4
+      tl.fromTo(
+        "#c3-palco",
+        { filter: "blur(10px)" },
+        { filter: "blur(0px)", duration: 0.3, ease: "power2.out" },
+        0,
+      );
+      tl.to(
+        "#c3-palco",
+        { y: -520, filter: "blur(16px)", opacity: 0.2, duration: 0.3, ease: "power3.in" },
+        D - 0.3,
+      );
+      window.__timelines["cena3"] = tl;
+    })();
   </script>
 </template>

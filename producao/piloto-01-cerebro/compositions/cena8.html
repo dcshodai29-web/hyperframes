@@ -1,29 +1,75 @@
 <template>
-  <!-- PROVISÓRIO: marcador de tempo da cena 8. O visual entra quando a técnica 3D for definida. -->
+  <!-- Cena 8 · Conclusão e loop. A câmera sai da pupila (vinda do mergulho da cena 7) e recua até o
+       enquadramento exato do quadro 0. O buraco reaparece em "aquele buraco" e se fecha depois de
+       "Agora mesmo"; o título do gancho volta. O olho usa o "tempo do loop" (t - 9,10): no último
+       quadro, zoom, poeira e granulação estão no mesmo estado do quadro 0, então a repetição emenda
+       sem salto. -->
   <style>
     #root {
       position: absolute;
       inset: 0;
-      font-family: "Inter", sans-serif;
+      overflow: hidden;
+      background: #080b12;
     }
-    #cena8-rotulo {
+    #c8-gl {
       position: absolute;
       left: 0;
-      top: 600px;
+      top: 0;
+      width: 1080px;
+      height: 1920px;
+    }
+    #c8-gancho {
+      position: absolute;
+      left: 0;
+      top: 214px;
       width: 100%;
       text-align: center;
-      color: #929baa;
-      font-weight: 700;
-      font-size: 40px;
-      line-height: 1.3;
+      font-family: "Inter", sans-serif;
+      font-weight: 900;
+      font-size: 92px;
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      color: #f5f7fa;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.85);
+    }
+    #c8-chave {
+      color: #00d9ff;
     }
   </style>
   <div id="root" data-composition-id="cena8" data-width="1080" data-height="1920">
-    <p id="cena8-rotulo">CENA 8<br />Conclusão e loop</p>
+    <canvas id="c8-gl" width="1080" height="1920" data-layout-ignore></canvas>
+    <h1 id="c8-gancho">EXISTE UM <span id="c8-chave">BURACO</span><br />NA SUA VISÃO</h1>
   </div>
   <script>
-    const tl = gsap.timeline({ paused: true });
-    tl.fromTo("#cena8-rotulo", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0);
-    window.__timelines["cena8"] = tl;
+    (function () {
+      const D = 9.1;
+      const { fontes, quadro, relogio, curvas } = window.CienciaGL;
+      const { saida3, suave, entre } = curvas;
+      const olho = quadro(document.getElementById("c8-gl"), fontes.OLHO);
+      const tl = gsap.timeline({ paused: true });
+      relogio(tl, D, (t) => {
+        const tv = t - D; // tempo do loop: 0 no fim, como o 0 da cena 1
+        const loop = 1 + 0.03 * tv;
+        const recuo = 1 - saida3(t / 2.0); // 1 dentro da pupila, 0 no enquadramento do loop
+        const raio = 154 * saida3((t - 3.36) / 0.18) * (1 - suave((t - 6.5) / 1.2));
+        olho.desenhar({
+          uT: tv,
+          uCentro: [540, 900],
+          uZoom: loop + (7.5 - loop) * recuo,
+          uPupila: 1.08,
+          uBuraco: t < 3.36 ? 0 : raio,
+          uOlhar: [0, 0],
+          uPoeira: entre(t, 0.0, 1.2),
+        });
+      });
+      // o gancho volta e fica idêntico ao quadro 0
+      tl.fromTo(
+        "#c8-gancho",
+        { opacity: 0, filter: "blur(10px)" },
+        { opacity: 1, filter: "blur(0px)", duration: 0.5, ease: "power2.out" },
+        6.85,
+      );
+      window.__timelines["cena8"] = tl;
+    })();
   </script>
 </template>

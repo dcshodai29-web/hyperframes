@@ -1,45 +1,45 @@
 # Piloto 01 · estado da produção
 
-Proposta aprovada: `producao/propostas/piloto-01-cerebro.md` (versão 4). Render completo
-**não autorizado** ainda: aguardar a pessoa.
+Proposta aprovada: `producao/propostas/piloto-01-cerebro.md` (versão 4). Render autorizado pela
+pessoa ("pode criar o vídeo") com a voz B tornada mais fluida. Nota de entrega: `REVIEW.md`.
 
-## Pronto
+## O que está pronto
 
-| Item                  | Arquivo                      | Detalhe                                                                                                                                  |
-| --------------------- | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| Narração final        | `assets/voice/narracao.mp3`  | `pm_alex` (Kokoro), 0,9×, frase a frase com pausas planejadas; 58,75 s; −15,4 LUFS, pico −1,7 dBFS; entra em 0,10 s e termina em 58,80 s |
-| Texto da narração     | `narracao/frases.tsv`        | texto exibido × texto enviado à voz ("ôlho") e pausa depois de cada frase                                                                |
-| Montagem da narração  | `narracao/montar.py`         | junta `narracao/frases/fN.wav`; grava `narracao/frases.json`                                                                             |
-| Tempo de cada palavra | `narracao/palavras.json`     | 134 palavras, transcritas frase a frase (whisper small, pt) e alinhadas ao roteiro                                                       |
-| Cortes de cena        | `narracao/cenas.json`        | cortes no meio das pausas entre cenas                                                                                                    |
-| Legendas              | `compositions/legendas.html` | gerado por `narracao/gerar_legendas.py`: branco em negrito, palavras-chave em ciano, palavra a palavra                                   |
-| Timeline              | `index.html`                 | 61 s, 1080×1920, 30 fps; cenas 1–8 nos tempos definitivos, legendas, narração e trilha                                                   |
-| Trilha (candidata)    | `assets/bgm/trilha.mp3`      | MusicGen local, 62 s; fora do Git (1,2 MB passa do limite de 500 KB sem LFS)                                                             |
+| Item               | Arquivo                                                                | Detalhe                                                                         |
+| ------------------ | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| Vídeo              | `renders/piloto-01-cerebro-61s.mp4`                                    | 61 s, 1080×1920, 30 fps (fora do Git; o render é refeito a partir do projeto)   |
+| Narração           | `assets/voice/narracao.mp3`                                            | `pm_alex` (Kokoro), uma passada por cena; fala de 0,10 a 57,96 s; −14,2 LUFS    |
+| Síntese por cena   | `narracao/sintetizar_cenas.py`, `narracao/cenas/`                      | velocidade por cena (0,84–0,90), pausas de frase e de cena variadas             |
+| Acabamento da voz  | `narracao/acabamento.py` + cadeia em `narracao/refazer-audio.sh`       | sala discreta, EQ, de-esser, compressão, limitador                              |
+| Tempo das palavras | `narracao/palavras.json`                                               | 134 palavras, alinhadas ao roteiro por cena                                     |
+| Cortes de cena     | `narracao/cenas.json`                                                  | no meio das pausas entre cenas                                                  |
+| Legendas           | `compositions/legendas.html` (gerado por `narracao/gerar_legendas.py`) | começam em "Agora mesmo" (a 1ª frase é o título do gancho)                      |
+| Cenas 1–8          | `compositions/cena1.html` … `cena8.html`                               | WebGL e gráficos, ver abaixo                                                    |
+| Biblioteca visual  | `assets/lib/ciencia-gl.js`                                             | shaders do canal: olho, retina, campos visuais, mosaico, partículas, acabamento |
+| Trilha             | `assets/bgm/trilha.mp3`                                                | MusicGen local; automação de volume no `index.html` (fora do Git, ver abaixo)   |
+| Efeitos            | `assets/sfx/` + 34 `<audio>` no `index.html`                           | pacote embutido (licença Pixabay); `tique-longo.mp3` é o `click.mp3` com eco    |
 
-Os áudios derivados (narração montada e trilha) ficam fora do Git por tamanho. Para refazê-los
-a partir das frases versionadas em `narracao/frases/`: `bash narracao/refazer-audio.sh`.
+Refazer os áudios derivados (fora do Git por tamanho): `bash narracao/refazer-audio.sh`
+(com `--sintetizar` refaz também a síntese e a transcrição por cena).
 
-Para regerar só a trilha (semente fixa):
+## Como cada cena foi feita (tudo local, sem serviços externos)
 
-```bash
-cd producao/piloto-01-cerebro
-python3 ../ferramentas/musica.py "dark cinematic science documentary underscore, deep pulsing synth bass, low sustained strings, mysterious and curious, slow build, no drums, 90 bpm" 62 assets/bgm/trilha.wav
-ffmpeg -i assets/bgm/trilha.wav -c:a libmp3lame -b:a 160k assets/bgm/trilha.mp3 && rm assets/bgm/trilha.wav
-```
+1. Olho macro em shader (íris procedural, córnea úmida, poeira, grão); o buraco recorta a imagem; mergulho na pupila.
+2. Túnel de luz → fundo de olho com cores naturais e vasos saindo do disco → fotorreceptores; o disco fica vazio.
+3. Paisagem procedural; campos visuais dos dois olhos; preenchimento como continuação do entorno (a pedra não volta).
+4. Leitura com pontos de fixação, olho em "câmera de rastreamento", medidor de sensibilidade e queda de contraste.
+5. Olho salta, câmera salta (whip-pan) até o relógio SVG; o 1º intervalo dura 1,6 s, os seguintes 1 s.
+6. Reconstrução ilustrativa da quadra (SVG); profundidade de campo = atenção; o foco muda para o gorila.
+7. Cabeça em perfil; 4.200 partículas, 6% passam do olho ao córtex; mosaico seleciona/completa/monta.
+8. Saída da pupila até o enquadramento do quadro 0; buraco volta e fecha; título volta; loop exato.
 
-Para refazer narração, tempos e legendas depois de mudar `narracao/frases.tsv`: gerar cada frase
-com `hyperframes tts narracao/frases/fN.txt --voice pm_alex --speed 0.9 -o narracao/frases/fN.wav`,
-rodar `python3 narracao/montar.py`, normalizar (mesma cadeia do `preparar-audio.sh`), transcrever
-cada frase e rodar `python3 narracao/gerar_legendas.py`.
+## Diferenças em relação à proposta
 
-## Pendente
-
-1. **Visual das cenas 1–8:** `compositions/cena1.html` a `cena8.html` são marcadores provisórios
-   (texto cinza com o nome da cena). A técnica de animação 3D ainda não foi definida
-   (`CONTEXTO-DO-CANAL.md`, seção 9).
-2. **Efeitos sonoros:** os do pacote embutido estão em `assets/sfx/`. O tique de relógio e o quique
-   de bola não vieram: a Openverse achou opções, mas o `cdn.freesound.org` recusa o download direto
-   (HTTP 403 do próprio servidor, não do proxy).
-3. **Mixagem da trilha:** quase silêncio no reveal do gorila e crescendo na revelação (automação
-   de volume), e normalização final do mix para ~−14 LUFS.
-4. **Loop:** o quadro 0 e o fim (59,0–61 s) dependem do visual da cena 1 e da cena 8.
+- **Narração:** em vez de frase a frase (amostra B), uma passada por cena, para a entonação fluir entre
+  as frases, com pausas medidas e variadas (pedido da pessoa: voz mais fluida e humana).
+- **Cena 4:** leitura de um parágrafo no lugar de "um rosto" (a leitura é o contexto clássico das ~3
+  sacadas por segundo e não exige desenhar um rosto).
+- **Cena 6:** sem o som de quique de bola (o download do Freesound é recusado pelo servidor).
+- **Visual:** 100% local (WebGL e SVG). As placas fotorrealistas geradas externamente, previstas na
+  arquitetura híbrida, não foram usadas porque não há login na HeyGen; as cenas 1, 6 e 7 são as
+  candidatas a receber essas placas depois.

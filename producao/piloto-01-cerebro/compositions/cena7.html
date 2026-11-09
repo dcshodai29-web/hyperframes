@@ -1,29 +1,498 @@
 <template>
-  <!-- PROVISÓRIO: marcador de tempo da cena 7. O visual entra quando a técnica 3D for definida. -->
+  <!-- Cena 7 · Revelação: a quadra encolhe e fica dentro de uma cabeça. A informação dos sentidos
+       chega em milhares de partículas; só um fio fino passa do olho para o córtex. No cérebro, um
+       mosaico do mundo é selecionado (ladrilhos descartados), completado (lacunas preenchidas) e
+       montado, até virar uma imagem contínua: uma versão do mundo. No fim, mergulho no olho. -->
   <style>
     #root {
       position: absolute;
       inset: 0;
+      overflow: hidden;
+      background: #080b12;
       font-family: "Inter", sans-serif;
     }
-    #cena7-rotulo {
+    #c7-palco {
+      position: absolute;
+      inset: 0;
+      transform-origin: 792px 645px;
+    }
+    .c7-camada {
       position: absolute;
       left: 0;
-      top: 600px;
+      top: 0;
+      width: 1080px;
+      height: 1920px;
+      overflow: visible;
+    }
+    #c7-quadro {
+      position: absolute;
+      inset: 0;
+      transform-origin: 470px 600px;
+    }
+    #c7-brancos,
+    #c7-pretos {
+      filter: blur(7px) brightness(0.6);
+      opacity: 0.55;
+    }
+    #c7-gorila-svg {
+      filter: brightness(1.25);
+    }
+    #c7-gl {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1080px;
+      height: 1920px;
+    }
+    #c7-palavras {
+      position: absolute;
+      left: 0;
+      top: 214px;
       width: 100%;
-      text-align: center;
-      color: #929baa;
-      font-weight: 700;
-      font-size: 40px;
-      line-height: 1.3;
+      display: flex;
+      justify-content: center;
+      gap: 34px;
+      font-weight: 900;
+      font-size: 44px;
+      letter-spacing: 0.06em;
+    }
+    .c7-v {
+      color: #f5f7fa;
+      opacity: 0;
+    }
+    #c7-pupila {
+      position: absolute;
+      left: 778px;
+      top: 631px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #000;
+      opacity: 0;
     }
   </style>
   <div id="root" data-composition-id="cena7" data-width="1080" data-height="1920">
-    <p id="cena7-rotulo">CENA 7<br />Revelação: o cérebro monta uma versão</p>
+    <div id="c7-palco">
+      <svg
+        id="c7-cabeca-fundo"
+        class="c7-camada"
+        viewBox="0 0 1080 1920"
+        width="1080"
+        height="1920"
+      >
+        <defs>
+          <radialGradient id="c7-dentro" cx="0.45" cy="0.42" r="0.6">
+            <stop offset="0" stop-color="#132036" />
+            <stop offset="1" stop-color="#0a101c" />
+          </radialGradient>
+        </defs>
+        <path
+          d="M 330 1160 C 330 1060 300 1000 250 940 C 170 840 150 700 175 590 C 205 450 320 350 470 330 C 610 312 740 360 790 470 C 815 520 812 560 820 585 C 830 600 832 610 828 620 C 850 660 880 700 905 735 C 912 748 900 760 880 762 C 870 770 872 780 878 790 C 885 800 878 812 868 816 C 878 826 880 840 870 850 C 862 865 870 885 862 905 C 850 940 800 960 760 965 C 740 1000 735 1080 740 1160 Z"
+          fill="url(#c7-dentro)"
+        />
+      </svg>
+      <div id="c7-quadro">
+        <svg id="c7-quadra" class="c7-camada" viewBox="0 0 1080 1920" width="1080" height="1920">
+          <defs>
+            <linearGradient id="c7-parede" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#070a11" />
+              <stop offset="1" stop-color="#141c2b" />
+            </linearGradient>
+            <linearGradient id="c7-piso" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#3a2a1c" />
+              <stop offset="0.6" stop-color="#5a3f28" />
+              <stop offset="1" stop-color="#2a1d12" />
+            </linearGradient>
+            <radialGradient id="c7-holofote" cx="0.5" cy="0.5" r="0.5">
+              <stop offset="0" stop-color="#ffe9cc" stop-opacity="0.32" />
+              <stop offset="1" stop-color="#ffe9cc" stop-opacity="0" />
+            </radialGradient>
+            <symbol id="c7-pa" viewBox="0 0 100 240" overflow="visible">
+              <path
+                d="M38 150 L36 226 L50 226 L50 152 Z M52 152 L52 226 L66 226 L64 150 Z"
+                fill="#7b4a30"
+              />
+              <path d="M31 224 h21 v10 h-23 z M50 224 h21 v10 h-21 z" fill="#d9dee6" />
+              <path d="M33 118 h36 l3 38 h-18 l-3 -14 l-3 14 h-18 z" fill="#262d3a" />
+              <path d="M30 56 q-11 30 -9 66 l9 0 q0 -30 7 -58 z" fill="#7b4a30" />
+              <path d="M70 56 q11 30 9 66 l-9 0 q0 -30 -7 -58 z" fill="#7b4a30" />
+              <path d="M31 52 q19 -9 38 0 l4 68 h-46 z" fill="currentColor" />
+              <circle cx="50" cy="31" r="15" fill="#7b4a30" />
+              <path
+                d="M35 29 q2 -19 15 -19 q14 0 15 19 q-6 -9 -15 -9 q-9 0 -15 9 z"
+                fill="#1d1612"
+              />
+            </symbol>
+            <symbol id="c7-pb" viewBox="0 0 100 240" overflow="visible">
+              <path
+                d="M38 150 L36 226 L50 226 L50 152 Z M52 152 L52 226 L66 226 L64 150 Z"
+                fill="#c08a66"
+              />
+              <path d="M31 224 h21 v10 h-23 z M50 224 h21 v10 h-21 z" fill="#d9dee6" />
+              <path d="M33 118 h36 l3 38 h-18 l-3 -14 l-3 14 h-18 z" fill="#262d3a" />
+              <path d="M30 56 q-11 30 -9 66 l9 0 q0 -30 7 -58 z" fill="#c08a66" />
+              <path d="M70 56 q11 30 9 66 l-9 0 q0 -30 -7 -58 z" fill="#c08a66" />
+              <path d="M31 52 q19 -9 38 0 l4 68 h-46 z" fill="currentColor" />
+              <circle cx="50" cy="31" r="15" fill="#c08a66" />
+              <path
+                d="M35 29 q2 -19 15 -19 q14 0 15 19 q-6 -9 -15 -9 q-9 0 -15 9 z"
+                fill="#3a2414"
+              />
+            </symbol>
+          </defs>
+          <rect x="0" y="0" width="1080" height="600" fill="url(#c7-parede)" />
+          <polygon points="140,600 940,600 1300,1300 -220,1300" fill="url(#c7-piso)" />
+          <line
+            x1="120"
+            y1="600"
+            x2="-360"
+            y2="1300"
+            stroke="#000"
+            stroke-opacity="0.22"
+            stroke-width="2"
+          />
+          <line
+            x1="190"
+            y1="600"
+            x2="-210"
+            y2="1300"
+            stroke="#000"
+            stroke-opacity="0.22"
+            stroke-width="2"
+          />
+          <line
+            x1="260"
+            y1="600"
+            x2="-60"
+            y2="1300"
+            stroke="#000"
+            stroke-opacity="0.22"
+            stroke-width="2"
+          />
+          <line
+            x1="330"
+            y1="600"
+            x2="90"
+            y2="1300"
+            stroke="#000"
+            stroke-opacity="0.22"
+            stroke-width="2"
+          />
+          <line
+            x1="400"
+            y1="600"
+            x2="240"
+            y2="1300"
+            stroke="#000"
+            stroke-opacity="0.22"
+            stroke-width="2"
+          />
+          <line
+            x1="470"
+            y1="600"
+            x2="390"
+            y2="1300"
+            stroke="#000"
+            stroke-opacity="0.22"
+            stroke-width="2"
+          />
+          <line
+            x1="540"
+            y1="600"
+            x2="540"
+            y2="1300"
+            stroke="#000"
+            stroke-opacity="0.22"
+            stroke-width="2"
+          />
+          <line
+            x1="610"
+            y1="600"
+            x2="690"
+            y2="1300"
+            stroke="#000"
+            stroke-opacity="0.22"
+            stroke-width="2"
+          />
+          <line
+            x1="680"
+            y1="600"
+            x2="840"
+            y2="1300"
+            stroke="#000"
+            stroke-opacity="0.22"
+            stroke-width="2"
+          />
+          <line
+            x1="750"
+            y1="600"
+            x2="990"
+            y2="1300"
+            stroke="#000"
+            stroke-opacity="0.22"
+            stroke-width="2"
+          />
+          <line
+            x1="820"
+            y1="600"
+            x2="1140"
+            y2="1300"
+            stroke="#000"
+            stroke-opacity="0.22"
+            stroke-width="2"
+          />
+          <line
+            x1="890"
+            y1="600"
+            x2="1290"
+            y2="1300"
+            stroke="#000"
+            stroke-opacity="0.22"
+            stroke-width="2"
+          />
+          <line
+            x1="960"
+            y1="600"
+            x2="1440"
+            y2="1300"
+            stroke="#000"
+            stroke-opacity="0.22"
+            stroke-width="2"
+          />
+          <ellipse
+            cx="540"
+            cy="930"
+            rx="300"
+            ry="95"
+            fill="none"
+            stroke="#f5f7fa"
+            stroke-opacity="0.18"
+            stroke-width="4"
+          />
+          <line
+            x1="80"
+            y1="1050"
+            x2="1000"
+            y2="1050"
+            stroke="#f5f7fa"
+            stroke-opacity="0.14"
+            stroke-width="5"
+          />
+          <ellipse cx="540" cy="880" rx="560" ry="260" fill="url(#c7-holofote)" />
+          <rect x="0" y="1300" width="1080" height="620" fill="#080b12" />
+          <rect x="0" y="560" width="1080" height="80" fill="url(#c7-parede)" opacity="0.35" />
+        </svg>
+        <svg id="c7-pretos" class="c7-camada" viewBox="0 0 1080 1920" width="1080" height="1920">
+          <g transform="translate(250 965) scale(1.1)">
+            <g id="c7-k1">
+              <ellipse cx="0" cy="2" rx="34" ry="8" fill="#000" opacity="0.35" />
+              <use href="#c7-pa" x="-50" y="-235" width="100" height="240" color="#151922" />
+            </g>
+          </g>
+          <g transform="translate(850 945) scale(1.08)">
+            <g id="c7-k2">
+              <ellipse cx="0" cy="2" rx="34" ry="8" fill="#000" opacity="0.35" />
+              <use href="#c7-pb" x="-50" y="-235" width="100" height="240" color="#151922" />
+            </g>
+          </g>
+          <g transform="translate(470 800) scale(0.92)">
+            <g id="c7-k3">
+              <ellipse cx="0" cy="2" rx="34" ry="8" fill="#000" opacity="0.35" />
+              <use href="#c7-pa" x="-50" y="-235" width="100" height="240" color="#151922" />
+            </g>
+          </g>
+        </svg>
+        <svg
+          id="c7-gorila-svg"
+          class="c7-camada"
+          viewBox="0 0 1080 1920"
+          width="1080"
+          height="1920"
+        >
+          <g transform="translate(640 905) scale(1.15)">
+            <g id="c7-gorila">
+              <ellipse cx="0" cy="2" rx="60" ry="11" fill="#000" opacity="0.4" />
+              <g transform="translate(-100 -300)">
+                <path d="M70 200 L66 288 L54 300 L96 300 L94 288 L98 205 Z" fill="#17171a" />
+                <path d="M130 200 L134 288 L146 300 L104 300 L106 288 L102 205 Z" fill="#17171a" />
+                <path
+                  d="M60 95 C42 100 40 140 50 175 C56 200 70 212 100 212 C130 212 144 200 150 175 C160 140 158 100 140 95 C125 88 75 88 60 95 Z"
+                  fill="#1d1d21"
+                />
+                <ellipse cx="100" cy="99" rx="62" ry="23" fill="#1d1d21" />
+                <path
+                  d="M76 120 C86 112 114 112 124 120 C126 140 120 160 100 164 C80 160 74 140 76 120 Z"
+                  fill="#2a2a30"
+                />
+                <g id="c7-bracos-baixo">
+                  <path
+                    d="M58 95 C40 105 32 150 30 190 C29 215 30 232 36 240 L52 240 C54 230 52 205 56 180 C60 150 66 125 70 108 Z"
+                    fill="#1b1b1f"
+                  />
+                  <ellipse cx="44" cy="244" rx="13" ry="9" fill="#26262b" />
+                  <path
+                    d="M142 95 C160 105 168 150 170 190 C171 215 170 232 164 240 L148 240 C146 230 148 205 144 180 C140 150 134 125 130 108 Z"
+                    fill="#1b1b1f"
+                  />
+                  <ellipse cx="156" cy="244" rx="13" ry="9" fill="#26262b" />
+                </g>
+                <g id="c7-bate-esq" opacity="0">
+                  <path
+                    d="M58 95 C40 108 28 135 32 152 C35 165 48 166 58 158 C66 152 76 146 86 140 L94 132 C92 123 81 121 73 127 C65 133 57 137 52 139 C52 129 60 114 68 105 Z"
+                    fill="#1b1b1f"
+                  />
+                  <path
+                    d="M142 95 C160 105 168 150 170 190 C171 215 170 232 164 240 L148 240 C146 230 148 205 144 180 C140 150 134 125 130 108 Z"
+                    fill="#1b1b1f"
+                  />
+                </g>
+                <g id="c7-bate-dir" opacity="0">
+                  <path
+                    d="M58 95 C40 105 32 150 30 190 C29 215 30 232 36 240 L52 240 C54 230 52 205 56 180 C60 150 66 125 70 108 Z"
+                    fill="#1b1b1f"
+                  />
+                  <path
+                    d="M142 95 C160 108 172 135 168 152 C165 165 152 166 142 158 C134 152 124 146 114 140 L106 132 C108 123 119 121 127 127 C135 133 143 137 148 139 C148 129 140 114 132 105 Z"
+                    fill="#1b1b1f"
+                  />
+                </g>
+                <path
+                  d="M100 18 C121 18 133 31 133 51 C133 72 120 87 100 87 C80 87 67 72 67 51 C67 31 79 18 100 18 Z"
+                  fill="#1d1d21"
+                />
+                <ellipse cx="100" cy="22" rx="20" ry="9" fill="#1d1d21" />
+                <path d="M78 46 C88 40 112 40 122 46 C122 51 78 51 78 46 Z" fill="#101013" />
+                <ellipse cx="100" cy="64" rx="19" ry="16" fill="#2c2c32" />
+                <circle cx="91" cy="51" r="2.6" fill="#0a0a0c" />
+                <circle cx="109" cy="51" r="2.6" fill="#0a0a0c" />
+              </g>
+            </g>
+          </g>
+        </svg>
+        <svg id="c7-brancos" class="c7-camada" viewBox="0 0 1080 1920" width="1080" height="1920">
+          <g transform="translate(360 860) scale(1.0)">
+            <g id="c7-w1">
+              <ellipse cx="0" cy="2" rx="34" ry="8" fill="#000" opacity="0.35" />
+              <use href="#c7-pb" x="-50" y="-235" width="100" height="240" color="#eef1f5" />
+            </g>
+          </g>
+          <g transform="translate(700 820) scale(0.95)">
+            <g id="c7-w2">
+              <ellipse cx="0" cy="2" rx="34" ry="8" fill="#000" opacity="0.35" />
+              <use href="#c7-pa" x="-50" y="-235" width="100" height="240" color="#eef1f5" />
+            </g>
+          </g>
+          <g transform="translate(540 965) scale(1.1)">
+            <g id="c7-w3">
+              <ellipse cx="0" cy="2" rx="34" ry="8" fill="#000" opacity="0.35" />
+              <use href="#c7-pb" x="-50" y="-235" width="100" height="240" color="#eef1f5" />
+            </g>
+          </g>
+        </svg>
+      </div>
+      <canvas id="c7-gl" width="1080" height="1920" data-layout-ignore></canvas>
+      <svg
+        id="c7-cabeca-linha"
+        class="c7-camada"
+        viewBox="0 0 1080 1920"
+        width="1080"
+        height="1920"
+      >
+        <path
+          d="M 330 1160 C 330 1060 300 1000 250 940 C 170 840 150 700 175 590 C 205 450 320 350 470 330 C 610 312 740 360 790 470 C 815 520 812 560 820 585 C 830 600 832 610 828 620 C 850 660 880 700 905 735 C 912 748 900 760 880 762 C 870 770 872 780 878 790 C 885 800 878 812 868 816 C 878 826 880 840 870 850 C 862 865 870 885 862 905 C 850 940 800 960 760 965 C 740 1000 735 1080 740 1160 Z"
+          fill="none"
+          stroke="#1769ff"
+          stroke-opacity="0.75"
+          stroke-width="3"
+        />
+        <path
+          d="M 330 1160 C 330 1060 300 1000 250 940 C 170 840 150 700 175 590 C 205 450 320 350 470 330 C 610 312 740 360 790 470 C 815 520 812 560 820 585 C 830 600 832 610 828 620 C 850 660 880 700 905 735 C 912 748 900 760 880 762 C 870 770 872 780 878 790 C 885 800 878 812 868 816 C 878 826 880 840 870 850 C 862 865 870 885 862 905 C 850 940 800 960 760 965 C 740 1000 735 1080 740 1160 Z"
+          fill="none"
+          stroke="#00d9ff"
+          stroke-opacity="0.25"
+          stroke-width="12"
+          style="filter: blur(6px)"
+        />
+        <path d="M 768 645 Q 790 628 814 640 Q 797 659 768 645 Z" fill="#d8dde6" opacity="0.85" />
+        <circle cx="797" cy="643" r="9.5" fill="#3a4a2c" stroke="#00d9ff" stroke-width="1.5" />
+        <circle cx="798" cy="643" r="4" fill="#000" />
+      </svg>
+    </div>
+    <div id="c7-palavras">
+      <span id="c7-sel" class="c7-v">SELECIONA</span>
+      <span id="c7-comp" class="c7-v">COMPLETA</span>
+      <span id="c7-monta" class="c7-v">MONTA</span>
+    </div>
+    <div id="c7-pupila"></div>
   </div>
   <script>
-    const tl = gsap.timeline({ paused: true });
-    tl.fromTo("#cena7-rotulo", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0);
-    window.__timelines["cena7"] = tl;
+    (function () {
+      const D = 8.15;
+      const { fontes, quadro, pontos, relogio, curvas } = window.CienciaGL;
+      const { entre } = curvas;
+      const canvas = document.getElementById("c7-gl");
+      const mosaico = quadro(canvas, fontes.MOSAICO);
+      const particulas = pontos(mosaico.gl, 4200);
+      const tl = gsap.timeline({ paused: true });
+      relogio(tl, D, (t) => {
+        mosaico.desenhar(
+          {
+            uT: t,
+            uCerebro: [470, 600, 255, 205],
+            uChegada: entre(t, 1.5, 4.4),
+            uSel: entre(t, 4.45, 5.0),
+            uComp: entre(t, 5.25, 5.95),
+            uMonta: Math.max(0, 1 - Math.abs(t - 6.05) / 0.25) * (t > 5.8 ? 1 : 0),
+            uResolve: entre(t, 6.35, 7.4),
+            uAlfa: 1 - entre(t, 7.7, 8.0),
+          },
+          true,
+        );
+        particulas.desenhar({
+          uT: t,
+          uOlho: [792, 645],
+          uCortex: [300, 640],
+          uFluxo: entre(t, 0.7, 1.3) * (1 - entre(t, 6.9, 7.6)),
+          uFiltro: 0.06,
+        });
+      });
+      // a quadra encolhe para dentro do cérebro e some no mosaico
+      tl.fromTo(
+        "#c7-quadro",
+        { scale: 1, opacity: 1 },
+        { scale: 0.17, duration: 1.25, ease: "power3.inOut" },
+        0.1,
+      );
+      tl.to(
+        "#c7-quadro",
+        { opacity: 0, filter: "blur(6px)", duration: 0.45, ease: "power2.in" },
+        1.05,
+      );
+      tl.fromTo(
+        ["#c7-cabeca-fundo", "#c7-cabeca-linha"],
+        { opacity: 0 },
+        { opacity: 1, duration: 0.6, ease: "power2.out" },
+        0.35,
+      );
+      // seleciona · completa · monta
+      [
+        ["#c7-sel", 4.45],
+        ["#c7-comp", 5.25],
+        ["#c7-monta", 5.95],
+      ].forEach(([id, t]) => {
+        tl.fromTo(id, { opacity: 0, color: "#00d9ff" }, { opacity: 1, duration: 0.18 }, t);
+        tl.to(id, { color: "#f5f7fa", duration: 0.25 }, t + 0.6);
+      });
+      tl.to("#c7-palavras", { opacity: 0, duration: 0.25 }, 7.35);
+      // mergulho no olho da cabeça: a pupila cresce até cobrir o quadro (a cena 8 começa nela)
+      tl.to("#c7-palco", { scale: 6, duration: 0.5, ease: "power3.in" }, D - 0.5);
+      tl.fromTo(
+        "#c7-pupila",
+        { opacity: 0, scale: 1 },
+        { opacity: 1, scale: 120, duration: 0.5, ease: "power3.in" },
+        D - 0.5,
+      );
+      window.__timelines["cena7"] = tl;
+    })();
   </script>
 </template>

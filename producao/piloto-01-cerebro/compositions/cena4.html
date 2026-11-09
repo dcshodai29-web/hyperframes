@@ -1,29 +1,389 @@
 <template>
-  <!-- PROVISÓRIO: marcador de tempo da cena 4. O visual entra quando a técnica 3D for definida. -->
+  <!-- Cena 4 · Desenvolvimento: sacadas.
+       Leitura de um parágrafo (contexto clássico em que se medem ~3 sacadas por segundo; Rayner, 1998).
+       O olho, numa "câmera de rastreamento", salta junto com os pontos de fixação.
+       Em câmera lenta: durante cada salto a percepção perde contraste e nitidez por um instante
+       (o medidor de sensibilidade cai e volta); o rastro do movimento existe, mas chega fraco.
+       Posições dependentes do layout são medidas no primeiro quadro em que a cena está visível
+       (oculta, a página mede zero) e tudo o que se move é calculado a partir do tempo. -->
   <style>
     #root {
       position: absolute;
       inset: 0;
+      overflow: hidden;
+      background: #080b12;
       font-family: "Inter", sans-serif;
     }
-    #cena4-rotulo {
+    #c4-palco {
+      position: absolute;
+      inset: 0;
+    }
+    #c4-titulo {
       position: absolute;
       left: 0;
-      top: 600px;
+      top: 212px;
       width: 100%;
       text-align: center;
-      color: #929baa;
+      font-weight: 900;
+      font-size: 46px;
+      letter-spacing: 0.04em;
+      color: #f5f7fa;
+    }
+    #c4-titulo b {
+      color: #00d9ff;
+    }
+    #c4-cam {
+      position: absolute;
+      left: 340px;
+      top: 300px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 2px rgba(0, 217, 255, 0.55),
+        0 0 60px rgba(23, 105, 255, 0.25);
+    }
+    #c4-gl {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 400px;
+      height: 400px;
+    }
+    #c4-medidor {
+      position: absolute;
+      left: 120px;
+      top: 728px;
+      width: 840px;
+      height: 44px;
+    }
+    #c4-medidor-rot {
+      position: absolute;
+      left: 0;
+      top: 4px;
       font-weight: 700;
+      font-size: 28px;
+      letter-spacing: 0.08em;
+      color: #c4cbd8;
+    }
+    #c4-trilho {
+      position: absolute;
+      left: 400px;
+      top: 16px;
+      width: 440px;
+      height: 12px;
+      border-radius: 6px;
+      background: rgba(245, 247, 250, 0.12);
+      overflow: hidden;
+    }
+    #c4-nivel {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 440px;
+      height: 12px;
+      border-radius: 6px;
+      background: #00d9ff;
+      transform-origin: 0% 50%;
+    }
+    #c4-pagina {
+      position: absolute;
+      left: 90px;
+      top: 800px;
+      width: 900px;
+      height: 272px;
+      border-radius: 18px;
+      background: #0e1422;
+      box-shadow: inset 0 0 0 1px rgba(245, 247, 250, 0.06);
+    }
+    .c4-texto {
+      position: absolute;
+      left: 40px;
+      top: 30px;
+      width: 820px;
+      font-family: "EB Garamond", serif;
       font-size: 40px;
-      line-height: 1.3;
+      line-height: 1.42;
+      color: #dfe3ea;
+    }
+    #c4-rastro {
+      opacity: 0;
+    }
+    #c4-traco {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 900px;
+      height: 272px;
+      overflow: visible;
+    }
+    .c4-ponto {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 16px;
+      height: 16px;
+      margin: -8px 0 0 -8px;
+      border-radius: 50%;
+      background: #00d9ff;
+      box-shadow: 0 0 14px rgba(0, 217, 255, 0.9);
+      opacity: 0;
+    }
+    #c4-mira {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 38px;
+      height: 38px;
+      margin: -19px 0 0 -19px;
+      border-radius: 50%;
+      border: 3px solid #00d9ff;
+      opacity: 0;
+    }
+    #c4-selo {
+      position: absolute;
+      right: 90px;
+      top: 1086px;
+      font-weight: 600;
+      font-size: 28px;
+      letter-spacing: 0.04em;
+      color: #929baa;
+    }
+    #c4-borrao {
+      position: absolute;
+      left: 40px;
+      top: 220px;
+      font-weight: 700;
+      font-size: 28px;
+      letter-spacing: 0.06em;
+      color: #00d9ff;
+      opacity: 0;
     }
   </style>
   <div id="root" data-composition-id="cena4" data-width="1080" data-height="1920">
-    <p id="cena4-rotulo">CENA 4<br />Desenvolvimento: sacadas e sensibilidade</p>
+    <div id="c4-palco">
+      <p id="c4-titulo"><b>~3</b> SALTOS POR SEGUNDO</p>
+      <div id="c4-cam">
+        <canvas id="c4-gl" width="400" height="400" data-layout-ignore></canvas>
+      </div>
+      <div id="c4-medidor">
+        <span id="c4-medidor-rot">SENSIBILIDADE VISUAL</span>
+        <div id="c4-trilho"><div id="c4-nivel"></div></div>
+      </div>
+      <div id="c4-pagina">
+        <p id="c4-rastro" class="c4-texto" aria-hidden="true" data-layout-ignore>
+          Enquanto você lê esta frase, seus olhos não deslizam: eles saltam de palavra em palavra e
+          param por frações de segundo.
+        </p>
+        <p id="c4-texto" class="c4-texto" data-layout-ignore>
+          <span class="c4-p">Enquanto</span> <span class="c4-p">você</span>
+          <span class="c4-p">lê</span> <span class="c4-p">esta</span>
+          <span class="c4-p">frase,</span> <span class="c4-p">seus</span>
+          <span class="c4-p">olhos</span> <span class="c4-p">não</span>
+          <span class="c4-p">deslizam:</span> <span class="c4-p">eles</span>
+          <span class="c4-p">saltam</span> <span class="c4-p">de</span>
+          <span class="c4-p">palavra</span> <span class="c4-p">em</span>
+          <span class="c4-p">palavra</span> <span class="c4-p">e</span>
+          <span class="c4-p">param</span> <span class="c4-p">por</span>
+          <span class="c4-p">frações</span> <span class="c4-p">de</span>
+          <span class="c4-p">segundo.</span>
+        </p>
+        <svg id="c4-traco" viewBox="0 0 900 272">
+          <polyline
+            id="c4-linha"
+            points="0,0"
+            fill="none"
+            stroke="#00d9ff"
+            stroke-opacity="0.55"
+            stroke-width="2.5"
+            stroke-linejoin="round"
+            stroke-dasharray="1 100000"
+          />
+        </svg>
+        <div class="c4-ponto" id="c4-f0"></div>
+        <div class="c4-ponto" id="c4-f1"></div>
+        <div class="c4-ponto" id="c4-f2"></div>
+        <div class="c4-ponto" id="c4-f3"></div>
+        <div class="c4-ponto" id="c4-f4"></div>
+        <div class="c4-ponto" id="c4-f5"></div>
+        <div class="c4-ponto" id="c4-f6"></div>
+        <div class="c4-ponto" id="c4-f7"></div>
+        <div class="c4-ponto" id="c4-f8"></div>
+        <div class="c4-ponto" id="c4-f9"></div>
+        <div class="c4-ponto" id="c4-f10"></div>
+        <div class="c4-ponto" id="c4-f11"></div>
+        <div class="c4-ponto" id="c4-f12"></div>
+        <div class="c4-ponto" id="c4-f13"></div>
+        <div id="c4-mira"></div>
+        <p id="c4-borrao">borrão: fraco demais para notar</p>
+      </div>
+      <p id="c4-selo">ilustração em câmera lenta</p>
+    </div>
   </div>
   <script>
-    const tl = gsap.timeline({ paused: true });
-    tl.fromTo("#cena4-rotulo", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0);
-    window.__timelines["cena4"] = tl;
+    (function () {
+      const D = 9.85;
+      const { fontes, quadro, relogio, curvas } = window.CienciaGL;
+      const { suave } = curvas;
+      // fixações: índice da palavra; o salto até ela vai de a até b (s, tempo local)
+      const RAPIDAS = [0, 1, 3, 4, 6, 8, 9, 10, 12, 14].map((w, i) => ({
+        w,
+        a: 0.42 + i * 0.32,
+        b: 0.455 + i * 0.32,
+      }));
+      const LENTAS = [
+        { w: 16, a: 4.3, b: 4.8 },
+        { w: 18, a: 5.55, b: 6.05 },
+        { w: 20, a: 6.8, b: 7.3 },
+        { w: 0, a: 7.95, b: 8.55, borrao: true }, // volta ao início da linha: o salto mais longo
+      ];
+      const FIX = RAPIDAS.concat(LENTAS);
+      const pagina = document.getElementById("c4-pagina");
+      const palavras = Array.from(document.querySelectorAll(".c4-p"));
+      const pontos = FIX.map((_, i) => document.getElementById("c4-f" + i));
+      const linha = document.getElementById("c4-linha");
+      const mira = document.getElementById("c4-mira");
+      let pts = null,
+        acum = null;
+
+      function medir() {
+        if (pts || !pagina.offsetWidth) return;
+        const centro = (el) => {
+          let x = el.offsetLeft + el.offsetWidth / 2,
+            y = el.offsetTop + el.offsetHeight * 0.55;
+          let p = el.offsetParent;
+          while (p && p !== pagina) {
+            x += p.offsetLeft;
+            y += p.offsetTop;
+            p = p.offsetParent;
+          }
+          return [x, y];
+        };
+        const m = FIX.map((f) => centro(palavras[f.w]));
+        if (!m.some((p) => p[0] > 0)) return;
+        pts = m;
+        acum = [0];
+        for (let i = 1; i < pts.length; i++)
+          acum.push(acum[i - 1] + Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]));
+        linha.setAttribute("points", pts.map((p) => p.join(",")).join(" "));
+      }
+      // olhar do olho (espaço do olho) a partir de um ponto da página
+      const olhar = ([x, y]) => [((90 + x - 540) / 450) * 240, 150 + ((800 + y - 935) / 140) * 45];
+      function posicao(t, alvos, inicio) {
+        let g = inicio;
+        for (let i = 0; i < FIX.length; i++) {
+          const f = FIX[i];
+          if (t >= f.b) {
+            g = alvos[i];
+            continue;
+          }
+          if (t > f.a) {
+            const k = suave((t - f.a) / (f.b - f.a));
+            g = [g[0] + (alvos[i][0] - g[0]) * k, g[1] + (alvos[i][1] - g[1]) * k];
+          }
+          break;
+        }
+        return g;
+      }
+
+      const olho = quadro(document.getElementById("c4-gl"), fontes.OLHO);
+      const tl = gsap.timeline({ paused: true });
+      relogio(tl, D, (t) => {
+        medir();
+        const gaze = pts ? posicao(t, pts.map(olhar), [0, 110]) : [0, 110];
+        olho.desenhar({
+          uT: t,
+          uCentro: [200, 200],
+          uZoom: 0.32,
+          uPupila: 1.0,
+          uBuraco: 0,
+          uOlhar: gaze,
+          uPoeira: 0,
+        });
+        if (!pts) return;
+        // pontos: surgem na fixação, depois ficam como rastro esmaecido
+        FIX.forEach((f, i) => {
+          const prox = FIX[i + 1];
+          let op = t < f.b ? 0 : prox && t >= prox.b ? 0.32 : 1;
+          const s = t < f.b ? 0 : Math.min(1, (t - f.b) / 0.08);
+          pontos[i].style.opacity = String(op * Math.min(1, s * 1.5));
+          pontos[i].style.transform = `translate(${pts[i][0]}px, ${pts[i][1]}px) scale(${s})`;
+        });
+        // traço: revela o caminho do olhar até o salto atual
+        let feito = 0;
+        for (let i = 1; i < FIX.length; i++) {
+          const f = FIX[i];
+          if (t >= f.b) feito = acum[i];
+          else if (t > f.a) {
+            feito = acum[i - 1] + (acum[i] - acum[i - 1]) * ((t - f.a) / (f.b - f.a));
+            break;
+          } else break;
+        }
+        linha.setAttribute("stroke-dasharray", `${Math.max(0.01, feito)} 100000`);
+        // mira: acompanha o olhar nas fixações em câmera lenta
+        const pm = posicao(t, pts, pts[0]);
+        mira.style.transform = `translate(${pm[0]}px, ${pm[1]}px)`;
+      });
+      tl.to("#c4-mira", { opacity: 1, duration: 0.2 }, 3.7);
+      LENTAS.forEach((f) => {
+        const dur = f.b - f.a;
+        // durante o salto a percepção cai e volta (redução gradual, nunca um corte)
+        tl.to(
+          "#c4-texto",
+          {
+            opacity: 0.42,
+            filter: "blur(2.4px) saturate(0.35)",
+            duration: 0.12,
+            ease: "power2.out",
+          },
+          f.a,
+        );
+        tl.to(
+          "#c4-texto",
+          { opacity: 1, filter: "blur(0px) saturate(1)", duration: 0.15, ease: "power2.in" },
+          f.b - 0.15,
+        );
+        tl.to("#c4-nivel", { scaleX: 0.22, duration: 0.12, ease: "power2.out" }, f.a);
+        tl.to("#c4-nivel", { scaleX: 1, duration: 0.15, ease: "power2.in" }, f.b - 0.15);
+        if (f.borrao) {
+          tl.fromTo(
+            "#c4-rastro",
+            { opacity: 0, x: 60, filter: "blur(5px)" },
+            { opacity: 0.2, x: -60, filter: "blur(6px)", duration: dur * 0.6, ease: "none" },
+            f.a,
+          );
+          tl.to(
+            "#c4-rastro",
+            { opacity: 0, duration: dur * 0.4, ease: "power2.in" },
+            f.a + dur * 0.6,
+          );
+        }
+      });
+      tl.fromTo(
+        "#c4-titulo",
+        { opacity: 0, filter: "blur(8px)" },
+        { opacity: 1, filter: "blur(0px)", duration: 0.2 },
+        1.55,
+      );
+      tl.to("#c4-titulo", { opacity: 0, duration: 0.2 }, 3.55);
+      tl.fromTo("#c4-medidor", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 3.6);
+      tl.fromTo("#c4-selo", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 3.7);
+      tl.fromTo("#c4-borrao", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 7.6); // sai junto com a página
+      // entrada em chicote, vindo de baixo; saída: o olho vai para o centro (continua na cena 5)
+      tl.fromTo(
+        "#c4-palco",
+        { y: 460, filter: "blur(16px)" },
+        { y: 0, filter: "blur(0px)", duration: 0.5, ease: "expo.out" },
+        0,
+      );
+      tl.to(
+        ["#c4-pagina", "#c4-medidor", "#c4-selo"],
+        { opacity: 0, duration: 0.3, ease: "power2.in" },
+        D - 0.5,
+      );
+      tl.to("#c4-cam", { y: 140, scale: 1.25, duration: 0.45, ease: "power2.inOut" }, D - 0.45);
+      window.__timelines["cena4"] = tl;
+    })();
   </script>
 </template>

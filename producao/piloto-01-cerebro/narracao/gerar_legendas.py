@@ -19,6 +19,10 @@ norm = lambda s: re.sub(r"[^\wà-ú]", "", s.lower())
 LIGACAO = {"a", "o", "as", "os", "um", "uma", "de", "do", "da", "dos", "das", "e", "em", "no",
            "na", "com", "que", "até", "por", "para"}
 palavras = json.load(open("narracao/palavras.json", encoding="utf-8"))
+# A primeira frase ("Existe um buraco na sua visão.") já está na tela como título do gancho da
+# cena 1; legendá-la de novo repetiria o texto. As legendas começam em "Agora mesmo".
+PULAR_ATE = next(i for i, p in enumerate(palavras) if re.search(r"[.?!]$", p["text"])) + 1
+palavras = palavras[PULAR_ATE:]
 
 # Marca as palavras que fazem parte de uma palavra-chave (inclusive as de duas palavras).
 for i in range(len(palavras)):
@@ -111,9 +115,14 @@ doc = f"""<template>
     .lg-grupo {{
       position: absolute;
       left: 0;
+      right: 0;
+      margin: 0 auto;
       bottom: {BASE}px;
-      width: 1080px;
-      padding: 0 110px;
+      width: max-content;
+      max-width: 880px;
+      padding: 8px 24px 12px;
+      border-radius: 18px;
+      background: rgba(8, 11, 18, 0.46);
       box-sizing: border-box;
       display: flex;
       flex-wrap: wrap;

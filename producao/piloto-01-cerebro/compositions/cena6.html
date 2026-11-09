@@ -1,29 +1,511 @@
 <template>
-  <!-- PROVISÓRIO: marcador de tempo da cena 6. O visual entra quando a técnica 3D for definida. -->
+  <!-- Cena 6 · Surpresa: RECONSTRUÇÃO ILUSTRATIVA do experimento de Simons e Chabris (1999), não uma
+       reprodução do vídeo original. A atenção é a profundidade de campo: só a bola fica nítida.
+       O gorila atravessa a quadra desfocado; em "gorila", o foco muda e ele aparece. -->
   <style>
     #root {
       position: absolute;
       inset: 0;
+      overflow: hidden;
+      background: #080b12;
       font-family: "Inter", sans-serif;
     }
-    #cena6-rotulo {
+    #c6-cena {
+      position: absolute;
+      inset: 0;
+      transform-origin: 50% 46%;
+    }
+    .c6-camada {
       position: absolute;
       left: 0;
-      top: 600px;
+      top: 0;
+      width: 1080px;
+      height: 1920px;
+      overflow: visible;
+    }
+    #c6-brancos {
+      filter: blur(2.5px) brightness(0.9);
+    }
+    #c6-pretos {
+      filter: blur(2.5px) brightness(0.85);
+      opacity: 0.92;
+    }
+    #c6-gorila-svg {
+      filter: blur(5px) brightness(0.55);
+    }
+    #c6-selo {
+      position: absolute;
+      left: 0;
+      top: 200px;
       width: 100%;
       text-align: center;
-      color: #929baa;
       font-weight: 700;
-      font-size: 40px;
-      line-height: 1.3;
+      font-size: 28px;
+      letter-spacing: 0.06em;
+      color: #929baa;
+      line-height: 1.4;
+    }
+    #c6-selo b {
+      color: #c4cbd8;
+      letter-spacing: 0.12em;
+    }
+    #c6-contador {
+      position: absolute;
+      right: 110px;
+      top: 540px;
+      font-weight: 800;
+      font-size: 34px;
+      letter-spacing: 0.1em;
+      color: #f5f7fa;
+    }
+    #c6-num {
+      position: relative;
+      display: inline-block;
+      width: 56px;
+      height: 40px;
+      vertical-align: top;
+    }
+    .c6-n {
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #00d9ff;
+      opacity: 0;
+    }
+    #c6-pct {
+      position: absolute;
+      left: 0;
+      top: 300px;
+      width: 100%;
+      text-align: center;
+      font-weight: 900;
+      font-size: 120px;
+      line-height: 1;
+      color: #00d9ff;
+      text-shadow: 0 6px 30px rgba(0, 0, 0, 0.8);
+    }
+    #c6-pct-sub {
+      position: absolute;
+      left: 0;
+      top: 428px;
+      width: 100%;
+      text-align: center;
+      font-weight: 900;
+      font-size: 54px;
+      letter-spacing: 0.04em;
+      color: #f5f7fa;
+      text-shadow: 0 6px 30px rgba(0, 0, 0, 0.8);
     }
   </style>
   <div id="root" data-composition-id="cena6" data-width="1080" data-height="1920">
-    <p id="cena6-rotulo">CENA 6<br />Surpresa: o gorila (reconstrução)</p>
+    <div id="c6-cena">
+      <svg id="c6-quadra" class="c6-camada" viewBox="0 0 1080 1920" width="1080" height="1920">
+        <defs>
+          <linearGradient id="c6-parede" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#070a11" />
+            <stop offset="1" stop-color="#141c2b" />
+          </linearGradient>
+          <linearGradient id="c6-piso" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#3a2a1c" />
+            <stop offset="0.6" stop-color="#5a3f28" />
+            <stop offset="1" stop-color="#2a1d12" />
+          </linearGradient>
+          <radialGradient id="c6-holofote" cx="0.5" cy="0.5" r="0.5">
+            <stop offset="0" stop-color="#ffe9cc" stop-opacity="0.32" />
+            <stop offset="1" stop-color="#ffe9cc" stop-opacity="0" />
+          </radialGradient>
+          <symbol id="c6-pa" viewBox="0 0 100 240" overflow="visible">
+            <path
+              d="M38 150 L36 226 L50 226 L50 152 Z M52 152 L52 226 L66 226 L64 150 Z"
+              fill="#7b4a30"
+            />
+            <path d="M31 224 h21 v10 h-23 z M50 224 h21 v10 h-21 z" fill="#d9dee6" />
+            <path d="M33 118 h36 l3 38 h-18 l-3 -14 l-3 14 h-18 z" fill="#262d3a" />
+            <path d="M30 56 q-11 30 -9 66 l9 0 q0 -30 7 -58 z" fill="#7b4a30" />
+            <path d="M70 56 q11 30 9 66 l-9 0 q0 -30 -7 -58 z" fill="#7b4a30" />
+            <path d="M31 52 q19 -9 38 0 l4 68 h-46 z" fill="currentColor" />
+            <circle cx="50" cy="31" r="15" fill="#7b4a30" />
+            <path d="M35 29 q2 -19 15 -19 q14 0 15 19 q-6 -9 -15 -9 q-9 0 -15 9 z" fill="#1d1612" />
+          </symbol>
+          <symbol id="c6-pb" viewBox="0 0 100 240" overflow="visible">
+            <path
+              d="M38 150 L36 226 L50 226 L50 152 Z M52 152 L52 226 L66 226 L64 150 Z"
+              fill="#c08a66"
+            />
+            <path d="M31 224 h21 v10 h-23 z M50 224 h21 v10 h-21 z" fill="#d9dee6" />
+            <path d="M33 118 h36 l3 38 h-18 l-3 -14 l-3 14 h-18 z" fill="#262d3a" />
+            <path d="M30 56 q-11 30 -9 66 l9 0 q0 -30 7 -58 z" fill="#c08a66" />
+            <path d="M70 56 q11 30 9 66 l-9 0 q0 -30 -7 -58 z" fill="#c08a66" />
+            <path d="M31 52 q19 -9 38 0 l4 68 h-46 z" fill="currentColor" />
+            <circle cx="50" cy="31" r="15" fill="#c08a66" />
+            <path d="M35 29 q2 -19 15 -19 q14 0 15 19 q-6 -9 -15 -9 q-9 0 -15 9 z" fill="#3a2414" />
+          </symbol>
+        </defs>
+        <rect x="0" y="0" width="1080" height="600" fill="url(#c6-parede)" />
+        <polygon points="140,600 940,600 1300,1300 -220,1300" fill="url(#c6-piso)" />
+        <line
+          x1="120"
+          y1="600"
+          x2="-360"
+          y2="1300"
+          stroke="#000"
+          stroke-opacity="0.22"
+          stroke-width="2"
+        />
+        <line
+          x1="190"
+          y1="600"
+          x2="-210"
+          y2="1300"
+          stroke="#000"
+          stroke-opacity="0.22"
+          stroke-width="2"
+        />
+        <line
+          x1="260"
+          y1="600"
+          x2="-60"
+          y2="1300"
+          stroke="#000"
+          stroke-opacity="0.22"
+          stroke-width="2"
+        />
+        <line
+          x1="330"
+          y1="600"
+          x2="90"
+          y2="1300"
+          stroke="#000"
+          stroke-opacity="0.22"
+          stroke-width="2"
+        />
+        <line
+          x1="400"
+          y1="600"
+          x2="240"
+          y2="1300"
+          stroke="#000"
+          stroke-opacity="0.22"
+          stroke-width="2"
+        />
+        <line
+          x1="470"
+          y1="600"
+          x2="390"
+          y2="1300"
+          stroke="#000"
+          stroke-opacity="0.22"
+          stroke-width="2"
+        />
+        <line
+          x1="540"
+          y1="600"
+          x2="540"
+          y2="1300"
+          stroke="#000"
+          stroke-opacity="0.22"
+          stroke-width="2"
+        />
+        <line
+          x1="610"
+          y1="600"
+          x2="690"
+          y2="1300"
+          stroke="#000"
+          stroke-opacity="0.22"
+          stroke-width="2"
+        />
+        <line
+          x1="680"
+          y1="600"
+          x2="840"
+          y2="1300"
+          stroke="#000"
+          stroke-opacity="0.22"
+          stroke-width="2"
+        />
+        <line
+          x1="750"
+          y1="600"
+          x2="990"
+          y2="1300"
+          stroke="#000"
+          stroke-opacity="0.22"
+          stroke-width="2"
+        />
+        <line
+          x1="820"
+          y1="600"
+          x2="1140"
+          y2="1300"
+          stroke="#000"
+          stroke-opacity="0.22"
+          stroke-width="2"
+        />
+        <line
+          x1="890"
+          y1="600"
+          x2="1290"
+          y2="1300"
+          stroke="#000"
+          stroke-opacity="0.22"
+          stroke-width="2"
+        />
+        <line
+          x1="960"
+          y1="600"
+          x2="1440"
+          y2="1300"
+          stroke="#000"
+          stroke-opacity="0.22"
+          stroke-width="2"
+        />
+        <ellipse
+          cx="540"
+          cy="930"
+          rx="300"
+          ry="95"
+          fill="none"
+          stroke="#f5f7fa"
+          stroke-opacity="0.18"
+          stroke-width="4"
+        />
+        <line
+          x1="80"
+          y1="1050"
+          x2="1000"
+          y2="1050"
+          stroke="#f5f7fa"
+          stroke-opacity="0.14"
+          stroke-width="5"
+        />
+        <ellipse cx="540" cy="880" rx="560" ry="260" fill="url(#c6-holofote)" />
+        <rect x="0" y="1300" width="1080" height="620" fill="#080b12" />
+        <rect x="0" y="560" width="1080" height="80" fill="url(#c6-parede)" opacity="0.35" />
+      </svg>
+      <svg id="c6-pretos" class="c6-camada" viewBox="0 0 1080 1920" width="1080" height="1920">
+        <g transform="translate(250 965) scale(1.1)">
+          <g id="c6-k1">
+            <ellipse cx="0" cy="2" rx="34" ry="8" fill="#000" opacity="0.35" />
+            <use href="#c6-pa" x="-50" y="-235" width="100" height="240" color="#151922" />
+          </g>
+        </g>
+        <g transform="translate(850 945) scale(1.08)">
+          <g id="c6-k2">
+            <ellipse cx="0" cy="2" rx="34" ry="8" fill="#000" opacity="0.35" />
+            <use href="#c6-pb" x="-50" y="-235" width="100" height="240" color="#151922" />
+          </g>
+        </g>
+        <g transform="translate(470 800) scale(0.92)">
+          <g id="c6-k3">
+            <ellipse cx="0" cy="2" rx="34" ry="8" fill="#000" opacity="0.35" />
+            <use href="#c6-pa" x="-50" y="-235" width="100" height="240" color="#151922" />
+          </g>
+        </g>
+      </svg>
+      <svg id="c6-gorila-svg" class="c6-camada" viewBox="0 0 1080 1920" width="1080" height="1920">
+        <g transform="translate(1250 905) scale(1.15)">
+          <g id="c6-gorila">
+            <ellipse cx="0" cy="2" rx="60" ry="11" fill="#000" opacity="0.4" />
+            <g transform="translate(-100 -300)">
+              <path d="M70 200 L66 288 L54 300 L96 300 L94 288 L98 205 Z" fill="#17171a" />
+              <path d="M130 200 L134 288 L146 300 L104 300 L106 288 L102 205 Z" fill="#17171a" />
+              <path
+                d="M60 95 C42 100 40 140 50 175 C56 200 70 212 100 212 C130 212 144 200 150 175 C160 140 158 100 140 95 C125 88 75 88 60 95 Z"
+                fill="#1d1d21"
+              />
+              <ellipse cx="100" cy="99" rx="62" ry="23" fill="#1d1d21" />
+              <path
+                d="M76 120 C86 112 114 112 124 120 C126 140 120 160 100 164 C80 160 74 140 76 120 Z"
+                fill="#2a2a30"
+              />
+              <g id="c6-bracos-baixo">
+                <path
+                  d="M58 95 C40 105 32 150 30 190 C29 215 30 232 36 240 L52 240 C54 230 52 205 56 180 C60 150 66 125 70 108 Z"
+                  fill="#1b1b1f"
+                />
+                <ellipse cx="44" cy="244" rx="13" ry="9" fill="#26262b" />
+                <path
+                  d="M142 95 C160 105 168 150 170 190 C171 215 170 232 164 240 L148 240 C146 230 148 205 144 180 C140 150 134 125 130 108 Z"
+                  fill="#1b1b1f"
+                />
+                <ellipse cx="156" cy="244" rx="13" ry="9" fill="#26262b" />
+              </g>
+              <g id="c6-bate-esq" opacity="0">
+                <path
+                  d="M58 95 C40 108 28 135 32 152 C35 165 48 166 58 158 C66 152 76 146 86 140 L94 132 C92 123 81 121 73 127 C65 133 57 137 52 139 C52 129 60 114 68 105 Z"
+                  fill="#1b1b1f"
+                />
+                <path
+                  d="M142 95 C160 105 168 150 170 190 C171 215 170 232 164 240 L148 240 C146 230 148 205 144 180 C140 150 134 125 130 108 Z"
+                  fill="#1b1b1f"
+                />
+              </g>
+              <g id="c6-bate-dir" opacity="0">
+                <path
+                  d="M58 95 C40 105 32 150 30 190 C29 215 30 232 36 240 L52 240 C54 230 52 205 56 180 C60 150 66 125 70 108 Z"
+                  fill="#1b1b1f"
+                />
+                <path
+                  d="M142 95 C160 108 172 135 168 152 C165 165 152 166 142 158 C134 152 124 146 114 140 L106 132 C108 123 119 121 127 127 C135 133 143 137 148 139 C148 129 140 114 132 105 Z"
+                  fill="#1b1b1f"
+                />
+              </g>
+              <path
+                d="M100 18 C121 18 133 31 133 51 C133 72 120 87 100 87 C80 87 67 72 67 51 C67 31 79 18 100 18 Z"
+                fill="#1d1d21"
+              />
+              <ellipse cx="100" cy="22" rx="20" ry="9" fill="#1d1d21" />
+              <path d="M78 46 C88 40 112 40 122 46 C122 51 78 51 78 46 Z" fill="#101013" />
+              <ellipse cx="100" cy="64" rx="19" ry="16" fill="#2c2c32" />
+              <circle cx="91" cy="51" r="2.6" fill="#0a0a0c" />
+              <circle cx="109" cy="51" r="2.6" fill="#0a0a0c" />
+            </g>
+          </g>
+        </g>
+      </svg>
+      <svg id="c6-brancos" class="c6-camada" viewBox="0 0 1080 1920" width="1080" height="1920">
+        <g transform="translate(360 860) scale(1.0)">
+          <g id="c6-w1">
+            <ellipse cx="0" cy="2" rx="34" ry="8" fill="#000" opacity="0.35" />
+            <use href="#c6-pb" x="-50" y="-235" width="100" height="240" color="#eef1f5" />
+          </g>
+        </g>
+        <g transform="translate(700 820) scale(0.95)">
+          <g id="c6-w2">
+            <ellipse cx="0" cy="2" rx="34" ry="8" fill="#000" opacity="0.35" />
+            <use href="#c6-pa" x="-50" y="-235" width="100" height="240" color="#eef1f5" />
+          </g>
+        </g>
+        <g transform="translate(540 965) scale(1.1)">
+          <g id="c6-w3">
+            <ellipse cx="0" cy="2" rx="34" ry="8" fill="#000" opacity="0.35" />
+            <use href="#c6-pb" x="-50" y="-235" width="100" height="240" color="#eef1f5" />
+          </g>
+        </g>
+      </svg>
+      <svg id="c6-bola-svg" class="c6-camada" viewBox="0 0 1080 1920" width="1080" height="1920">
+        <g id="c6-bola" transform="translate(360 712)">
+          <circle r="34" fill="#00d9ff" opacity="0.28" style="filter: blur(9px)" />
+          <circle r="15" fill="#00d9ff" />
+          <circle r="6" cx="-4" cy="-5" fill="#e6fbff" />
+        </g>
+      </svg>
+    </div>
+    <p id="c6-selo">
+      <b>RECONSTRUÇÃO ILUSTRATIVA</b><br />experimento original: Simons &amp; Chabris, 1999
+    </p>
+    <p id="c6-contador">
+      PASSES
+      <span id="c6-num">
+        <span class="c6-n" id="c6-n0">0</span><span class="c6-n" id="c6-n1">1</span
+        ><span class="c6-n" id="c6-n2">2</span><span class="c6-n" id="c6-n3">3</span
+        ><span class="c6-n" id="c6-n4">4</span><span class="c6-n" id="c6-n5">5</span
+        ><span class="c6-n" id="c6-n6">6</span><span class="c6-n" id="c6-n7">7</span
+        ><span class="c6-n" id="c6-n8">8</span><span class="c6-n" id="c6-n9">9</span
+        ><span class="c6-n" id="c6-n10">10</span>
+      </span>
+    </p>
+    <p id="c6-pct">46%</p>
+    <p id="c6-pct-sub">NÃO NOTARAM</p>
   </div>
   <script>
-    const tl = gsap.timeline({ paused: true });
-    tl.fromTo("#cena6-rotulo", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0);
-    window.__timelines["cena6"] = tl;
+    (function () {
+      const D = 9.74;
+      const tl = gsap.timeline({ paused: true });
+      // passes do time branco: W1 → W2 → W3 → W1 …; o contador sobe a cada recepção
+      const MAOS = { w1: [360, 712], w2: [700, 680], w3: [540, 800] };
+      const ORDEM = ["w1", "w2", "w3"];
+      tl.set("#c6-n0", { opacity: 1 }, 0);
+      for (let k = 0; k < 10; k++) {
+        const t0 = 0.75 + k * 0.78;
+        const de = MAOS[ORDEM[k % 3]],
+          para = MAOS[ORDEM[(k + 1) % 3]];
+        // arco de passe: altura de 80 px no meio do caminho
+        const quadros = [0.25, 0.5, 0.75, 1].map((f) => ({
+          x: de[0] + (para[0] - de[0]) * f,
+          y: de[1] + (para[1] - de[1]) * f - 4 * f * (1 - f) * 80,
+        }));
+        tl.to("#c6-bola", { keyframes: quadros, duration: 0.5, ease: "none" }, t0);
+        tl.set("#c6-n" + k, { opacity: 0 }, t0 + 0.5);
+        tl.set("#c6-n" + (k + 1), { opacity: 1 }, t0 + 0.5);
+      }
+      // movimento dos jogadores: brancos balançam no lugar, pretos se deslocam
+      ["w1", "w2", "w3"].forEach((j, i) =>
+        tl.fromTo(
+          "#c6-" + j,
+          { y: 0 },
+          { y: -7, duration: 0.39, ease: "sine.inOut", yoyo: true, repeat: 22 },
+          0.1 * i,
+        ),
+      );
+      ["k1", "k2", "k3"].forEach((j, i) =>
+        tl.fromTo(
+          "#c6-" + j,
+          { x: 0 },
+          { x: i % 2 ? -26 : 26, duration: 0.85, ease: "sine.inOut", yoyo: true, repeat: 10 },
+          0.2 * i,
+        ),
+      );
+      // o gorila entra pela direita, para no centro e bate no peito
+      tl.fromTo("#c6-gorila", { x: 0 }, { x: -610, duration: 2.4, ease: "none" }, 2.6);
+      tl.fromTo(
+        "#c6-gorila",
+        { y: 0 },
+        { y: -8, duration: 0.3, ease: "sine.inOut", yoyo: true, repeat: 7 },
+        2.6,
+      );
+      tl.set("#c6-bracos-baixo", { opacity: 0 }, 5.4);
+      for (let b = 0; b < 7; b++) {
+        const t = 5.4 + b * 0.18;
+        tl.set("#c6-bate-esq", { opacity: b % 2 ? 0 : 1 }, t);
+        tl.set("#c6-bate-dir", { opacity: b % 2 ? 1 : 0 }, t);
+      }
+      tl.set(["#c6-bate-esq", "#c6-bate-dir"], { opacity: 0 }, 5.4 + 7 * 0.18);
+      tl.set("#c6-bracos-baixo", { opacity: 1 }, 5.4 + 7 * 0.18);
+      // textos
+      tl.fromTo("#c6-selo", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.1);
+      tl.fromTo("#c6-contador", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.5);
+      tl.to("#c6-contador", { opacity: 0, duration: 0.25 }, 6.36);
+      tl.fromTo(
+        "#c6-pct",
+        { opacity: 0, scale: 0.92, filter: "blur(8px)" },
+        { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.35, ease: "expo.out" },
+        6.35,
+      );
+      tl.fromTo(
+        "#c6-pct-sub",
+        { opacity: 0, filter: "blur(6px)" },
+        { opacity: 1, filter: "blur(0px)", duration: 0.25 },
+        6.5,
+      );
+      // "gorila": o foco muda — o gorila fica nítido e iluminado, o resto desfoca; a câmera abre
+      tl.to(
+        "#c6-gorila-svg",
+        { filter: "blur(0px) brightness(1.25)", duration: 0.35, ease: "power2.out" },
+        8.68,
+      );
+      tl.to(
+        ["#c6-brancos", "#c6-pretos"],
+        { filter: "blur(7px) brightness(0.6)", opacity: 0.55, duration: 0.35, ease: "power2.out" },
+        8.68,
+      );
+      tl.to("#c6-bola-svg", { opacity: 0, duration: 0.3 }, 8.68);
+      tl.fromTo(
+        "#c6-cena",
+        { scale: 1.07 },
+        { scale: 1.0, duration: 1.0, ease: "power2.out" },
+        8.7,
+      );
+      // os textos saem antes do corte: a cena 7 continua só com a quadra
+      tl.to(
+        ["#c6-selo", "#c6-pct", "#c6-pct-sub"],
+        { opacity: 0, duration: 0.25, ease: "power2.in" },
+        D - 0.3,
+      );
+      // entrada (o escuro do dip abre)
+      tl.fromTo("#c6-cena", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0);
+      window.__timelines["cena6"] = tl;
+    })();
   </script>
 </template>
