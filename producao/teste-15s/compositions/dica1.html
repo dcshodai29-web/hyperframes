@@ -1,0 +1,166 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #f4f1ea;
+    }
+    #d1-palco {
+      position: absolute;
+      inset: 0;
+    }
+    .d1-rotulo {
+      position: absolute;
+      left: 0;
+      top: 220px;
+      width: 100%;
+      text-align: center;
+      font-weight: 900;
+      font-size: 64px;
+      letter-spacing: 0.22em;
+      color: #ffc857;
+    }
+    #d1-cel {
+      position: absolute;
+      left: 400px;
+      top: 360px;
+      width: 280px;
+      height: 500px;
+      border-radius: 50px;
+      background: #1c2140;
+      border: 6px solid #3a4170;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+    }
+    #d1-tela-escura {
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      right: 16px;
+      bottom: 16px;
+      border-radius: 34px;
+      background: #05070f;
+    }
+    #d1-tela {
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      right: 16px;
+      bottom: 16px;
+      border-radius: 34px;
+      background: linear-gradient(160deg, #7c9cff 0%, #b07cff 100%);
+      box-shadow: 0 0 90px rgba(140, 150, 255, 0.55);
+    }
+    .d1-linha {
+      position: absolute;
+      left: 34px;
+      height: 22px;
+      border-radius: 11px;
+      background: rgba(255, 255, 255, 0.55);
+    }
+    #d1-energia {
+      position: absolute;
+      left: 80px;
+      top: 170px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 8px solid #ffc857;
+      border-top-color: transparent;
+      box-sizing: border-box;
+      opacity: 0;
+    }
+    #d1-energia-traco {
+      position: absolute;
+      left: 52px;
+      top: -22px;
+      width: 8px;
+      height: 64px;
+      border-radius: 4px;
+      background: #ffc857;
+    }
+    #d1-titulo {
+      position: absolute;
+      left: 0;
+      top: 930px;
+      width: 100%;
+      text-align: center;
+      font-weight: 900;
+      font-size: 96px;
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+    }
+    #d1-sub {
+      position: absolute;
+      left: 0;
+      top: 1045px;
+      width: 100%;
+      text-align: center;
+      font-weight: 600;
+      font-size: 52px;
+      color: #c9c6d8;
+    }
+    #d1-sub b {
+      color: #ffc857;
+      font-weight: 800;
+    }
+    .d1-p {
+      display: inline-block;
+    }
+  </style>
+  <div id="root" data-composition-id="dica1" data-width="1080" data-height="1920">
+    <div id="d1-palco">
+      <div class="d1-rotulo" id="d1-rotulo">DICA 1</div>
+      <div id="d1-cel">
+        <div id="d1-tela-escura"></div>
+        <div id="d1-tela">
+          <div class="d1-linha" style="top: 60px; width: 140px"></div>
+          <div class="d1-linha" style="top: 100px; width: 180px"></div>
+          <div class="d1-linha" style="top: 140px; width: 110px"></div>
+          <div class="d1-linha" style="top: 380px; width: 180px"></div>
+        </div>
+        <div id="d1-energia"><div id="d1-energia-traco"></div></div>
+      </div>
+      <h2 id="d1-titulo">
+        <span class="d1-p" id="d1-p1">Desligue</span>
+        <span class="d1-p" id="d1-p2">as</span>
+        <span class="d1-p" id="d1-p3">telas</span>
+      </h2>
+      <p id="d1-sub"><b>1 hora</b> antes de deitar</p>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // Chega de baixo, ainda borrada, na direção do chicote da abertura.
+    tl.fromTo(
+      "#d1-palco",
+      { y: 460, filter: "blur(16px)" },
+      { y: 0, filter: "blur(0px)", duration: 0.5, ease: "expo.out" },
+      0,
+    );
+    tl.fromTo(
+      ".d1-p",
+      { opacity: 0, filter: "blur(6px)" },
+      { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out", stagger: 0.07 },
+      0.17,
+    );
+    // "telas": a tela apaga e aparece o símbolo de desligar.
+    tl.to("#d1-tela", { opacity: 0, duration: 0.28, ease: "power2.in" }, 0.78);
+    tl.fromTo(
+      "#d1-energia",
+      { opacity: 0, scale: 0.7 },
+      { opacity: 1, scale: 1, duration: 0.4, ease: "expo.out" },
+      0.98,
+    );
+    tl.fromTo(
+      "#d1-sub",
+      { opacity: 0, filter: "blur(8px)" },
+      { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power2.out" },
+      0.4,
+    );
+    // Saída: troca por desfoque, o fundo muda de cor por baixo.
+    tl.to("#d1-palco", { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, 2.2);
+    window.__timelines["dica1"] = tl;
+  </script>
+</template>

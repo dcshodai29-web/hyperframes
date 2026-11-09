@@ -1,0 +1,131 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #f4f1ea;
+    }
+    #fi-palco {
+      position: absolute;
+      inset: 0;
+    }
+    #fi-salvar-grupo {
+      position: absolute;
+      inset: 0;
+    }
+    #fi-marcador {
+      position: absolute;
+      left: 445px;
+      top: 330px;
+      width: 190px;
+      height: 250px;
+      background: #ffc857;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 76%, 0 100%);
+    }
+    #fi-salvar {
+      position: absolute;
+      left: 0;
+      top: 680px;
+      width: 100%;
+      text-align: center;
+      font-weight: 900;
+      font-size: 110px;
+      line-height: 1.02;
+      letter-spacing: -0.035em;
+    }
+    #fi-fecho {
+      position: absolute;
+      inset: 0;
+    }
+    #fi-lua {
+      position: absolute;
+      left: 390px;
+      top: 290px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: #ffc857;
+      box-shadow: 0 0 140px rgba(255, 200, 87, 0.5);
+      overflow: hidden;
+    }
+    #fi-lua-sombra {
+      position: absolute;
+      left: 92px;
+      top: -46px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: #0b1026;
+    }
+    #fi-titulo {
+      position: absolute;
+      left: 0;
+      top: 680px;
+      width: 100%;
+      text-align: center;
+      font-weight: 900;
+      font-size: 140px;
+      line-height: 1.02;
+      letter-spacing: -0.035em;
+    }
+    .fi-p {
+      display: inline-block;
+    }
+    #fi-p3 {
+      color: #ffc857;
+    }
+  </style>
+  <div id="root" data-composition-id="final" data-width="1080" data-height="1920">
+    <div id="fi-palco">
+      <div id="fi-salvar-grupo">
+        <div id="fi-marcador"></div>
+        <h2 id="fi-salvar">Salve este<br />vídeo</h2>
+      </div>
+      <div id="fi-fecho">
+        <div id="fi-lua"><div id="fi-lua-sombra" data-layout-ignore></div></div>
+        <h2 id="fi-titulo">
+          <span class="fi-p" id="fi-p1">Seu</span>
+          <span class="fi-p" id="fi-p2">corpo</span><br />
+          <span class="fi-p" id="fi-p3">agradece.</span>
+        </h2>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // Entrada espelhando o zoom da dica 3: chega grande e borrada e assenta.
+    tl.fromTo(
+      "#fi-palco",
+      { scale: 1.35, filter: "blur(16px)", opacity: 0 },
+      { scale: 1, filter: "blur(0px)", opacity: 1, duration: 0.45, ease: "expo.out" },
+      0,
+    );
+    tl.set("#fi-fecho", { opacity: 0 }, 0);
+    // O marcador cai e assenta (mola amortecida, sem quicar na opacidade).
+    tl.fromTo("#fi-marcador", { y: -90 }, { y: 0, duration: 0.6, ease: "back.out(1.4)" }, 0.07);
+    // "Seu corpo agradece": troca por desfoque; a lua da abertura volta.
+    tl.to(
+      "#fi-salvar-grupo",
+      { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power2.in" },
+      1.12,
+    );
+    tl.set("#fi-fecho", { opacity: 1 }, 1.29);
+    tl.fromTo(
+      "#fi-lua",
+      { opacity: 0, scale: 0.85, filter: "blur(8px)" },
+      { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.7, ease: "expo.out" },
+      1.29,
+    );
+    tl.fromTo("#fi-lua-sombra", { x: 50 }, { x: 0, duration: 0.9, ease: "expo.out" }, 1.29);
+    tl.fromTo(
+      ".fi-p",
+      { opacity: 0, filter: "blur(6px)" },
+      { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out", stagger: 0.16 },
+      1.29,
+    );
+    // Depois disso, tudo parado até o fim (a última frase segura mais de 2 s).
+    window.__timelines["final"] = tl;
+  </script>
+</template>

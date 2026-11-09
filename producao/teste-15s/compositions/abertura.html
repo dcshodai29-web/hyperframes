@@ -1,0 +1,99 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #f4f1ea;
+    }
+    #ab-palco {
+      position: absolute;
+      inset: 0;
+    }
+    #ab-lua {
+      position: absolute;
+      left: 390px;
+      top: 290px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: #ffc857;
+      box-shadow: 0 0 140px rgba(255, 200, 87, 0.5);
+      overflow: hidden;
+    }
+    #ab-lua-sombra {
+      position: absolute;
+      left: 92px;
+      top: -46px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: #0b1026;
+    }
+    #ab-titulo {
+      position: absolute;
+      left: 0;
+      top: 680px;
+      width: 100%;
+      text-align: center;
+      font-weight: 900;
+      font-size: 150px;
+      line-height: 1.02;
+      letter-spacing: -0.035em;
+    }
+    #ab-mal {
+      color: #f4f1ea;
+    }
+    #ab-pilula-linha {
+      position: absolute;
+      left: 0;
+      top: 1030px;
+      width: 100%;
+      text-align: center;
+    }
+    #ab-pilula {
+      display: inline-block;
+      padding: 18px 44px 22px;
+      border: 3px solid #ffc857;
+      border-radius: 999px;
+      background: rgba(255, 200, 87, 0.12);
+      font-weight: 700;
+      font-size: 54px;
+      letter-spacing: -0.01em;
+    }
+  </style>
+  <div id="root" data-composition-id="abertura" data-width="1080" data-height="1920">
+    <div id="ab-palco">
+      <div id="ab-lua"><div id="ab-lua-sombra" data-layout-ignore></div></div>
+      <h1 id="ab-titulo">Você dorme<br /><span id="ab-mal">mal?</span></h1>
+      <div id="ab-pilula-linha"><span id="ab-pilula">3 dicas rápidas</span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // Quadro 0 já mostra a lua e a pergunta (é a miniatura e o gancho).
+    tl.fromTo("#ab-lua", { scale: 0.9 }, { scale: 1, duration: 0.9, ease: "expo.out" }, 0);
+    tl.fromTo("#ab-lua-sombra", { x: 40 }, { x: 0, duration: 0.9, ease: "expo.out" }, 0);
+    // "mal?" ganha a cor no instante em que é dito.
+    tl.fromTo(
+      "#ab-mal",
+      { color: "#f4f1ea" },
+      { color: "#ffc857", duration: 0.14, ease: "power2.out" },
+      0.88,
+    );
+    tl.fromTo(
+      "#ab-pilula",
+      { opacity: 0, scale: 0.86, filter: "blur(8px)" },
+      { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" },
+      1.3,
+    );
+    // Saída em chicote para cima; a dica 1 chega de baixo na mesma direção.
+    tl.to(
+      "#ab-palco",
+      { y: -520, filter: "blur(16px)", opacity: 0.2, duration: 0.3, ease: "power3.in" },
+      2.3,
+    );
+    window.__timelines["abertura"] = tl;
+  </script>
+</template>

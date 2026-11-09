@@ -1,0 +1,637 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .lg-grupo {
+      position: absolute;
+      left: 0;
+      bottom: 640px;
+      width: 1080px;
+      padding: 0 110px;
+      box-sizing: border-box;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 6px 10px;
+      overflow: visible;
+      opacity: 0;
+      visibility: hidden;
+    }
+    .lg-palavra {
+      position: relative;
+      display: inline-block;
+      padding: 6px 14px 10px;
+      font-family: "Inter", sans-serif;
+      font-weight: 900;
+      font-size: 66px;
+      line-height: 1;
+      letter-spacing: 0.01em;
+      text-shadow: 0 4px 16px rgba(0, 0, 0, 0.55);
+    }
+    .lg-fundo {
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      background: #6d4aff;
+      transform-origin: 0% 50%;
+      opacity: 0;
+    }
+    .lg-texto {
+      position: relative;
+      color: #ffffff;
+    }
+  </style>
+  <div id="root" data-composition-id="legendas" data-width="1080" data-height="1920">
+    <div class="lg-grupo" id="lg-g0">
+      <span class="lg-palavra" id="lg-w0"
+        ><span class="lg-fundo" id="lg-w0-f"></span
+        ><span class="lg-texto" id="lg-w0-t">VOCÊ</span></span
+      >
+      <span class="lg-palavra" id="lg-w1"
+        ><span class="lg-fundo" id="lg-w1-f"></span
+        ><span class="lg-texto" id="lg-w1-t">DORME</span></span
+      >
+      <span class="lg-palavra" id="lg-w2"
+        ><span class="lg-fundo" id="lg-w2-f"></span
+        ><span class="lg-texto" id="lg-w2-t">MAL?</span></span
+      >
+    </div>
+    <div class="lg-grupo" id="lg-g1">
+      <span class="lg-palavra" id="lg-w3"
+        ><span class="lg-fundo" id="lg-w3-f"></span
+        ><span class="lg-texto" id="lg-w3-t">TRÊS</span></span
+      >
+      <span class="lg-palavra" id="lg-w4"
+        ><span class="lg-fundo" id="lg-w4-f"></span
+        ><span class="lg-texto" id="lg-w4-t">DICAS</span></span
+      >
+      <span class="lg-palavra" id="lg-w5"
+        ><span class="lg-fundo" id="lg-w5-f"></span
+        ><span class="lg-texto" id="lg-w5-t">RÁPIDAS.</span></span
+      >
+    </div>
+    <div class="lg-grupo" id="lg-g2">
+      <span class="lg-palavra" id="lg-w6"
+        ><span class="lg-fundo" id="lg-w6-f"></span
+        ><span class="lg-texto" id="lg-w6-t">UM</span></span
+      >
+      <span class="lg-palavra" id="lg-w7"
+        ><span class="lg-fundo" id="lg-w7-f"></span
+        ><span class="lg-texto" id="lg-w7-t">DESLIGUE</span></span
+      >
+      <span class="lg-palavra" id="lg-w8"
+        ><span class="lg-fundo" id="lg-w8-f"></span
+        ><span class="lg-texto" id="lg-w8-t">AS</span></span
+      >
+    </div>
+    <div class="lg-grupo" id="lg-g3">
+      <span class="lg-palavra" id="lg-w9"
+        ><span class="lg-fundo" id="lg-w9-f"></span
+        ><span class="lg-texto" id="lg-w9-t">TELAS</span></span
+      >
+      <span class="lg-palavra" id="lg-w10"
+        ><span class="lg-fundo" id="lg-w10-f"></span
+        ><span class="lg-texto" id="lg-w10-t">UMA</span></span
+      >
+      <span class="lg-palavra" id="lg-w11"
+        ><span class="lg-fundo" id="lg-w11-f"></span
+        ><span class="lg-texto" id="lg-w11-t">HORA</span></span
+      >
+    </div>
+    <div class="lg-grupo" id="lg-g4">
+      <span class="lg-palavra" id="lg-w12"
+        ><span class="lg-fundo" id="lg-w12-f"></span
+        ><span class="lg-texto" id="lg-w12-t">ANTES</span></span
+      >
+      <span class="lg-palavra" id="lg-w13"
+        ><span class="lg-fundo" id="lg-w13-f"></span
+        ><span class="lg-texto" id="lg-w13-t">DE</span></span
+      >
+      <span class="lg-palavra" id="lg-w14"
+        ><span class="lg-fundo" id="lg-w14-f"></span
+        ><span class="lg-texto" id="lg-w14-t">DEITAR.</span></span
+      >
+    </div>
+    <div class="lg-grupo" id="lg-g5">
+      <span class="lg-palavra" id="lg-w15"
+        ><span class="lg-fundo" id="lg-w15-f"></span
+        ><span class="lg-texto" id="lg-w15-t">DOIS</span></span
+      >
+      <span class="lg-palavra" id="lg-w16"
+        ><span class="lg-fundo" id="lg-w16-f"></span
+        ><span class="lg-texto" id="lg-w16-t">DEIXE</span></span
+      >
+      <span class="lg-palavra" id="lg-w17"
+        ><span class="lg-fundo" id="lg-w17-f"></span
+        ><span class="lg-texto" id="lg-w17-t">O</span></span
+      >
+    </div>
+    <div class="lg-grupo" id="lg-g6">
+      <span class="lg-palavra" id="lg-w18"
+        ><span class="lg-fundo" id="lg-w18-f"></span
+        ><span class="lg-texto" id="lg-w18-t">QUARTO</span></span
+      >
+      <span class="lg-palavra" id="lg-w19"
+        ><span class="lg-fundo" id="lg-w19-f"></span
+        ><span class="lg-texto" id="lg-w19-t">ESCURO</span></span
+      >
+      <span class="lg-palavra" id="lg-w20"
+        ><span class="lg-fundo" id="lg-w20-f"></span
+        ><span class="lg-texto" id="lg-w20-t">E</span></span
+      >
+    </div>
+    <div class="lg-grupo" id="lg-g7">
+      <span class="lg-palavra" id="lg-w21"
+        ><span class="lg-fundo" id="lg-w21-f"></span
+        ><span class="lg-texto" id="lg-w21-t">FRESCO.</span></span
+      >
+    </div>
+    <div class="lg-grupo" id="lg-g8">
+      <span class="lg-palavra" id="lg-w22"
+        ><span class="lg-fundo" id="lg-w22-f"></span
+        ><span class="lg-texto" id="lg-w22-t">TRÊS</span></span
+      >
+      <span class="lg-palavra" id="lg-w23"
+        ><span class="lg-fundo" id="lg-w23-f"></span
+        ><span class="lg-texto" id="lg-w23-t">ACORDE</span></span
+      >
+      <span class="lg-palavra" id="lg-w24"
+        ><span class="lg-fundo" id="lg-w24-f"></span
+        ><span class="lg-texto" id="lg-w24-t">SEMPRE</span></span
+      >
+    </div>
+    <div class="lg-grupo" id="lg-g9">
+      <span class="lg-palavra" id="lg-w25"
+        ><span class="lg-fundo" id="lg-w25-f"></span
+        ><span class="lg-texto" id="lg-w25-t">NO</span></span
+      >
+      <span class="lg-palavra" id="lg-w26"
+        ><span class="lg-fundo" id="lg-w26-f"></span
+        ><span class="lg-texto" id="lg-w26-t">MESMO</span></span
+      >
+      <span class="lg-palavra" id="lg-w27"
+        ><span class="lg-fundo" id="lg-w27-f"></span
+        ><span class="lg-texto" id="lg-w27-t">HORÁRIO</span></span
+      >
+    </div>
+    <div class="lg-grupo" id="lg-g10">
+      <span class="lg-palavra" id="lg-w28"
+        ><span class="lg-fundo" id="lg-w28-f"></span
+        ><span class="lg-texto" id="lg-w28-t">ATÉ</span></span
+      >
+      <span class="lg-palavra" id="lg-w29"
+        ><span class="lg-fundo" id="lg-w29-f"></span
+        ><span class="lg-texto" id="lg-w29-t">NO</span></span
+      >
+      <span class="lg-palavra" id="lg-w30"
+        ><span class="lg-fundo" id="lg-w30-f"></span
+        ><span class="lg-texto" id="lg-w30-t">FIM</span></span
+      >
+    </div>
+    <div class="lg-grupo" id="lg-g11">
+      <span class="lg-palavra" id="lg-w31"
+        ><span class="lg-fundo" id="lg-w31-f"></span
+        ><span class="lg-texto" id="lg-w31-t">DE</span></span
+      >
+      <span class="lg-palavra" id="lg-w32"
+        ><span class="lg-fundo" id="lg-w32-f"></span
+        ><span class="lg-texto" id="lg-w32-t">SEMANA.</span></span
+      >
+    </div>
+    <div class="lg-grupo" id="lg-g12">
+      <span class="lg-palavra" id="lg-w33"
+        ><span class="lg-fundo" id="lg-w33-f"></span
+        ><span class="lg-texto" id="lg-w33-t">SALVE</span></span
+      >
+      <span class="lg-palavra" id="lg-w34"
+        ><span class="lg-fundo" id="lg-w34-f"></span
+        ><span class="lg-texto" id="lg-w34-t">ESTE</span></span
+      >
+      <span class="lg-palavra" id="lg-w35"
+        ><span class="lg-fundo" id="lg-w35-f"></span
+        ><span class="lg-texto" id="lg-w35-t">VÍDEO.</span></span
+      >
+    </div>
+    <div class="lg-grupo" id="lg-g13">
+      <span class="lg-palavra" id="lg-w36"
+        ><span class="lg-fundo" id="lg-w36-f"></span
+        ><span class="lg-texto" id="lg-w36-t">SEU</span></span
+      >
+      <span class="lg-palavra" id="lg-w37"
+        ><span class="lg-fundo" id="lg-w37-f"></span
+        ><span class="lg-texto" id="lg-w37-t">CORPO</span></span
+      >
+      <span class="lg-palavra" id="lg-w38"
+        ><span class="lg-fundo" id="lg-w38-f"></span
+        ><span class="lg-texto" id="lg-w38-t">AGRADECE.</span></span
+      >
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.set("#lg-g0", { visibility: "visible" }, 0.3);
+    tl.fromTo(
+      "#lg-g0",
+      { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, duration: 0.16, ease: "power3.out" },
+      0.3,
+    );
+    tl.fromTo(
+      "#lg-w0-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      0.35,
+    );
+    tl.to("#lg-w0-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 0.55);
+    tl.fromTo(
+      "#lg-w1-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      0.58,
+    );
+    tl.to("#lg-w1-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 0.88);
+    tl.fromTo(
+      "#lg-w2-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      0.88,
+    );
+    tl.to("#lg-w2-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 1.13);
+    tl.to("#lg-g0", { opacity: 0, duration: 0.12, ease: "power2.in" }, 1.15);
+    tl.set("#lg-g0", { opacity: 0, visibility: "hidden" }, 1.27);
+    tl.set("#lg-g1", { visibility: "visible" }, 1.27);
+    tl.fromTo(
+      "#lg-g1",
+      { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, duration: 0.16, ease: "power3.out" },
+      1.27,
+    );
+    tl.fromTo(
+      "#lg-w3-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      1.3,
+    );
+    tl.to("#lg-w3-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 1.6);
+    tl.fromTo(
+      "#lg-w4-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      1.6,
+    );
+    tl.to("#lg-w4-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 1.97);
+    tl.fromTo(
+      "#lg-w5-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      1.97,
+    );
+    tl.to("#lg-w5-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 2.5);
+    tl.to("#lg-g1", { opacity: 0, duration: 0.12, ease: "power2.in" }, 2.52);
+    tl.set("#lg-g1", { opacity: 0, visibility: "hidden" }, 2.64);
+    tl.set("#lg-g2", { visibility: "visible" }, 2.64);
+    tl.fromTo(
+      "#lg-g2",
+      { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, duration: 0.16, ease: "power3.out" },
+      2.64,
+    );
+    tl.fromTo(
+      "#lg-w6-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      2.67,
+    );
+    tl.to("#lg-w6-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 2.82);
+    tl.fromTo(
+      "#lg-w7-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      2.77,
+    );
+    tl.to("#lg-w7-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 3.21);
+    tl.fromTo(
+      "#lg-w8-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      3.25,
+    );
+    tl.to("#lg-w8-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 3.4);
+    tl.to("#lg-g2", { opacity: 0, duration: 0.12, ease: "power2.in" }, 3.23);
+    tl.set("#lg-g2", { opacity: 0, visibility: "hidden" }, 3.35);
+    tl.set("#lg-g3", { visibility: "visible" }, 3.35);
+    tl.fromTo(
+      "#lg-g3",
+      { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, duration: 0.16, ease: "power3.out" },
+      3.35,
+    );
+    tl.fromTo(
+      "#lg-w9-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      3.38,
+    );
+    tl.to("#lg-w9-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 3.69);
+    tl.fromTo(
+      "#lg-w10-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      3.69,
+    );
+    tl.to("#lg-w10-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 3.88);
+    tl.fromTo(
+      "#lg-w11-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      3.88,
+    );
+    tl.to("#lg-w11-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 4.03);
+    tl.to("#lg-g3", { opacity: 0, duration: 0.12, ease: "power2.in" }, 3.98);
+    tl.set("#lg-g3", { opacity: 0, visibility: "hidden" }, 4.1);
+    tl.set("#lg-g4", { visibility: "visible" }, 4.1);
+    tl.fromTo(
+      "#lg-g4",
+      { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, duration: 0.16, ease: "power3.out" },
+      4.1,
+    );
+    tl.fromTo(
+      "#lg-w12-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      4.13,
+    );
+    tl.to("#lg-w12-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 4.44);
+    tl.fromTo(
+      "#lg-w13-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      4.45,
+    );
+    tl.to("#lg-w13-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 4.6);
+    tl.fromTo(
+      "#lg-w14-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      4.58,
+    );
+    tl.to("#lg-w14-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 4.9);
+    tl.to("#lg-g4", { opacity: 0, duration: 0.12, ease: "power2.in" }, 4.92);
+    tl.set("#lg-g4", { opacity: 0, visibility: "hidden" }, 5.04);
+    tl.set("#lg-g5", { visibility: "visible" }, 5.04);
+    tl.fromTo(
+      "#lg-g5",
+      { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, duration: 0.16, ease: "power3.out" },
+      5.04,
+    );
+    tl.fromTo(
+      "#lg-w15-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      5.07,
+    );
+    tl.to("#lg-w15-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 5.27);
+    tl.fromTo(
+      "#lg-w16-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      5.3,
+    );
+    tl.to("#lg-w16-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 5.49);
+    tl.fromTo(
+      "#lg-w17-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      5.6,
+    );
+    tl.to("#lg-w17-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 5.75);
+    tl.to("#lg-g5", { opacity: 0, duration: 0.12, ease: "power2.in" }, 5.51);
+    tl.set("#lg-g5", { opacity: 0, visibility: "hidden" }, 5.63);
+    tl.set("#lg-g6", { visibility: "visible" }, 5.63);
+    tl.fromTo(
+      "#lg-g6",
+      { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, duration: 0.16, ease: "power3.out" },
+      5.63,
+    );
+    tl.fromTo(
+      "#lg-w18-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      5.66,
+    );
+    tl.to("#lg-w18-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 6.05);
+    tl.fromTo(
+      "#lg-w19-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      6.05,
+    );
+    tl.to("#lg-w19-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 6.32);
+    tl.fromTo(
+      "#lg-w20-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      6.44,
+    );
+    tl.to("#lg-w20-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 6.59);
+    tl.to("#lg-g6", { opacity: 0, duration: 0.12, ease: "power2.in" }, 6.34);
+    tl.set("#lg-g6", { opacity: 0, visibility: "hidden" }, 6.46);
+    tl.set("#lg-g7", { visibility: "visible" }, 6.46);
+    tl.fromTo(
+      "#lg-g7",
+      { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, duration: 0.16, ease: "power3.out" },
+      6.46,
+    );
+    tl.fromTo(
+      "#lg-w21-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      6.49,
+    );
+    tl.to("#lg-w21-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 7.02);
+    tl.to("#lg-g7", { opacity: 0, duration: 0.12, ease: "power2.in" }, 7.04);
+    tl.set("#lg-g7", { opacity: 0, visibility: "hidden" }, 7.16);
+    tl.set("#lg-g8", { visibility: "visible" }, 7.16);
+    tl.fromTo(
+      "#lg-g8",
+      { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, duration: 0.16, ease: "power3.out" },
+      7.16,
+    );
+    tl.fromTo(
+      "#lg-w22-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      7.19,
+    );
+    tl.to("#lg-w22-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 7.36);
+    tl.fromTo(
+      "#lg-w23-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      7.36,
+    );
+    tl.to("#lg-w23-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 7.7);
+    tl.fromTo(
+      "#lg-w24-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      7.7,
+    );
+    tl.to("#lg-w24-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 7.93);
+    tl.to("#lg-g8", { opacity: 0, duration: 0.12, ease: "power2.in" }, 7.97);
+    tl.set("#lg-g8", { opacity: 0, visibility: "hidden" }, 8.09);
+    tl.set("#lg-g9", { visibility: "visible" }, 8.09);
+    tl.fromTo(
+      "#lg-g9",
+      { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, duration: 0.16, ease: "power3.out" },
+      8.09,
+    );
+    tl.fromTo(
+      "#lg-w25-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      8.12,
+    );
+    tl.to("#lg-w25-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 8.27);
+    tl.fromTo(
+      "#lg-w26-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      8.16,
+    );
+    tl.to("#lg-w26-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 8.45);
+    tl.fromTo(
+      "#lg-w27-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      8.45,
+    );
+    tl.to("#lg-w27-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 8.74);
+    tl.to("#lg-g9", { opacity: 0, duration: 0.12, ease: "power2.in" }, 8.76);
+    tl.set("#lg-g9", { opacity: 0, visibility: "hidden" }, 8.88);
+    tl.set("#lg-g10", { visibility: "visible" }, 8.88);
+    tl.fromTo(
+      "#lg-g10",
+      { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, duration: 0.16, ease: "power3.out" },
+      8.88,
+    );
+    tl.fromTo(
+      "#lg-w28-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      8.91,
+    );
+    tl.to("#lg-w28-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 9.1);
+    tl.fromTo(
+      "#lg-w29-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      9.1,
+    );
+    tl.to("#lg-w29-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 9.25);
+    tl.fromTo(
+      "#lg-w30-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      9.22,
+    );
+    tl.to("#lg-w30-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 9.37);
+    tl.to("#lg-g10", { opacity: 0, duration: 0.12, ease: "power2.in" }, 9.4);
+    tl.set("#lg-g10", { opacity: 0, visibility: "hidden" }, 9.52);
+    tl.set("#lg-g11", { visibility: "visible" }, 9.52);
+    tl.fromTo(
+      "#lg-g11",
+      { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, duration: 0.16, ease: "power3.out" },
+      9.52,
+    );
+    tl.fromTo(
+      "#lg-w31-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      9.55,
+    );
+    tl.to("#lg-w31-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 9.7);
+    tl.fromTo(
+      "#lg-w32-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      9.56,
+    );
+    tl.to("#lg-w32-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 10.07);
+    tl.to("#lg-g11", { opacity: 0, duration: 0.12, ease: "power2.in" }, 10.12);
+    tl.set("#lg-g11", { opacity: 0, visibility: "hidden" }, 10.24);
+    tl.set("#lg-g12", { visibility: "visible" }, 10.24);
+    tl.fromTo(
+      "#lg-g12",
+      { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, duration: 0.16, ease: "power3.out" },
+      10.24,
+    );
+    tl.fromTo(
+      "#lg-w33-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      10.27,
+    );
+    tl.to("#lg-w33-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 10.57);
+    tl.fromTo(
+      "#lg-w34-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      10.57,
+    );
+    tl.to("#lg-w34-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 10.85);
+    tl.fromTo(
+      "#lg-w35-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      10.85,
+    );
+    tl.to("#lg-w35-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 11.32);
+    tl.to("#lg-g12", { opacity: 0, duration: 0.12, ease: "power2.in" }, 11.34);
+    tl.set("#lg-g12", { opacity: 0, visibility: "hidden" }, 11.46);
+    tl.set("#lg-g13", { visibility: "visible" }, 11.46);
+    tl.fromTo(
+      "#lg-g13",
+      { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, duration: 0.16, ease: "power3.out" },
+      11.46,
+    );
+    tl.fromTo(
+      "#lg-w36-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      11.49,
+    );
+    tl.to("#lg-w36-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 11.65);
+    tl.fromTo(
+      "#lg-w37-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      11.65,
+    );
+    tl.to("#lg-w37-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 12);
+    tl.fromTo(
+      "#lg-w38-f",
+      { opacity: 0, scaleX: 0 },
+      { opacity: 1, scaleX: 1, duration: 0.14, ease: "power3.out" },
+      12,
+    );
+    tl.to("#lg-w38-f", { opacity: 0, duration: 0.1, ease: "power2.in" }, 12.58);
+    tl.to("#lg-g13", { opacity: 0, duration: 0.12, ease: "power2.in" }, 12.81);
+    tl.set("#lg-g13", { opacity: 0, visibility: "hidden" }, 12.93);
+    window.__timelines["legendas"] = tl;
+  </script>
+</template>

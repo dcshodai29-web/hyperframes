@@ -1,0 +1,81 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    #fd-ceu {
+      position: absolute;
+      inset: 0;
+      background-color: #0b1026;
+    }
+    #fd-estrelas {
+      position: absolute;
+      left: -660px;
+      top: -240px;
+      width: 2400px;
+      height: 2400px;
+      opacity: 0.75;
+      background-image:
+        radial-gradient(2px 2px at 12% 18%, #ffffff 50%, transparent 52%),
+        radial-gradient(3px 3px at 33% 72%, #fff3d6 50%, transparent 52%),
+        radial-gradient(2px 2px at 58% 41%, #ffffff 50%, transparent 52%),
+        radial-gradient(2px 2px at 81% 86%, #dfe6ff 50%, transparent 52%),
+        radial-gradient(3px 3px at 91% 12%, #ffffff 50%, transparent 52%),
+        radial-gradient(2px 2px at 47% 93%, #fff3d6 50%, transparent 52%),
+        radial-gradient(1.5px 1.5px at 6% 61%, #ffffff 50%, transparent 52%),
+        radial-gradient(1.5px 1.5px at 69% 7%, #dfe6ff 50%, transparent 52%);
+      background-size:
+        310px 310px,
+        470px 470px,
+        390px 390px,
+        530px 530px,
+        610px 610px,
+        350px 350px,
+        270px 270px,
+        440px 440px;
+    }
+    #fd-brilho {
+      position: absolute;
+      left: -260px;
+      top: -260px;
+      width: 1600px;
+      height: 1500px;
+      background: radial-gradient(closest-side, rgba(255, 200, 87, 0.16), rgba(255, 200, 87, 0));
+    }
+    #fd-vinheta {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        120% 80% at 50% 40%,
+        rgba(0, 0, 0, 0) 55%,
+        rgba(2, 3, 10, 0.65) 100%
+      );
+    }
+  </style>
+  <div id="root" data-composition-id="fundo" data-width="1080" data-height="1920">
+    <div id="fd-ceu"></div>
+    <div id="fd-estrelas" data-layout-ignore></div>
+    <div id="fd-brilho" data-layout-ignore></div>
+    <div id="fd-vinheta"></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // O céu gira devagar (3° por segundo): o mundo se move, os títulos ficam parados.
+    tl.fromTo("#fd-estrelas", { rotation: 0 }, { rotation: 45, duration: 15, ease: "none" }, 0);
+    // Cada dica muda a cor da noite (colour flood no corte).
+    tl.to("#fd-ceu", { backgroundColor: "#0a2233", duration: 0.4, ease: "power2.inOut" }, 2.45);
+    tl.to("#fd-ceu", { backgroundColor: "#160f38", duration: 0.4, ease: "power2.inOut" }, 4.85);
+    tl.to("#fd-ceu", { backgroundColor: "#22143f", duration: 0.4, ease: "power2.inOut" }, 6.95);
+    tl.to("#fd-ceu", { backgroundColor: "#0b1026", duration: 0.5, ease: "power2.inOut" }, 10.05);
+    tl.fromTo(
+      "#fd-brilho",
+      { opacity: 1 },
+      { opacity: 0.35, duration: 0.4, ease: "power2.inOut" },
+      2.45,
+    );
+    tl.to("#fd-brilho", { opacity: 1, duration: 0.6, ease: "power2.inOut" }, 11.3);
+    window.__timelines["fundo"] = tl;
+  </script>
+</template>

@@ -1,0 +1,164 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #f4f1ea;
+    }
+    #d3-palco {
+      position: absolute;
+      inset: 0;
+    }
+    #d3-rotulo {
+      position: absolute;
+      left: 0;
+      top: 220px;
+      width: 100%;
+      text-align: center;
+      font-weight: 900;
+      font-size: 64px;
+      letter-spacing: 0.22em;
+      color: #ffc857;
+    }
+    #d3-relogio {
+      position: absolute;
+      left: 190px;
+      top: 370px;
+      width: 700px;
+      height: 300px;
+      border-radius: 44px;
+      background: #151a3a;
+      border: 5px solid #3a4170;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+    }
+    #d3-hora {
+      position: absolute;
+      left: 0;
+      top: 36px;
+      width: 100%;
+      text-align: center;
+      font-weight: 900;
+      font-size: 200px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: #ffc857;
+      font-variant-numeric: tabular-nums;
+    }
+    #d3-dias {
+      position: absolute;
+      left: 0;
+      top: 730px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+    }
+    .d3-dia {
+      width: 122px;
+      height: 92px;
+      border-radius: 20px;
+      border: 3px solid #4a5289;
+      background-color: rgba(255, 255, 255, 0);
+      color: #8f95bd;
+      font-weight: 800;
+      font-size: 34px;
+      line-height: 86px;
+      text-align: center;
+    }
+    #d3-titulo {
+      position: absolute;
+      left: 0;
+      top: 900px;
+      width: 100%;
+      text-align: center;
+      font-weight: 900;
+      font-size: 96px;
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+    }
+    #d3-sub {
+      position: absolute;
+      left: 0;
+      top: 1020px;
+      width: 100%;
+      text-align: center;
+      font-weight: 600;
+      font-size: 50px;
+      color: #c9c6d8;
+    }
+    .d3-p {
+      display: inline-block;
+    }
+  </style>
+  <div id="root" data-composition-id="dica3" data-width="1080" data-height="1920">
+    <div id="d3-palco">
+      <div id="d3-rotulo">DICA 3</div>
+      <div id="d3-relogio"><div id="d3-hora">07:00</div></div>
+      <div id="d3-dias">
+        <div class="d3-dia d3-util" id="d3-seg">SEG</div>
+        <div class="d3-dia d3-util" id="d3-ter">TER</div>
+        <div class="d3-dia d3-util" id="d3-qua">QUA</div>
+        <div class="d3-dia d3-util" id="d3-qui">QUI</div>
+        <div class="d3-dia d3-util" id="d3-sex">SEX</div>
+        <div class="d3-dia d3-fds" id="d3-sab">SÁB</div>
+        <div class="d3-dia d3-fds" id="d3-dom">DOM</div>
+      </div>
+      <h2 id="d3-titulo">
+        <span class="d3-p" id="d3-p1">Mesmo</span>
+        <span class="d3-p" id="d3-p2">horário</span>
+      </h2>
+      <p id="d3-sub">até no fim de semana</p>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const aceso = { backgroundColor: "#ffc857", borderColor: "#ffc857", color: "#0b1026" };
+    // Chega de baixo, borrada (segundo chicote do filme).
+    tl.fromTo(
+      "#d3-palco",
+      { y: 460, filter: "blur(16px)" },
+      { y: 0, filter: "blur(0px)", duration: 0.5, ease: "expo.out" },
+      0,
+    );
+    tl.fromTo(
+      ".d3-p",
+      { opacity: 0, filter: "blur(6px)" },
+      { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out", stagger: 0.07 },
+      0.24,
+    );
+    // "sempre": os dias úteis acendem em sequência.
+    tl.to(".d3-util", { ...aceso, duration: 0.16, ease: "power2.out", stagger: 0.07 }, 0.58);
+    // "horário": o despertador toca (um tremor curto, depois parado).
+    tl.fromTo(
+      "#d3-relogio",
+      { rotation: 0 },
+      { rotation: 2.5, duration: 0.05, ease: "none", yoyo: true, repeat: 5 },
+      1.33,
+    );
+    tl.to("#d3-relogio", { rotation: 0, duration: 0.05 }, 1.63);
+    tl.fromTo(
+      "#d3-sub",
+      { opacity: 0, filter: "blur(8px)" },
+      { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power2.out" },
+      1.0,
+    );
+    // "fim de semana": sábado e domingo acendem também.
+    tl.to(".d3-fds", { ...aceso, duration: 0.16, ease: "power2.out", stagger: 0.09 }, 2.1);
+    // Saída: zoom através do relógio.
+    tl.to(
+      "#d3-palco",
+      {
+        scale: 2.3,
+        filter: "blur(18px)",
+        opacity: 0,
+        duration: 0.3,
+        ease: "power3.in",
+        transformOrigin: "50% 28%",
+      },
+      2.78,
+    );
+    window.__timelines["dica3"] = tl;
+  </script>
+</template>

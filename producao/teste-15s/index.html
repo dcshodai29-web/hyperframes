@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #0b1026;
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background: #0b1026;
+      }
+      #fundo {
+        z-index: 1;
+      }
+      #abertura,
+      #dica1,
+      #dica2,
+      #dica3,
+      #final {
+        z-index: 2;
+      }
+      #legendas {
+        z-index: 5;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="15"
+      data-width="1080"
+      data-height="1920"
+      data-fps="30"
+    >
+      <div
+        id="fundo"
+        class="clip"
+        data-composition-id="fundo"
+        data-composition-src="compositions/fundo.html"
+        data-start="0"
+        data-duration="15"
+        data-track-index="0"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+
+      <div
+        id="abertura"
+        class="clip"
+        data-composition-id="abertura"
+        data-composition-src="compositions/abertura.html"
+        data-start="0"
+        data-duration="2.6"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+      <div
+        id="dica1"
+        class="clip"
+        data-composition-id="dica1"
+        data-composition-src="compositions/dica1.html"
+        data-start="2.6"
+        data-duration="2.4"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+      <div
+        id="dica2"
+        class="clip"
+        data-composition-id="dica2"
+        data-composition-src="compositions/dica2.html"
+        data-start="5"
+        data-duration="2.12"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+      <div
+        id="dica3"
+        class="clip"
+        data-composition-id="dica3"
+        data-composition-src="compositions/dica3.html"
+        data-start="7.12"
+        data-duration="3.08"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+      <div
+        id="final"
+        class="clip"
+        data-composition-id="final"
+        data-composition-src="compositions/final.html"
+        data-start="10.2"
+        data-duration="4.8"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+
+      <div
+        id="legendas"
+        class="clip"
+        data-composition-id="legendas"
+        data-composition-src="compositions/legendas.html"
+        data-start="0"
+        data-duration="15"
+        data-track-index="2"
+        data-track-kind="captions"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+
+      <audio
+        id="narracao"
+        class="clip"
+        src="assets/voice/narracao.mp3"
+        data-start="0.3"
+        data-track-index="3"
+        data-volume="0.8"
+      ></audio>
+      <audio
+        id="trilha"
+        class="clip"
+        src="assets/bgm/trilha.mp3"
+        data-start="0"
+        data-duration="15"
+        data-track-index="4"
+        data-volume="0.18"
+        data-fade-in="0.5"
+        data-fade-out="1.5"
+      ></audio>
+
+      <audio
+        id="sfx-pilula"
+        class="clip"
+        src="assets/sfx/pop.mp3"
+        data-start="1.32"
+        data-track-index="5"
+        data-duration="0.72"
+        data-volume="0.35"
+      ></audio>
+      <audio
+        id="sfx-chicote1"
+        class="clip"
+        src="assets/sfx/whoosh-short.mp3"
+        data-start="2.38"
+        data-track-index="6"
+        data-duration="0.57"
+        data-volume="0.35"
+      ></audio>
+      <audio
+        id="sfx-tela"
+        class="clip"
+        src="assets/sfx/click-soft.mp3"
+        data-start="3.39"
+        data-track-index="7"
+        data-duration="0.37"
+        data-volume="0.35"
+      ></audio>
+      <audio
+        id="sfx-chip"
+        class="clip"
+        src="assets/sfx/pop.mp3"
+        data-start="6.5"
+        data-track-index="8"
+        data-duration="0.72"
+        data-volume="0.3"
+      ></audio>
+      <audio
+        id="sfx-chicote2"
+        class="clip"
+        src="assets/sfx/whoosh.mp3"
+        data-start="6.9"
+        data-track-index="9"
+        data-duration="0.57"
+        data-volume="0.35"
+      ></audio>
+      <audio
+        id="sfx-zoom"
+        class="clip"
+        src="assets/sfx/whoosh-short.mp3"
+        data-start="9.92"
+        data-track-index="10"
+        data-duration="0.57"
+        data-volume="0.35"
+      ></audio>
+      <audio
+        id="sfx-marcador"
+        class="clip"
+        src="assets/sfx/pop.mp3"
+        data-start="10.35"
+        data-track-index="11"
+        data-duration="0.72"
+        data-volume="0.3"
+      ></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>
