@@ -1,0 +1,29 @@
+<template>
+  <!-- PROVISÓRIO: marcador de tempo da cena 7. O visual entra quando a técnica 3D for definida. -->
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+    }
+    #cena7-rotulo {
+      position: absolute;
+      left: 0;
+      top: 600px;
+      width: 100%;
+      text-align: center;
+      color: #929baa;
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 1.3;
+    }
+  </style>
+  <div id="root" data-composition-id="cena7" data-width="1080" data-height="1920">
+    <p id="cena7-rotulo">CENA 7<br />Revelação: o cérebro monta uma versão</p>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#cena7-rotulo", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0);
+    window.__timelines["cena7"] = tl;
+  </script>
+</template>

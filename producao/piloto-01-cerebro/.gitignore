@@ -1,0 +1,6 @@
+# Áudio derivado (passa de 500 KB): refazer com bash narracao/refazer-audio.sh
+assets/voice/narracao.mp3
+assets/bgm/trilha.mp3
+narracao/narracao.wav
+narracao/narracao-bruta.wav
+narracao/transcript.json

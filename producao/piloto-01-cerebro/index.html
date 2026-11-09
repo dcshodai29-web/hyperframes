@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #080b12;
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+      #fundo {
+        position: absolute;
+        inset: 0;
+        background: #080b12;
+        z-index: 0;
+      }
+      .cena {
+        z-index: 2;
+      }
+      #legendas {
+        z-index: 5;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Piloto 01 · esqueleto de produção: narração, legendas e tempos de cena definitivos;
+         cenas 1–8 são marcadores provisórios até a técnica 3D ser escolhida. -->
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="61"
+      data-width="1080"
+      data-height="1920"
+      data-fps="30"
+    >
+      <div id="fundo" class="clip" data-start="0" data-duration="61" data-track-index="0"></div>
+      <div
+        id="cena1"
+        class="clip cena"
+        data-composition-id="cena1"
+        data-composition-src="compositions/cena1.html"
+        data-start="0.0"
+        data-duration="4.13"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+      <div
+        id="cena2"
+        class="clip cena"
+        data-composition-id="cena2"
+        data-composition-src="compositions/cena2.html"
+        data-start="4.13"
+        data-duration="5.65"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+      <div
+        id="cena3"
+        class="clip cena"
+        data-composition-id="cena3"
+        data-composition-src="compositions/cena3.html"
+        data-start="9.78"
+        data-duration="7.44"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+      <div
+        id="cena4"
+        class="clip cena"
+        data-composition-id="cena4"
+        data-composition-src="compositions/cena4.html"
+        data-start="17.22"
+        data-duration="10.44"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+      <div
+        id="cena5"
+        class="clip cena"
+        data-composition-id="cena5"
+        data-composition-src="compositions/cena5.html"
+        data-start="27.66"
+        data-duration="6.58"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+      <div
+        id="cena6"
+        class="clip cena"
+        data-composition-id="cena6"
+        data-composition-src="compositions/cena6.html"
+        data-start="34.24"
+        data-duration="9.84"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+      <div
+        id="cena7"
+        class="clip cena"
+        data-composition-id="cena7"
+        data-composition-src="compositions/cena7.html"
+        data-start="44.08"
+        data-duration="7.95"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+      <div
+        id="cena8"
+        class="clip cena"
+        data-composition-id="cena8"
+        data-composition-src="compositions/cena8.html"
+        data-start="52.03"
+        data-duration="8.97"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+      <div
+        id="legendas"
+        class="clip"
+        data-composition-id="legendas"
+        data-composition-src="compositions/legendas.html"
+        data-start="0"
+        data-duration="61"
+        data-track-index="2"
+        data-track-kind="captions"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+      <audio
+        id="narracao"
+        class="clip"
+        src="assets/voice/narracao.mp3"
+        data-start="0.1"
+        data-track-index="3"
+        data-volume="0.8"
+      ></audio>
+      <audio
+        id="trilha"
+        class="clip"
+        src="assets/bgm/trilha.mp3"
+        data-start="0"
+        data-duration="61"
+        data-track-index="4"
+        data-volume="0.18"
+        data-fade-out="1.5"
+      ></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

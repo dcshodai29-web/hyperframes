@@ -1,0 +1,98 @@
+[
+  {
+    "cena": 1,
+    "texto": "Existe um buraco na sua visão.",
+    "inicio": 0.0,
+    "fim": 2.207
+  },
+  {
+    "cena": 1,
+    "texto": "Agora mesmo.",
+    "inicio": 2.607,
+    "fim": 3.727
+  },
+  {
+    "cena": 2,
+    "texto": "No fundo de cada olho, onde nasce o nervo óptico, não há células que captam luz.",
+    "inicio": 4.327,
+    "fim": 9.409
+  },
+  {
+    "cena": 3,
+    "texto": "Com os dois olhos abertos, um cobre a falha do outro.",
+    "inicio": 9.959,
+    "fim": 13.061
+  },
+  {
+    "cena": 3,
+    "texto": "Com um só, o cérebro preenche com o que existe em volta.",
+    "inicio": 13.411,
+    "fim": 16.823
+  },
+  {
+    "cena": 4,
+    "texto": "Seus olhos saltam cerca de três vezes por segundo.",
+    "inicio": 17.423,
+    "fim": 20.732
+  },
+  {
+    "cena": 4,
+    "texto": "Durante cada salto, a sensibilidade visual diminui.",
+    "inicio": 21.082,
+    "fim": 24.827
+  },
+  {
+    "cena": 4,
+    "texto": "E o borrão passa despercebido.",
+    "inicio": 25.127,
+    "fim": 27.261
+  },
+  {
+    "cena": 5,
+    "texto": "Depois de mover os olhos até um relógio, o primeiro segundo que você vê parece mais longo.",
+    "inicio": 27.861,
+    "fim": 33.815
+  },
+  {
+    "cena": 6,
+    "texto": "Num experimento clássico sobre atenção, voluntários contavam passes de basquete.",
+    "inicio": 34.465,
+    "fim": 39.64
+  },
+  {
+    "cena": 6,
+    "texto": "Quase metade não notou alguém fantasiado de gorila.",
+    "inicio": 40.04,
+    "fim": 43.63
+  },
+  {
+    "cena": 7,
+    "texto": "Os sentidos captam mais do que você percebe.",
+    "inicio": 44.33,
+    "fim": 47.326
+  },
+  {
+    "cena": 7,
+    "texto": "Então o cérebro seleciona, completa e monta uma versão do mundo.",
+    "inicio": 47.676,
+    "fim": 51.606
+  },
+  {
+    "cena": 8,
+    "texto": "Você vive dentro dessa versão.",
+    "inicio": 52.256,
+    "fim": 54.526
+  },
+  {
+    "cena": 8,
+    "texto": "E aquele buraco continua aí.",
+    "inicio": 55.026,
+    "fim": 57.185
+  },
+  {
+    "cena": 8,
+    "texto": "Agora mesmo.",
+    "inicio": 57.635,
+    "fim": 58.755
+  }
+]

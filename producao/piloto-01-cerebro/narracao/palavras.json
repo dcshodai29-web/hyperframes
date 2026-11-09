@@ -1,0 +1,940 @@
+[
+  {
+    "text": "Existe",
+    "start": 0.113,
+    "end": 0.633,
+    "cena": 1,
+    "id": "w0"
+  },
+  {
+    "text": "um",
+    "start": 0.633,
+    "end": 0.807,
+    "cena": 1,
+    "id": "w1"
+  },
+  {
+    "text": "buraco",
+    "start": 0.807,
+    "end": 1.328,
+    "cena": 1,
+    "id": "w2"
+  },
+  {
+    "text": "na",
+    "start": 1.328,
+    "end": 1.501,
+    "cena": 1,
+    "id": "w3"
+  },
+  {
+    "text": "sua",
+    "start": 1.501,
+    "end": 1.762,
+    "cena": 1,
+    "id": "w4"
+  },
+  {
+    "text": "visão.",
+    "start": 1.762,
+    "end": 2.283,
+    "cena": 1,
+    "id": "w5"
+  },
+  {
+    "text": "Agora",
+    "start": 2.725,
+    "end": 3.202,
+    "cena": 1,
+    "id": "w6"
+  },
+  {
+    "text": "mesmo.",
+    "start": 3.202,
+    "end": 3.775,
+    "cena": 1,
+    "id": "w7"
+  },
+  {
+    "text": "No",
+    "start": 4.44,
+    "end": 4.595,
+    "cena": 2,
+    "id": "w8"
+  },
+  {
+    "text": "fundo",
+    "start": 4.595,
+    "end": 4.983,
+    "cena": 2,
+    "id": "w9"
+  },
+  {
+    "text": "de",
+    "start": 4.983,
+    "end": 5.139,
+    "cena": 2,
+    "id": "w10"
+  },
+  {
+    "text": "cada",
+    "start": 5.139,
+    "end": 5.45,
+    "cena": 2,
+    "id": "w11"
+  },
+  {
+    "text": "olho,",
+    "start": 5.45,
+    "end": 5.838,
+    "cena": 2,
+    "id": "w12"
+  },
+  {
+    "text": "onde",
+    "start": 5.838,
+    "end": 6.149,
+    "cena": 2,
+    "id": "w13"
+  },
+  {
+    "text": "nasce",
+    "start": 6.149,
+    "end": 6.537,
+    "cena": 2,
+    "id": "w14"
+  },
+  {
+    "text": "o",
+    "start": 6.537,
+    "end": 6.615,
+    "cena": 2,
+    "id": "w15"
+  },
+  {
+    "text": "nervo",
+    "start": 6.615,
+    "end": 7.003,
+    "cena": 2,
+    "id": "w16"
+  },
+  {
+    "text": "óptico,",
+    "start": 7.003,
+    "end": 7.547,
+    "cena": 2,
+    "id": "w17"
+  },
+  {
+    "text": "não",
+    "start": 7.547,
+    "end": 7.78,
+    "cena": 2,
+    "id": "w18"
+  },
+  {
+    "text": "há",
+    "start": 7.78,
+    "end": 7.936,
+    "cena": 2,
+    "id": "w19"
+  },
+  {
+    "text": "células",
+    "start": 7.936,
+    "end": 8.48,
+    "cena": 2,
+    "id": "w20"
+  },
+  {
+    "text": "que",
+    "start": 8.48,
+    "end": 8.713,
+    "cena": 2,
+    "id": "w21"
+  },
+  {
+    "text": "captam",
+    "start": 8.713,
+    "end": 9.179,
+    "cena": 2,
+    "id": "w22"
+  },
+  {
+    "text": "luz.",
+    "start": 9.179,
+    "end": 9.49,
+    "cena": 2,
+    "id": "w23"
+  },
+  {
+    "text": "Com",
+    "start": 10.121,
+    "end": 10.326,
+    "cena": 3,
+    "id": "w24"
+  },
+  {
+    "text": "os",
+    "start": 10.326,
+    "end": 10.462,
+    "cena": 3,
+    "id": "w25"
+  },
+  {
+    "text": "dois",
+    "start": 10.462,
+    "end": 10.735,
+    "cena": 3,
+    "id": "w26"
+  },
+  {
+    "text": "olhos",
+    "start": 10.735,
+    "end": 11.075,
+    "cena": 3,
+    "id": "w27"
+  },
+  {
+    "text": "abertos,",
+    "start": 11.075,
+    "end": 11.62,
+    "cena": 3,
+    "id": "w28"
+  },
+  {
+    "text": "um",
+    "start": 11.62,
+    "end": 11.757,
+    "cena": 3,
+    "id": "w29"
+  },
+  {
+    "text": "cobre",
+    "start": 11.757,
+    "end": 12.097,
+    "cena": 3,
+    "id": "w30"
+  },
+  {
+    "text": "a",
+    "start": 12.097,
+    "end": 12.166,
+    "cena": 3,
+    "id": "w31"
+  },
+  {
+    "text": "falha",
+    "start": 12.166,
+    "end": 12.506,
+    "cena": 3,
+    "id": "w32"
+  },
+  {
+    "text": "do",
+    "start": 12.506,
+    "end": 12.642,
+    "cena": 3,
+    "id": "w33"
+  },
+  {
+    "text": "outro.",
+    "start": 12.642,
+    "end": 13.051,
+    "cena": 3,
+    "id": "w34"
+  },
+  {
+    "text": "Com",
+    "start": 13.542,
+    "end": 13.762,
+    "cena": 3,
+    "id": "w35"
+  },
+  {
+    "text": "um",
+    "start": 13.762,
+    "end": 13.91,
+    "cena": 3,
+    "id": "w36"
+  },
+  {
+    "text": "só,",
+    "start": 13.91,
+    "end": 14.13,
+    "cena": 3,
+    "id": "w37"
+  },
+  {
+    "text": "o",
+    "start": 14.13,
+    "end": 14.204,
+    "cena": 3,
+    "id": "w38"
+  },
+  {
+    "text": "cérebro",
+    "start": 14.204,
+    "end": 14.719,
+    "cena": 3,
+    "id": "w39"
+  },
+  {
+    "text": "preenche",
+    "start": 14.719,
+    "end": 15.307,
+    "cena": 3,
+    "id": "w40"
+  },
+  {
+    "text": "com",
+    "start": 15.307,
+    "end": 15.528,
+    "cena": 3,
+    "id": "w41"
+  },
+  {
+    "text": "o",
+    "start": 15.528,
+    "end": 15.601,
+    "cena": 3,
+    "id": "w42"
+  },
+  {
+    "text": "que",
+    "start": 15.601,
+    "end": 15.822,
+    "cena": 3,
+    "id": "w43"
+  },
+  {
+    "text": "existe",
+    "start": 15.822,
+    "end": 16.263,
+    "cena": 3,
+    "id": "w44"
+  },
+  {
+    "text": "em",
+    "start": 16.263,
+    "end": 16.41,
+    "cena": 3,
+    "id": "w45"
+  },
+  {
+    "text": "volta.",
+    "start": 16.41,
+    "end": 16.852,
+    "cena": 3,
+    "id": "w46"
+  },
+  {
+    "text": "Seus",
+    "start": 17.556,
+    "end": 17.869,
+    "cena": 4,
+    "id": "w47"
+  },
+  {
+    "text": "olhos",
+    "start": 17.869,
+    "end": 18.261,
+    "cena": 4,
+    "id": "w48"
+  },
+  {
+    "text": "saltam",
+    "start": 18.261,
+    "end": 18.731,
+    "cena": 4,
+    "id": "w49"
+  },
+  {
+    "text": "cerca",
+    "start": 18.731,
+    "end": 19.122,
+    "cena": 4,
+    "id": "w50"
+  },
+  {
+    "text": "de",
+    "start": 19.122,
+    "end": 19.279,
+    "cena": 4,
+    "id": "w51"
+  },
+  {
+    "text": "três",
+    "start": 19.279,
+    "end": 19.592,
+    "cena": 4,
+    "id": "w52"
+  },
+  {
+    "text": "vezes",
+    "start": 19.592,
+    "end": 19.984,
+    "cena": 4,
+    "id": "w53"
+  },
+  {
+    "text": "por",
+    "start": 19.984,
+    "end": 20.219,
+    "cena": 4,
+    "id": "w54"
+  },
+  {
+    "text": "segundo.",
+    "start": 20.219,
+    "end": 20.846,
+    "cena": 4,
+    "id": "w55"
+  },
+  {
+    "text": "Durante",
+    "start": 21.224,
+    "end": 21.8,
+    "cena": 4,
+    "id": "w56"
+  },
+  {
+    "text": "cada",
+    "start": 21.8,
+    "end": 22.129,
+    "cena": 4,
+    "id": "w57"
+  },
+  {
+    "text": "salto,",
+    "start": 22.129,
+    "end": 22.622,
+    "cena": 4,
+    "id": "w58"
+  },
+  {
+    "text": "a",
+    "start": 22.622,
+    "end": 22.704,
+    "cena": 4,
+    "id": "w59"
+  },
+  {
+    "text": "sensibilidade",
+    "start": 22.704,
+    "end": 23.773,
+    "cena": 4,
+    "id": "w60"
+  },
+  {
+    "text": "visual",
+    "start": 23.773,
+    "end": 24.267,
+    "cena": 4,
+    "id": "w61"
+  },
+  {
+    "text": "diminui.",
+    "start": 24.267,
+    "end": 24.924,
+    "cena": 4,
+    "id": "w62"
+  },
+  {
+    "text": "E",
+    "start": 25.25,
+    "end": 25.31,
+    "cena": 4,
+    "id": "w63"
+  },
+  {
+    "text": "o",
+    "start": 25.31,
+    "end": 25.37,
+    "cena": 4,
+    "id": "w64"
+  },
+  {
+    "text": "borrão",
+    "start": 25.37,
+    "end": 25.842,
+    "cena": 4,
+    "id": "w65"
+  },
+  {
+    "text": "passa",
+    "start": 25.842,
+    "end": 26.236,
+    "cena": 4,
+    "id": "w66"
+  },
+  {
+    "text": "despercebido.",
+    "start": 26.236,
+    "end": 27.26,
+    "cena": 4,
+    "id": "w67"
+  },
+  {
+    "text": "Depois",
+    "start": 28.003,
+    "end": 28.474,
+    "cena": 5,
+    "id": "w68"
+  },
+  {
+    "text": "de",
+    "start": 28.474,
+    "end": 28.631,
+    "cena": 5,
+    "id": "w69"
+  },
+  {
+    "text": "mover",
+    "start": 28.631,
+    "end": 29.024,
+    "cena": 5,
+    "id": "w70"
+  },
+  {
+    "text": "os",
+    "start": 29.024,
+    "end": 29.181,
+    "cena": 5,
+    "id": "w71"
+  },
+  {
+    "text": "olhos",
+    "start": 29.181,
+    "end": 29.574,
+    "cena": 5,
+    "id": "w72"
+  },
+  {
+    "text": "até",
+    "start": 29.574,
+    "end": 29.809,
+    "cena": 5,
+    "id": "w73"
+  },
+  {
+    "text": "um",
+    "start": 29.809,
+    "end": 29.966,
+    "cena": 5,
+    "id": "w74"
+  },
+  {
+    "text": "relógio,",
+    "start": 29.966,
+    "end": 30.594,
+    "cena": 5,
+    "id": "w75"
+  },
+  {
+    "text": "o",
+    "start": 30.594,
+    "end": 30.673,
+    "cena": 5,
+    "id": "w76"
+  },
+  {
+    "text": "primeiro",
+    "start": 30.673,
+    "end": 31.301,
+    "cena": 5,
+    "id": "w77"
+  },
+  {
+    "text": "segundo",
+    "start": 31.301,
+    "end": 31.85,
+    "cena": 5,
+    "id": "w78"
+  },
+  {
+    "text": "que",
+    "start": 31.85,
+    "end": 32.086,
+    "cena": 5,
+    "id": "w79"
+  },
+  {
+    "text": "você",
+    "start": 32.086,
+    "end": 32.4,
+    "cena": 5,
+    "id": "w80"
+  },
+  {
+    "text": "vê",
+    "start": 32.4,
+    "end": 32.557,
+    "cena": 5,
+    "id": "w81"
+  },
+  {
+    "text": "parece",
+    "start": 32.557,
+    "end": 33.028,
+    "cena": 5,
+    "id": "w82"
+  },
+  {
+    "text": "mais",
+    "start": 33.028,
+    "end": 33.342,
+    "cena": 5,
+    "id": "w83"
+  },
+  {
+    "text": "longo.",
+    "start": 33.342,
+    "end": 33.813,
+    "cena": 5,
+    "id": "w84"
+  },
+  {
+    "text": "Num",
+    "start": 34.588,
+    "end": 34.801,
+    "cena": 6,
+    "id": "w85"
+  },
+  {
+    "text": "experimento",
+    "start": 34.801,
+    "end": 35.585,
+    "cena": 6,
+    "id": "w86"
+  },
+  {
+    "text": "clássico",
+    "start": 35.585,
+    "end": 36.155,
+    "cena": 6,
+    "id": "w87"
+  },
+  {
+    "text": "sobre",
+    "start": 36.155,
+    "end": 36.512,
+    "cena": 6,
+    "id": "w88"
+  },
+  {
+    "text": "atenção,",
+    "start": 36.512,
+    "end": 37.082,
+    "cena": 6,
+    "id": "w89"
+  },
+  {
+    "text": "voluntários",
+    "start": 37.082,
+    "end": 37.866,
+    "cena": 6,
+    "id": "w90"
+  },
+  {
+    "text": "contavam",
+    "start": 37.866,
+    "end": 38.436,
+    "cena": 6,
+    "id": "w91"
+  },
+  {
+    "text": "passes",
+    "start": 38.436,
+    "end": 38.864,
+    "cena": 6,
+    "id": "w92"
+  },
+  {
+    "text": "de",
+    "start": 38.864,
+    "end": 39.006,
+    "cena": 6,
+    "id": "w93"
+  },
+  {
+    "text": "basquete.",
+    "start": 39.006,
+    "end": 39.648,
+    "cena": 6,
+    "id": "w94"
+  },
+  {
+    "text": "Quase",
+    "start": 40.2,
+    "end": 40.594,
+    "cena": 6,
+    "id": "w95"
+  },
+  {
+    "text": "metade",
+    "start": 40.594,
+    "end": 41.067,
+    "cena": 6,
+    "id": "w96"
+  },
+  {
+    "text": "não",
+    "start": 41.067,
+    "end": 41.304,
+    "cena": 6,
+    "id": "w97"
+  },
+  {
+    "text": "notou",
+    "start": 41.304,
+    "end": 41.698,
+    "cena": 6,
+    "id": "w98"
+  },
+  {
+    "text": "alguém",
+    "start": 41.698,
+    "end": 42.171,
+    "cena": 6,
+    "id": "w99"
+  },
+  {
+    "text": "fantasiado",
+    "start": 42.171,
+    "end": 42.96,
+    "cena": 6,
+    "id": "w100"
+  },
+  {
+    "text": "de",
+    "start": 42.96,
+    "end": 43.117,
+    "cena": 6,
+    "id": "w101"
+  },
+  {
+    "text": "gorila.",
+    "start": 43.117,
+    "end": 43.67,
+    "cena": 6,
+    "id": "w102"
+  },
+  {
+    "text": "Os",
+    "start": 44.443,
+    "end": 44.598,
+    "cena": 7,
+    "id": "w103"
+  },
+  {
+    "text": "sentidos",
+    "start": 44.598,
+    "end": 45.218,
+    "cena": 7,
+    "id": "w104"
+  },
+  {
+    "text": "captam",
+    "start": 45.218,
+    "end": 45.684,
+    "cena": 7,
+    "id": "w105"
+  },
+  {
+    "text": "mais",
+    "start": 45.684,
+    "end": 45.994,
+    "cena": 7,
+    "id": "w106"
+  },
+  {
+    "text": "do",
+    "start": 45.994,
+    "end": 46.149,
+    "cena": 7,
+    "id": "w107"
+  },
+  {
+    "text": "que",
+    "start": 46.149,
+    "end": 46.382,
+    "cena": 7,
+    "id": "w108"
+  },
+  {
+    "text": "você",
+    "start": 46.382,
+    "end": 46.692,
+    "cena": 7,
+    "id": "w109"
+  },
+  {
+    "text": "percebe.",
+    "start": 46.692,
+    "end": 47.313,
+    "cena": 7,
+    "id": "w110"
+  },
+  {
+    "text": "Então",
+    "start": 47.789,
+    "end": 48.146,
+    "cena": 7,
+    "id": "w111"
+  },
+  {
+    "text": "o",
+    "start": 48.146,
+    "end": 48.218,
+    "cena": 7,
+    "id": "w112"
+  },
+  {
+    "text": "cérebro",
+    "start": 48.218,
+    "end": 48.718,
+    "cena": 7,
+    "id": "w113"
+  },
+  {
+    "text": "seleciona,",
+    "start": 48.718,
+    "end": 49.433,
+    "cena": 7,
+    "id": "w114"
+  },
+  {
+    "text": "completa",
+    "start": 49.433,
+    "end": 50.005,
+    "cena": 7,
+    "id": "w115"
+  },
+  {
+    "text": "e",
+    "start": 50.005,
+    "end": 50.076,
+    "cena": 7,
+    "id": "w116"
+  },
+  {
+    "text": "monta",
+    "start": 50.076,
+    "end": 50.434,
+    "cena": 7,
+    "id": "w117"
+  },
+  {
+    "text": "uma",
+    "start": 50.434,
+    "end": 50.648,
+    "cena": 7,
+    "id": "w118"
+  },
+  {
+    "text": "versão",
+    "start": 50.648,
+    "end": 51.077,
+    "cena": 7,
+    "id": "w119"
+  },
+  {
+    "text": "do",
+    "start": 51.077,
+    "end": 51.22,
+    "cena": 7,
+    "id": "w120"
+  },
+  {
+    "text": "mundo.",
+    "start": 51.22,
+    "end": 51.649,
+    "cena": 7,
+    "id": "w121"
+  },
+  {
+    "text": "Você",
+    "start": 52.398,
+    "end": 52.734,
+    "cena": 8,
+    "id": "w122"
+  },
+  {
+    "text": "vive",
+    "start": 52.734,
+    "end": 53.069,
+    "cena": 8,
+    "id": "w123"
+  },
+  {
+    "text": "dentro",
+    "start": 53.069,
+    "end": 53.572,
+    "cena": 8,
+    "id": "w124"
+  },
+  {
+    "text": "dessa",
+    "start": 53.572,
+    "end": 53.991,
+    "cena": 8,
+    "id": "w125"
+  },
+  {
+    "text": "versão.",
+    "start": 53.991,
+    "end": 54.578,
+    "cena": 8,
+    "id": "w126"
+  },
+  {
+    "text": "E",
+    "start": 55.159,
+    "end": 55.237,
+    "cena": 8,
+    "id": "w127"
+  },
+  {
+    "text": "aquele",
+    "start": 55.237,
+    "end": 55.709,
+    "cena": 8,
+    "id": "w128"
+  },
+  {
+    "text": "buraco",
+    "start": 55.709,
+    "end": 56.242,
+    "cena": 8,
+    "id": "w129"
+  },
+  {
+    "text": "continua",
+    "start": 56.242,
+    "end": 56.952,
+    "cena": 8,
+    "id": "w130"
+  },
+  {
+    "text": "aí.",
+    "start": 56.952,
+    "end": 57.219,
+    "cena": 8,
+    "id": "w131"
+  },
+  {
+    "text": "Agora",
+    "start": 57.753,
+    "end": 58.23,
+    "cena": 8,
+    "id": "w132"
+  },
+  {
+    "text": "mesmo.",
+    "start": 58.23,
+    "end": 58.803,
+    "cena": 8,
+    "id": "w133"
+  }
+]

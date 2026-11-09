@@ -1,9 +1,27 @@
 # Piloto 01: "Seu cérebro esconde coisas de você"
 
-Proposta editorial, **versão 3**. Aprovados: tema, as oito cenas, identidade visual, duração de
+Proposta editorial, **versão 4**. Aprovados: tema, as oito cenas, identidade visual, duração de
 61 s e final em loop. Produção ainda não autorizada; a voz está em avaliação pela pessoa. Nada foi
 renderizado e o pipeline não foi alterado. Segue `producao/CONTEXTO-DO-CANAL.md` (SCIENCE
 CINEMATIC, RETENTION CINEMATIC, 61 s, 1080×1920, 30 fps).
+
+## O que mudou da versão 3 (preparação de produção)
+
+Voz adotada: amostra B (`pm_alex`, Kokoro, 0,9×, frase a frase com pausas planejadas).
+
+1. **"olho":** o fonetizador lia "ólio" (`ˈɔljʊ`, "ó" aberto). A voz recebe a grafia fonética
+   "ôlho"; roteiro e legendas continuam com "olho". Verificado: transcrito como "olho".
+2. **"E o buraco?":** a voz fundia "E o" e não faz entonação de pergunta (o tom cai de 165 para
+   111 Hz, igual a uma afirmação). A frase virou afirmação: **"E aquele buraco continua aí."**,
+   transcrita sem erro e com entonação natural de afirmação.
+3. **"há em volta":** transcrito como "é em volta". Trocado por **"existe em volta"**, transcrito
+   sem erro.
+4. Narração final: 59,16 s → **58,75 s**; começa em 0,10 s e termina em **58,80 s** no vídeo,
+   antes do corte de 60 s do Shorts. −15,4 LUFS, pico −1,7 dBFS. As 134 palavras conferem com o
+   roteiro, frase a frase.
+
+Os tempos de cena desta proposta (versão 3) mudam menos de 0,5 s; os definitivos estão em
+`producao/piloto-01-cerebro/narracao/cenas.json`.
 
 ## O que mudou da versão 2
 
@@ -38,15 +56,15 @@ meio das pausas.
 | ------------------- | --------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | 1 · Gancho          | 0,0–4,2   | 0,15–3,9  | Existe um buraco na sua visão. Agora mesmo.                                                                                           |
 | 2 · Curiosidade     | 4,2–9,8   | 4,5–9,5   | No fundo de cada olho, onde nasce o nervo óptico, não há células que captam luz.                                                      |
-| 3 · Contexto        | 9,8–16,9  | 10,0–16,6 | Com os dois olhos abertos, um cobre a falha do outro. Com um só, o cérebro preenche com o que há em volta.                            |
+| 3 · Contexto        | 9,8–16,9  | 10,0–16,6 | Com os dois olhos abertos, um cobre a falha do outro. Com um só, o cérebro preenche com o que existe em volta.                        |
 | 4 · Desenvolvimento | 16,9–27,4 | 17,2–27,1 | Seus olhos saltam cerca de três vezes por segundo. Durante cada salto, a sensibilidade visual diminui. E o borrão passa despercebido. |
 | 5 · Desenvolvimento | 27,4–33,9 | 27,6–33,6 | Depois de mover os olhos até um relógio, o primeiro segundo que você vê parece mais longo.                                            |
 | 6 · Surpresa        | 33,9–43,8 | 34,2–43,4 | Num experimento clássico sobre atenção, voluntários contavam passes de basquete. Quase metade não notou alguém fantasiado de gorila.  |
 | 7 · Revelação       | 43,8–51,7 | 44,1–51,4 | Os sentidos captam mais do que você percebe. Então o cérebro seleciona, completa e monta uma versão do mundo.                         |
-| 8 · Conclusão       | 51,7–61,0 | 52,0–59,0 | Você vive dentro dessa versão. E o buraco? Continua aí. Agora mesmo.                                                                  |
+| 8 · Conclusão       | 51,7–61,0 | 52,0–59,0 | Você vive dentro dessa versão. E aquele buraco continua aí. Agora mesmo.                                                              |
 
 - **Pausas expressivas:** 0,3–0,4 s entre frases da mesma cena, 0,55–0,7 s entre cenas, e uma
-  respiração maior antes de "Continua aí". Elas são parte do ritmo, não enchimento.
+  respiração maior antes de "Agora mesmo". Elas são parte do ritmo, não enchimento.
 - **Corte do Shorts:** a fala acaba em ~59,0 s, então o corte de 60 s não perde nenhuma palavra.
   De 59,0 a 61 s ficam só a imagem final e a cauda da trilha.
 - **Relação com a estrutura de referência:** gancho 0–4 s; curiosidade e contexto 4–17 s;
@@ -61,7 +79,7 @@ meio das pausas.
 | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Cada olho tem um ponto sem células que captam luz, onde nasce o nervo óptico.                           | Disco óptico: não tem fotorreceptores. Fisiologia ocular padrão; descrito por Mariotte em 1660.                                                                                 |
 | Com os dois olhos abertos, um cobre a falha do outro.                                                   | Os pontos cegos dos dois olhos caem em regiões diferentes do campo visual, então cada olho enxerga o que falta ao outro (compensação binocular, não preenchimento).             |
-| Com um só, o cérebro preenche com o que há em volta.                                                    | Preenchimento perceptivo ("filling-in"): a região é completada com a cor e o padrão do entorno (Ramachandran, 1992; Komatsu, 2006, _Nature Reviews Neuroscience_).              |
+| Com um só, o cérebro preenche com o que existe em volta.                                                | Preenchimento perceptivo ("filling-in"): a região é completada com a cor e o padrão do entorno (Ramachandran, 1992; Komatsu, 2006, _Nature Reviews Neuroscience_).              |
 | Os olhos saltam cerca de três vezes por segundo.                                                        | Sacadas: ~3 a 4 por segundo na leitura e na exploração visual (Rayner, 1998, _Psychological Bulletin_).                                                                         |
 | Durante cada salto, a sensibilidade visual diminui.                                                     | Supressão sacádica: redução seletiva da sensibilidade visual durante a sacada (Burr, Morrone e Ross, 1994, _Nature_; revisão de Matin, 1974).                                   |
 | E o borrão passa despercebido.                                                                          | Consequência observada; a frase não atribui isso a uma única causa (a supressão e o mascaramento pela imagem seguinte contribuem).                                              |
@@ -167,8 +185,8 @@ foi definido.
 ### Cena 8 — Conclusão (51,7–61,0 s)
 
 - **Visual:** a câmera sai do cérebro e volta ao olho da cena 1, com a mesma lente, luz e
-  enquadramento. Em "E o buraco?", o círculo preto reaparece pequeno; em "Continua aí. Agora
-  mesmo", fica parado sobre a pupila.
+  enquadramento. Em "E aquele buraco", o círculo preto reaparece pequeno; em "continua aí.
+  Agora mesmo", fica parado sobre a pupila.
 - **Loop (aprovado):** o último quadro (61,0 s) é igual ao quadro 0, e a passagem do fim para o
   começo é uma continuação, não um corte:
   - 59,0–60,2 s: o círculo preto se fecha devagar até sumir, devolvendo o olho ao estado do
@@ -193,6 +211,10 @@ fecha o loop. A voz sempre na frente: trilha de 18 a 20 dB abaixo da narração,
 −14 LUFS.
 
 ## Legendas
+
+> **Versão 4:** os tempos e os grupos definitivos estão no projeto, em
+> `producao/piloto-01-cerebro/compositions/legendas.html` (gerado por `narracao/gerar_legendas.py`
+> a partir da narração final). A tabela abaixo é a referência da versão 3.
 
 Palavra a palavra, texto branco `#F5F7FA` em negrito e caixa alta, palavras-chave em ciano
 `#00D9FF`, um grupo de 2 a 4 palavras por vez, na faixa segura (y entre 168 e 1330). Tempos
