@@ -1,0 +1,7 @@
+# Fotos do cliente e resultados não vão para o git (use a entrega pelo chat)
+entradas/*
+saidas/*
+!entradas/.gitkeep
+!saidas/.gitkeep
+__pycache__/
+*.pyc

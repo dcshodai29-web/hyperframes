@@ -1,0 +1,25 @@
+# torch/torchvision vêm do índice CPU do PyTorch (ver setup.sh)
+diffusers>=0.43
+transformers>=5.0
+accelerate
+safetensors
+huggingface_hub
+peft
+sentencepiece
+protobuf
+opencv-contrib-python-headless
+pillow
+pillow-heif
+numpy
+scipy
+scikit-image
+imageio
+rawpy
+rembg[cpu]
+onnxruntime
+pymatting
+spandrel
+spandrel_extra_arches
+kornia
+timm
+einops

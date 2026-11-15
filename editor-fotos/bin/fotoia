@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Atalho: roda a CLI dentro do ambiente do editor (instala na primeira vez).
+set -e
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+VENV="${FOTOIA_VENV:-/opt/fotoia/venv}"
+[ -x "$VENV/bin/python" ] || bash "$HERE/setup.sh"
+export HF_HUB_DISABLE_PROGRESS_BARS=1 PYTHONWARNINGS=ignore TRANSFORMERS_VERBOSITY=error DIFFUSERS_VERBOSITY=error
+cd "$HERE" && exec "$VENV/bin/python" -m fotoia "$@"
