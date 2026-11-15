@@ -256,6 +256,9 @@ def backlit(
     L = max(H, W)
     # corta a franja de alfa muito baixo: sobre branco ela vira um contorno fantasma em volta do assunto
     a = np.clip((np.clip(alpha, 0, 1).astype(np.float32) - 0.10) / 0.88, 0, 1)
+    from . import segment as _seg
+
+    a = _seg.fill_small_holes(a)  # um furo de poucos px no matte vira clarão sob o rim
     if isinstance(bg, str):
         base_bg = core.srgb_to_linear(core.parse_color(bg))
         box = core.bbox(a, 0.5) or (0, 0, W, H)

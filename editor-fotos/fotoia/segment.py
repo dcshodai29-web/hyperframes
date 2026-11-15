@@ -311,6 +311,30 @@ def face_mask(rgb, parts="pele", probs=None):
 # --------------------------------------------------------------------------- máscaras utilitárias
 
 
+def fill_small_holes(alpha, max_area=0.0006, thr=0.85):
+    """Fecha furos minúsculos do recorte (ilhas de alfa baixo cercadas pelo assunto).
+
+    Um furo de poucos pixels é quase sempre falha do matte; sobre fundo claro e com
+    rim ele vira um clarão. Vãos reais (entre braço e tronco) são maiores e ficam.
+    """
+    H, W = alpha.shape
+    low = (alpha < thr).astype(np.uint8)
+    n, lab, st, _ = cv2.connectedComponentsWithStats(low, 8)
+    out = alpha.copy()
+    filled = np.zeros((H, W), dtype=np.uint8)
+    for i in range(1, n):
+        x, y, w, h, area = st[i]
+        if x == 0 or y == 0 or x + w >= W or y + h >= H or area > max_area * H * W:
+            continue
+        out[lab == i] = 1.0
+        filled[lab == i] = 1
+    if filled.any():  # a faixa semitransparente em volta do furo também fecha, senão sobra um anel claro
+        r = max(6, int(0.004 * max(H, W)))
+        near = cv2.dilate(filled, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * r + 1, 2 * r + 1))) > 0
+        out[near & (out > 0.4)] = 1.0
+    return out
+
+
 def combine(a, b, op="union"):
     if op in ("union", "uniao", "+"):
         return np.maximum(a, b)
