@@ -108,6 +108,25 @@ O que a função já resolve (não reintroduza estes defeitos ao improvisar):
 - Fundo vindo de imagem gerada: reconstrua-o sem o assunto (desfoque
   mascarado), senão fica um contorno fantasma em volta da silhueta.
 
+## Elementos translúcidos que devem ficar (teia, véu, fumaça, vidro)
+
+Eles contêm o fundo antigo, então não dá para recortar e colar. O que funcionou
+(ver `editor-fotos/exemplos/teia_translucida.py`):
+
+1. Região aproximada com `mascara --texto`.
+2. Dentro dela, extraia só a estrutura fina e clara: top-hat de raio pequeno na
+   luminância, menos o que for saturado/quente (luzes do fundo), vezes uma
+   densidade em escala larga (só onde há trama de verdade).
+3. Renderize contra o fundo novo como material em contraluz (cinza-prateado, véu
+   suave, dissolvendo ao se afastar do assunto) e passe como `--fundo` do
+   `contraluz`; o assunto é composto por cima.
+4. Confira em zoom: grades regulares (janelas, cercas) passam pelo filtro e
+   precisam de exclusão manual por coordenadas.
+
+Pedir ao FLUX.2 klein para "manter a teia" preserva o lugar e a forma geral, mas
+reinventa a textura (virou rede de malha regular nos dois testes). Use-o só se a
+pessoa aceitar a reinterpretação.
+
 ## Relighting (`reluz`) — o que esperar
 
 O modelo propõe a luz; só a razão suave de iluminação vai para o original.
