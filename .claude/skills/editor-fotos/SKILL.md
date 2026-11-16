@@ -118,8 +118,10 @@ e sobre branco isso vira um halo cinza. O que resolveu:
    continuam os originais.
 2. Endureça a transição (smoothstep entre 0,3 e 0,7) e refine com o filtro
    guiado sobre a guia clareada.
-3. Onde o original é preto puro não há borda a recuperar: confira em zoom e
-   feche entalhes inventados pelo modelo com fechamento morfológico local.
+3. Onde o original é preto puro não há borda a recuperar, e o modelo inventa
+   formas (cintura no braço, vão entre cotovelo e mão). Olhe a silhueta inteira
+   em zoom e preencha a região com a envoltória convexa do corpo (sem as
+   peças/objetos), unida ao alfa por inteiro para não deixar costura.
 4. Objetos de apoio (tabuleiro, mesa, chão) entram como camada do `--fundo`,
    dissolvendo no branco onde escurecem, e como `--contato` do `contraluz`,
    para a base do assunto não ganhar rim.
