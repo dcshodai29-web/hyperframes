@@ -108,6 +108,22 @@ O que a função já resolve (não reintroduza estes defeitos ao improvisar):
 - Fundo vindo de imagem gerada: reconstrua-o sem o assunto (desfoque
   mascarado), senão fica um contorno fantasma em volta da silhueta.
 
+## Assunto escuro sobre fundo escuro (preto sobre preto)
+
+O recorte automático fica largo e semitransparente onde o traje some no fundo,
+e sobre branco isso vira um halo cinza. O que resolveu:
+
+1. Gere uma **guia clareada** só para a máscara (luz linear × 6 com compressão
+   das altas-luzes) e rode `matte_subject` e o SAM sobre ela; os pixels finais
+   continuam os originais.
+2. Endureça a transição (smoothstep entre 0,3 e 0,7) e refine com o filtro
+   guiado sobre a guia clareada.
+3. Onde o original é preto puro não há borda a recuperar: confira em zoom e
+   feche entalhes inventados pelo modelo com fechamento morfológico local.
+4. Objetos de apoio (tabuleiro, mesa, chão) entram como camada do `--fundo`,
+   dissolvendo no branco onde escurecem, e como `--contato` do `contraluz`,
+   para a base do assunto não ganhar rim.
+
 ## Elementos translúcidos que devem ficar (teia, véu, fumaça, vidro)
 
 Eles contêm o fundo antigo, então não dá para recortar e colar. O que funcionou

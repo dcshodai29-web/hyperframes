@@ -197,10 +197,11 @@ def cmd_contraluz(a):
     if alpha is None:
         alpha = segment.matte_subject(rgb)
     bg = core.load_image(a.fundo) if a.fundo else a.cor
+    contact = core.load_mask(a.contato, rgb.shape) if a.contato else None
     out = light.backlit(
         rgb, alpha, bg, rim=a.rim, rim_width=a.largura, glow=a.brilho, haze=a.nevoa, darken=a.escurecer,
         contrast=a.contraste, dodge_burn=a.dodge_burn, clarity=a.claridade, texture=a.textura,
-        saturation=a.saturacao, rim_color=a.cor_rim, top_bias=a.topo,
+        saturation=a.saturacao, rim_color=a.cor_rim, top_bias=a.topo, contact=contact,
     )  # fmt: skip
     _save(a, out, meta)
 
@@ -483,6 +484,7 @@ def build():
 
     s = add("contraluz", cmd_contraluz, "contraluz em estúdio claro: fundo high-key, rim, névoa, volume")
     s.add_argument("--alfa"), s.add_argument("--cor", default="#fbfbfb"), s.add_argument("--fundo")
+    s.add_argument("--contato", help="máscara da superfície de apoio (mesa, chão): a base não recebe rim")
     for flag, default in (("--rim", 4.2), ("--largura", 0.0045), ("--brilho", 0.55), ("--nevoa", 0.09),
                           ("--escurecer", -0.4), ("--contraste", 0.33), ("--dodge-burn", 0.65), ("--claridade", 0.4),
                           ("--textura", 0.45), ("--saturacao", 0.08), ("--topo", 0.5)):  # fmt: skip

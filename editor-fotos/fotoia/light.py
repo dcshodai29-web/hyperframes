@@ -236,6 +236,7 @@ def local_thickness(mask, dist=None, levels=9):
 def backlit(
     rgb, alpha, bg="#fbfbfb", rim=4.2, rim_width=0.0045, glow=0.55, haze=0.09, darken=-0.4, contrast=0.33,
     dodge_burn=0.65, clarity=0.4, texture=0.45, saturation=0.08, add=0.10, rim_color="#ffffff", top_bias=0.5,
+    contact=None,
 ):  # fmt: skip
     """Assunto em contraluz sobre fundo claro de estúdio (high-key), tudo determinístico.
 
@@ -267,7 +268,10 @@ def backlit(
         d2 = ((xx - cx) / L) ** 2 + ((yy - cy) / L) ** 2
         hot = 1.0 + 0.06 * np.exp(-d2 / 0.18)  # a fonte de luz fica atrás do assunto
         bg = core.linear_to_srgb(np.clip(base_bg[None, None, :] * hot[..., None], 0, 1))
-    d = cv2.distanceTransform((a > 0.5).astype(np.uint8), cv2.DIST_L2, 5)
+    # contact: superfície onde o assunto se apoia (mesa, tabuleiro, chão). Conta como "dentro" para a
+    # distância à borda, então a base que toca a superfície não recebe rim nem névoa.
+    solid_m = (a > 0.5) if contact is None else ((a > 0.5) | (np.clip(contact, 0, 1) > 0.5))
+    d = cv2.distanceTransform(solid_m.astype(np.uint8), cv2.DIST_L2, 5)
     T = local_thickness(a > 0.5, d)  # meia-espessura local: dedos e braços recebem faixas mais estreitas
     inner = np.clip(d / np.maximum(0.45 * T, 1.0), 0, 1)
     inner = core.blur(inner * inner * (3 - 2 * inner), max(1.0, 0.004 * L)) * a
